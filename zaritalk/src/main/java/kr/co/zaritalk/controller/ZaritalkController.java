@@ -18,7 +18,7 @@ public class ZaritalkController {
 	BoardService service;
 	
 	@GetMapping()
-	public String getList() {
+	public List<Board> getList() {
 //		service.getList();
 //		System.out.println(service.getList());
 		return service.selectList();

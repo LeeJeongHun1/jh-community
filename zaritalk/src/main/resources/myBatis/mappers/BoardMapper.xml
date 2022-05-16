@@ -4,8 +4,8 @@
 
 <mapper namespace="kr.co.zaritalk.mapper.BoardMapper">
 
-	<select id="selectList" resultType="string">
-		select 'a' as a
-		FROM DUAL
+	<select id="selectList" resultType="board">
+		SELECT *
+		FROM users
 	</select>
 </mapper>

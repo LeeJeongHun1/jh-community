@@ -14,11 +14,7 @@ public class BoardService {
 	@Autowired
 	private BoardMapper mapper;
 	
-//	public List<Board> selectList() {
-	public String selectList() {
-		System.out.println(mapper.getClass());
-		System.out.println(mapper.getClass().getName());
-//		mapper.selectList();
+	public List<Board> selectList() {
 		return mapper.selectList();
 	}
 }

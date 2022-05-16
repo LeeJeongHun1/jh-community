@@ -9,5 +9,5 @@ import kr.co.zaritalk.vo.Board;
 @Mapper
 public interface BoardMapper {
 	
-	String selectList();
+	List<Board> selectList();
 }
