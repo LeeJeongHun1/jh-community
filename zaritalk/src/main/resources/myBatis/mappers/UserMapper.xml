@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.co.zaritalk.mapper.BoardMapper">
+<mapper namespace="kr.co.zaritalk.mapper.UserMapper">
 
-	<select id="selectList" resultType="board">
+	<select id="selectList" resultType="user">
 		SELECT *
-		FROM users
+		FROM TB_USER
 	</select>
 </mapper>

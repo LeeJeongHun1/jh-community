@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import kr.co.zaritalk.vo.Board;
+import kr.co.zaritalk.vo.User;
 
 @Mapper
-public interface BoardMapper {
+public interface UserMapper {
 	
-	List<Board> selectList();
+	List<User> selectList();
 }

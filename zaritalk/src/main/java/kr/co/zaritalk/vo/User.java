@@ -3,7 +3,7 @@ package kr.co.zaritalk.vo;
 import lombok.Data;
 
 @Data
-public class Board {
+public class User {
 
 	private String id;
 	private String nickName;

@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @MapperScan(value = "kr.co.zaritalk.mapper")
-public class DatabaseConfig {
+public class DataSourceConfig {
 
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource")
@@ -23,19 +23,22 @@ public class DatabaseConfig {
 		return DataSourceBuilder.create().build();
 	}
 
-	@Bean(name = "sqlSessionFactory")
+	@Bean
 	public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource,
 			ApplicationContext applicationContext) throws Exception {
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setMapperLocations(
+		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+		factoryBean.setMapperLocations(
 				applicationContext.getResources("classpath:myBatis/mappers/*.xml"));
-		sqlSessionFactoryBean.setDataSource(dataSource);
+		factoryBean.setTypeAliasesPackage("kr.co.zaritalk.vo");
+		factoryBean.setConfigLocation(applicationContext.getResource("classpath:myBatis/myBatis-config.xml"));
+		factoryBean.setDataSource(dataSource);
 
-		return sqlSessionFactoryBean.getObject();
+		return factoryBean.getObject();
 	}
-
+	
 	@Bean
-	public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {
+	public SqlSessionTemplate db1SqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
+
 }
