@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.zaritalk.mapper.UserMapper;
+import kr.co.zaritalk.mapper.BoardMapper;
 import kr.co.zaritalk.vo.Board;
 
 @Service
-public class UserService {
+public class BoardService {
 	
 	@Autowired
-	private UserMapper mapper;
+	private BoardMapper mapper;
 	
-	public List<Board> selectUser() {
-		return mapper.selectUser();
+	public List<Board> selectList() {
+		return mapper.selectList();
 	}
 }

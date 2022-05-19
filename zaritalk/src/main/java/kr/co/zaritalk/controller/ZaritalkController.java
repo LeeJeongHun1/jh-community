@@ -13,7 +13,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import kr.co.zaritalk.service.BoardService;
 import kr.co.zaritalk.service.UserService;
+import kr.co.zaritalk.vo.Board;
 import kr.co.zaritalk.vo.User;
 
 /**
@@ -22,18 +24,18 @@ import kr.co.zaritalk.vo.User;
  */
 @RestController
 @RequestMapping("/boards")
-@Api(tags = "커뮤니티_API")
+@Api(tags = "커뮤니티_API문서")
 public class ZaritalkController {
 
 	@Autowired
-	UserService service;
+	BoardService service;
 	
 	/**
 	 * @return 게시글 목록
 	 */
 	@GetMapping()
 	@ApiOperation(notes = "커뮤니티 전체 게시글을 조회 할 수 있습니다.", value = "목록조회")
-	public List<User> boards() {
+	public List<Board> boards() {
 		return service.selectList();
 	}
 	
@@ -43,7 +45,7 @@ public class ZaritalkController {
 		@ApiImplicitParam(name = "seq", value = "id", example = "1")
 		
 	})
-	public List<User> boards1(@PathVariable int seq) {
+	public List<Board> boards1(@PathVariable int seq) {
 		return service.selectList();
 	}
 //	@GetMapping()

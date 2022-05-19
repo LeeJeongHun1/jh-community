@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import kr.co.zaritalk.vo.Board;
 
 @Mapper
-public interface UserMapper {
+public interface BoardMapper {
 	
-	List<Board> selectUser();
+	List<Board> selectList();
 }
