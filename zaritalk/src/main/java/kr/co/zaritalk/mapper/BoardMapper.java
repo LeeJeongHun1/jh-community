@@ -10,4 +10,5 @@ import kr.co.zaritalk.vo.Board;
 public interface BoardMapper {
 	
 	List<Board> selectList();
+	Board selectOne();
 }

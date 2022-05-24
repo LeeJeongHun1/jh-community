@@ -27,7 +27,7 @@ import kr.co.zaritalk.vo.User;
 @RestController
 @RequestMapping("/boards")
 @Api(tags = "커뮤니티_API문서")
-public class ZaritalkController {
+public class BoardController {
 
 	@Autowired
 	BoardService service;
@@ -41,17 +41,17 @@ public class ZaritalkController {
 		return service.selectList();
 	}
 	
-	@GetMapping("/{seq}")
-	@ApiOperation(notes = "커뮤니티 게시글을 조회 할 수 있습니다.", value = "게시글 조회")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = "seq", value = "id", example = "1")
-		
-	})
-	public List<Board> boards(@PathVariable int seq) {
-		return service.selectList();
-	}
+//	@GetMapping("/{seq}")
+//	@ApiOperation(notes = "커뮤니티 게시글을 조회 할 수 있습니다.", value = "게시글 조회")
+//	@ApiImplicitParams({
+//		@ApiImplicitParam(name = "seq", value = "id", example = "1")
+//		
+//	})
+//	public Board boards(@PathVariable int seq) {
+//		return service.selectList();
+//	}
 	
-	@ApiOperation(notes = "커뮤니티 전체 게시글을 조회 할 수 있습니다.", value = "게시글 조회")
+	@ApiOperation(notes = "커뮤니티 전체 게시글을 조회 할 수 있습니다.", value = "게시글 조회" )
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "seq", value = "id", example = "1")
 		
