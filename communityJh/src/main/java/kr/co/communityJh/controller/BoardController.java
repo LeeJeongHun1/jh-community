@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.communityJh.repository.BoardRepository;
 import kr.co.communityJh.service.BoardService;
 import kr.co.communityJh.vo.Board;
 
@@ -21,7 +20,7 @@ import kr.co.communityJh.vo.Board;
 public class BoardController {
 
 	@Autowired
-	BoardRepository boardRepository;
+	BoardService service;
 	
 	/**
 	 * @return 게시판 list page
@@ -29,21 +28,27 @@ public class BoardController {
 	 */
 	@GetMapping()
 	public String boards(Model model) {
-		model.addAttribute("boards", boardRepository.findAll());
+		model.addAttribute("boards", service.findAll());
 		return "board/list";
 		
 	}
 	
 	@GetMapping("/write")
 	public String write(Model model) {
-//		model.addAttribute("boards", service.findAll());
+		model.addAttribute("board", new Board());
 		return "board/write";
 		
 	}
+	
+	/**
+	 * @param board
+	 * @return
+	 */
 	@PostMapping("/write")
-	public String write(@RequestBody Board board) {
-//		model.addAttribute("boards", service.findAll());
-		return "board/write";
+	public String write(@ModelAttribute Board board) {
+		System.out.println(board);
+		service.save(board);
+		return "redirect:/boards/write";
 		
 	}
 	

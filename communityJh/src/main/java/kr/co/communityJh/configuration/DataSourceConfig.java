@@ -27,12 +27,16 @@ public class DataSourceConfig {
 	public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource dataSource,
 			ApplicationContext applicationContext) throws Exception {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+		
+		// mapper xml 경로 지정 (myBatis 사용)
 		factoryBean.setMapperLocations(
 				applicationContext.getResources("classpath:myBatis/mappers/*.xml"));
+		// myBatis config 환경설정 xml 경로
 		factoryBean.setConfigLocation(applicationContext.getResource("classpath:myBatis/myBatis-config.xml"));
+		// mapper xml 에 typeAliases error 발생하여 현재 config xml에 기입함
 //		factoryBean.setTypeAliasesPackage("kr.co.zaritalk.vo");
+		
 		factoryBean.setDataSource(dataSource);
-
 		return factoryBean.getObject();
 	}
 	

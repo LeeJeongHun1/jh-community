@@ -1,7 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: head('커뮤니티 게시판')">
+<head th:replace="fragments/common :: head('커뮤니티 게시판')">
     <!-- Required meta tags -->
     <!-- <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/header :: menu('board')">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')">
 
     </nav>
 
@@ -48,15 +48,14 @@
         </table>
 
         <div class="text-right">
-            <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/board/write}'|">글쓰기</button>
+            <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/boards/write}'|">글쓰기</button>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="../../assets/js/vendor/jquery-slim.min.js"></script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
 
+    <div th:replace="fragments/common :: footer">
+
+    </div>
 
 </body>
 
