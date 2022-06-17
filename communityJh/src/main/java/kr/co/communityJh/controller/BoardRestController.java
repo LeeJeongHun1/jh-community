@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import kr.co.communityJh.service.BoardService;
-import kr.co.communityJh.service.UserService;
+import kr.co.communityJh.service.AccountService;
 import kr.co.communityJh.vo.Board;
 import kr.co.communityJh.vo.User;
 

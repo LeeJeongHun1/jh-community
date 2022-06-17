@@ -2,5 +2,5 @@ package kr.co.communityJh.vo;
 
 public enum AccountType {
 //	REALTOR, LESSOR, LESSEE
-	ADMIN, USER
+	ROLE_ADMIN, ROLE_USER
 }

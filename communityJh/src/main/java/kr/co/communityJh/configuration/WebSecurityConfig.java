@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Bean
-	public BCryptPasswordEncoder encoderPw() {
+	public BCryptPasswordEncoder encoderPassword() {
 		return new BCryptPasswordEncoder();
 	}
 	
@@ -25,14 +25,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.anyRequest().permitAll()
 				.and()
 			.formLogin()
-				.loginPage("/user/loginForm")
 				.permitAll()
+				.loginPage("/user/loginForm")
 				.loginProcessingUrl("/user/login")
 				.usernameParameter("id")
 				.defaultSuccessUrl("/");
-//				.and()
-//			.logout()
-//				.permitAll();
 	}
 
 
