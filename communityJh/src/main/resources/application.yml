@@ -1,0 +1,59 @@
+# server port
+server:
+  port: 8000
+
+# build profile setting
+#spring.profiles.active=@activatedProperties@
+
+
+# 운영환경 config
+---
+spring:
+  profiles:
+    active: prod
+    
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
+    username: zaritalk
+    password: tapaman
+---
+
+
+# 개발환경 config
+spring:
+  profiles:
+    active: '@spring.profiles.active@'
+  
+  jpa: #jpa
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    database: oracle
+    database-platform: org.hibernate.dialect.OracleDialect
+    properties:
+      hibernate.format_sql: true
+      
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+    
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
+    username: zaritalk
+    password: tapaman
+  
+
+# thymeleaf config
+thymeleaf:
+  cache: false
+  prefix: classpath:/templates/
+  suffix: .html
+  mode: html
+  encoding: UTF-8
+
+logging:
+  level: 
+    root: info
