@@ -13,7 +13,7 @@
             <form class="form-signin" th:action="@{/user/login}" method="post">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <div th:if="${param.error}" class="alert alert-danger" role="alert">
-                    Invalid username and password.
+                    Invalid id and password.
                 </div>
                 <div th:if="${param.logout}" class="alert alert-primary" role="alert">
                     You have been logged out.

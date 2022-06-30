@@ -14,6 +14,15 @@
 
 </head>
 
+<!-- <script th:inline="javascript">
+    var ob = [
+        [$ {
+            boards
+        }]
+    ];
+    console.log(ob);
+</script> -->
+
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')">
 
@@ -35,12 +44,17 @@
             <tbody>
                 <tr th:each="board : ${boards}">
                     <td th:text="${board.seq}">1</td>
-                    <td th:text="${board.title}">1</td>
-                    <td th:text="${board.nickname}">1</td>
+                    <td>
+<!--                         <a th:text="${board.title}" th:href="@{/boards/detail/{seq}(seq = ${board.seq})}"></a> -->
+                        <a th:text="${board.title}" th:href="@{/boards/detail/__${board.seq}__}"></a>
+                    </td>
+                    <!--                     <td th:text="${board.nickname}">1</td> -->
+                    <td>1</td>
                     <!--                     <td th:if="${#dates.create(year,month,day)} == ${#dates.format(board.createDate, 'yyyy-MM-dd')}" th:text="${board.createDate}">1</td> -->
-                    <!--                     <td th:text="${board.createDate}">1</td> -->
-                    <td th:if="${#dates.format({#dates.createToday()}, 'yyyy MM dd')} == ${#dates.format({board.createDate}, 'yyyy MM dd')}" th:text="${#dates.format({board.createDate}, 'HH:mm')}">1</td>
-                    <td th:unless="${#dates.format({#dates.createToday()}, 'yyyy MM dd')} == ${#dates.format({board.createDate}, 'yyyy MM dd')}" th:text="${#dates.format({board.createDate}, 'MM-dd')}">1</td>
+                    <!-- 					<td th:text="${#temporals.format(#temporals.createNow(), 'yyyy MM dd')}">1</td> -->
+                    <!-- 					<td th:text="${#temporals.format(board.createDate, 'yyyy MM dd')}">1</td> -->
+                    <td th:if="${#temporals.format(#temporals.createNow(), 'yyyy MM dd')} == ${#temporals.format(board.createDate, 'yyyy MM dd')}" th:text="${#temporals.format(board.createDate, 'HH:mm')}">1</td>
+                    <td th:unless="${#temporals.format(#temporals.createNow(), 'yyyy MM dd')} == ${#temporals.format(board.createDate, 'yyyy MM dd')}" th:text="${#temporals.format(board.createDate, 'MM-dd')}">1</td>
                     <td th:text="${board.viewCount}">1</td>
                     <td th:text="${board.likeCount}">1</td>
                 </tr>
@@ -57,6 +71,11 @@
 
     </div>
 
+    <script th:inline="javascript">
+        var name = /*[[${boards}]]*/
+            console.log(JSON.stringify(name))
+    </script>
 </body>
+
 
 </html>

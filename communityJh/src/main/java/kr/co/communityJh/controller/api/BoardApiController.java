@@ -1,23 +1,15 @@
-package kr.co.communityJh.controller;
+package kr.co.communityJh.controller.api;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import kr.co.communityJh.service.BoardService;
-import kr.co.communityJh.service.AccountService;
 import kr.co.communityJh.vo.Board;
-import kr.co.communityJh.vo.User;
 
 /**
  * @author "jhlee"
@@ -26,20 +18,23 @@ import kr.co.communityJh.vo.User;
  * 현재 thymeleaf에서 사용할일이 거의 없어서 추후 재작성 예정.
  */
 @RestController
-@RequestMapping("/boards")
+//@RequestMapping("/boards")
 @Api(tags = "커뮤니티_API문서")
-public class BoardRestController {
+public class BoardApiController {
 
-//	@Autowired
-//	BoardService service;
+	@Autowired
+	BoardService service;
+	
 	
 //	/**
 //	 * @return 게시글 목록
 //	 */
-//	@GetMapping()
+//	@PostMapping("/board")
 //	@ApiOperation(notes = "커뮤니티 게시글 목록을 조회 할 수 있습니다.", value = "목록조회")
-//	public List<Board> boards() {
-//		return service.findAll();
+//	public List<Board> boards(Board board) {
+//		System.out.println(board);
+//		service.save(board);
+//		return null;
 //	}
 	
 //	@GetMapping("/{seq}")

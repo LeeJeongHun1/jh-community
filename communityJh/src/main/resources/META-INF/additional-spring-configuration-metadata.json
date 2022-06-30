@@ -1,5 +1,37 @@
-{"properties": [{
-  "name": "spring.datasource.jdbc-url",
-  "type": "java.lang.String",
-  "description": "A description for 'spring.datasource.jdbc-url'"
-}]}
+{"properties": [
+  {
+    "name": "spring.datasource.jdbc-url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.jdbc-url'"
+  },
+  {
+    "name": "thymeleaf.cache",
+    "type": "java.lang.String",
+    "description": "A description for 'thymeleaf.cache'"
+  },
+  {
+    "name": "thymeleaf.prefix",
+    "type": "java.lang.String",
+    "description": "A description for 'thymeleaf.prefix'"
+  },
+  {
+    "name": "thymeleaf.suffix",
+    "type": "java.lang.String",
+    "description": "A description for 'thymeleaf.suffix'"
+  },
+  {
+    "name": "thymeleaf.encoding",
+    "type": "java.lang.String",
+    "description": "A description for 'thymeleaf.encoding'"
+  },
+  {
+    "name": "thymeleaf.mode",
+    "type": "java.lang.String",
+    "description": "A description for 'thymeleaf.mode'"
+  },
+  {
+    "name": "spring.jpa.format_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.format_sql'"
+  }
+]}

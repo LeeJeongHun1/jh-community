@@ -35,7 +35,11 @@
                     </a>
                 </li>
             </ul>
-            <a role="button" class="btn btn-light" th:href="@{/user/loginForm}">Login</a>
+            <div sec:authorize="isAuthenticated()">
+                로그인 완료ddd
+            </div>
+            <a role="button" class="btn btn-light mr-1" th:href="@{/user/loginForm}">Login</a>
+            <a role="button" class="btn btn-light mr-1" th:href="@{/logout}">logout</a>
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             </form> -->
