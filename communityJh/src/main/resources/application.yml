@@ -5,7 +5,6 @@ server:
 # build profile setting
 #spring.profiles.active=@activatedProperties@
 
-
 # 운영환경 config
 ---
 spring:
@@ -13,17 +12,14 @@ spring:
     active: prod
     
   datasource:
-    driver-class-name: oracle.jdbc.OracleDriver
-    jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
-    username: zaritalk
+    username: jhlee
     password: tapaman
 ---
-
 
 # 개발환경 config
 spring:
   profiles:
-    active: '@spring.profiles.active@'
+    active: local
   
   jpa: #jpa
     hibernate:
