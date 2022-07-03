@@ -2,17 +2,25 @@ package kr.co.communityJh.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.communityJh.repository.AccountRepository;
+import kr.co.communityJh.repository.RoleRepository;
 import kr.co.communityJh.vo.AccountType;
+import kr.co.communityJh.vo.Role;
 import kr.co.communityJh.vo.User;
 
 /**
@@ -28,67 +36,47 @@ import kr.co.communityJh.vo.User;
 @Service
 public class AccountService implements UserDetailsService{
 	
-	@Autowired
-	private AccountRepository userRepository;
+	@Autowired private AccountRepository userRepository;
+	@Autowired private RoleRepository roleRepository;
 	
-	@Autowired
-	BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	@Transactional
 	public void registerUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		user.setRole(AccountType.ROLE_USER); // 로직 추가 해야함.
+		// 로직 추가 해야함. 
+//		roleRepository.save(Role.builder()
+//				.role(AccountType.ROLE_USER)
+//				.user(user)
+//				.build());
+		user.getRoles().add(Role.builder()
+				.role(AccountType.ROLE_USER)
+				.user(user)
+				.build());
 		userRepository.save(user);
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-		User user = userRepository.findById(id);
-		UserDetails userDetails = new UserDetails() {
-			
-			@Override
-			public Collection<? extends GrantedAuthority> getAuthorities() {
-				Collection<GrantedAuthority> authorities = new ArrayList<>();
-				authorities.add(new GrantedAuthority() {
-					@Override
-					public String getAuthority() {
-						// 권한 check 로직 추가 가능.
-						return user.getRole().toString();
-					}
-				});
-				return authorities;
-			}
-			
-			@Override
-			public boolean isEnabled() {
-				return true;
-			}
-			
-			@Override
-			public boolean isCredentialsNonExpired() {
-				return true;
-			}
-			
-			@Override
-			public boolean isAccountNonLocked() {
-				return true;
-			}
-			
-			@Override
-			public boolean isAccountNonExpired() {
-				return true;
-			}
-			
-			@Override
-			public String getUsername() {
-				return user.getId();
-			}
-			
-			@Override
-			public String getPassword() {
-				return user.getPassword();
-			}
-		};
-		
-		return userDetails;
+	@Transactional
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		System.out.println(email);
+		User user = userRepository.findByEmail(email);
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+//		user.getRoles().forEach(it -> {
+//			System.out.println(it.toString());
+//			authorities.add(new SimpleGrantedAuthority(it.toString()));
+//		});
+//		authorities.add(new GrantedAuthority() {
+//			@Override
+//			public String getAuthority() {
+//				// 권한 check 로직 추가 가능.
+//				return user.getRoles().ea;
+//			}
+//		});
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
+	}
+	
+	public void createRoles(Role role) {
+		roleRepository.save(role);
 	}
 }
