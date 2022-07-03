@@ -11,26 +11,51 @@
     <div class="container">
         <div class="text-center">
             <form class="form-signin" th:action="@{/user/login}" method="post">
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
                 <div th:if="${param.error}" class="alert alert-danger" role="alert">
                     Invalid id and password.
                 </div>
                 <div th:if="${param.logout}" class="alert alert-primary" role="alert">
                     You have been logged out.
                 </div>
-                <label for="id" class="sr-only">ID</label>
-                <input type="text" id="id" name="id" class="form-control" placeholder="id" required autofocus>
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                <!-- <div class="checkbox mb-3">
+                <div class="form-floating">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="email" required autofocus>
+                    <label for="email" class="sr-only">ID</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <label for="password" class="sr-only">Password</label>
+                </div>
+                <button class="w-100 my-1 btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button type="button" class="w-100 btn btn-lg btn-primary btn-block" th:onclick="|location.href='@{/user/joinForm}'|">Sign up</button>
+                <p class="mt-5 mb-3 text-muted">&copy; jhlee 2022-2022</p>
+            </form>
+            <!-- <div class="checkbox mb-3">
                     <label>
                     <input type="checkbox" value="remember-me"> Remember me
                   </label>
                 </div> -->
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                <button class="btn btn-lg btn-primary btn-block" th:onclick="|location.href='@{/user/joinForm}'|">Sign up</button>
-                <p class="mt-5 mb-3 text-muted">&copy; jhlee 2022-2022</p>
-            </form>
+            <!-- <form>
+            
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <div class="checkbox mb-3">
+                    <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+            </form> -->
         </div>
 
     </div>

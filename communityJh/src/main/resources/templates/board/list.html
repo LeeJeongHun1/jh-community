@@ -30,6 +30,10 @@
 
     <div class="container col-md-11">
         <h1>게시판</h1>
+        <div>
+            총 게시글 수: <span th:text="${boards.TotalElements}"></span>
+        </div>
+        <hr>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -43,10 +47,10 @@
             </thead>
             <tbody>
                 <tr th:each="board : ${boards}">
-                    <td th:text="${board.seq}">1</td>
+                    <td th:text="${board.id}">1</td>
                     <td>
-<!--                         <a th:text="${board.title}" th:href="@{/boards/detail/{seq}(seq = ${board.seq})}"></a> -->
-                        <a th:text="${board.title}" th:href="@{/boards/detail/__${board.seq}__}"></a>
+                        <!--                         <a th:text="${board.title}" th:href="@{/boards/detail/{id}(id = ${board.id})}"></a> -->
+                        <a th:text="${board.title}" th:href="@{/boards/__${board.id}__}"></a>
                     </td>
                     <!--                     <td th:text="${board.nickname}">1</td> -->
                     <td>1</td>
@@ -60,9 +64,27 @@
                 </tr>
             </tbody>
         </table>
-
-        <div class="text-right">
-            <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/boards/write}'|">글쓰기</button>
+        <div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${boards.pageable.pageNumber < 5} ? 'disabled'">
+                        <a class="page-link" th:href="@{/boards(page=${startPageNumber}-1)}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" th:classappend="${i == boards.pageable.pageNumber} ? 'active'" th:each="i : ${#numbers.sequence(startPageNumber, endPageNumber)}">
+                        <a class="page-link" th:href="@{/boards(page=${i})}" th:text="${i}+1">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="${((boards.totalPages-1) - startPageNumber) / 5 == 0} ? 'disabled'">
+                        <a class="page-link" th:href="@{/boards(page=${endPageNumber}+1)}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="text-end">
+                <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/boards/write}'|">글쓰기</button>
+            </div>
         </div>
     </div>
 
@@ -72,8 +94,11 @@
     </div>
 
     <script th:inline="javascript">
-        var name = /*[[${boards}]]*/
-            console.log(JSON.stringify(name))
+        var name = /*[[${authorities}]]*/ a;
+        console.log('ddd')
+        console.log({
+            name
+        })
     </script>
 </body>
 

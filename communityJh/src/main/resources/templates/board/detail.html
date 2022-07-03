@@ -18,25 +18,26 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')"></nav>
 
     <div class="container col-md-11">
-        <h1 th:text="${boards.title}"></h1>
+        <form action="#" th:action="@{/boards/write}" th:object="${board}" method="post">
+            <h1 th:text="*{title}"></h1>
+            <input type="hidden" class="form-control" id="id" th:field="*{id}">
 
-        <!-- <form action="#" th:action="@{/boards/write}" th:object="${board}" method="post"> -->
-        <div class="mb-3">
-            <label for="title" class="form-label">제목</label>
-            <input type="text" class="form-control" id="title" th:value="${boards.title}">
-        </div>
-        <div class="mb-3">
-            <label for="body" class="form-label">내용</label>
-            <textarea class="form-control" id="body" rows="10" th:text="${boards.body}"></textarea>
-        </div>
-        <!-- <input type="hidden" class="form-control" id="nickname" th:field="*{nickname}" th:value="test"> -->
+            <!-- <form action="#" th:action="@{/board/write}" th:object="${board}" method="post"> -->
+            <div class="mb-3">
+                <label for="title" class="form-label">제목</label>
+                <span class="form-control" id="title" th:text="*{title}"> </span>
+            </div>
+            <div class="mb-3">
+                <label for="body" class="form-label">내용</label>
+                <span class="form-control" id="body" th:text="*{body}"></span>
+            </div>
 
-        <div class="text-right">
-            <button type="submit" class="btn btn-outline-primary">쓰기</button>
-            <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/boards}'|">취소</button>
-        </div>
-        <!-- </form> -->
-
+            <div class="text-end">
+                <button type="submit" class="btn btn-outline-primary">수정</button>
+                <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/boards}'|">취소</button>
+            </div>
+            <!-- </form> -->
+        </form>
     </div>
 
     <div th:replace="fragments/common :: footer"></div>
