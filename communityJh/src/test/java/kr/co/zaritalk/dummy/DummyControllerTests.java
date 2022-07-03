@@ -41,12 +41,12 @@ class DummyControllerTests {
 						.title("제목")
 						.build();
 						
-		mockMvc.perform(post("/board")
+		mockMvc.perform(post("/boards")
 //				.accept(MediaType.)
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.param("body", "본문")
-				.param("title", "제목")
-//				.content(objectMapper.writeValueAsString(board))
+//				.param("body", "본문")
+//				.param("title", "제목")
+				.content(objectMapper.writeValueAsString(board))
 				)
 			.andExpect(status().isOk())
 			.andDo(print());
