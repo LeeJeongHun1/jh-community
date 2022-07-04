@@ -19,8 +19,12 @@ public class BoardService {
 	private BoardRepository boardRepository;
 	
 	// Slice 객체로 return 할 경우 다음 slice 존재 유무만 알고 있다.
-	public Page<Board> findAll(Pageable pageable) {
-//		boardRepository.findAll(PageRequest.of(0, 5, Sort.Direction.DESC, "createDate"));
+	public Page<Board> findAll(String searchText, int option, Pageable pageable) {
+		if(option == 1) {
+			return boardRepository.findByTitleContainingOrBodyContaining(searchText, searchText, pageable);
+		}else if(option == 2) {
+			return boardRepository.findAll(pageable);
+		}
 		return boardRepository.findAll(pageable);
 	}
 	
@@ -43,10 +47,10 @@ public class BoardService {
 	// 0~4, 5~9, 10~14 
 	// total: 12, pageNumber: 9 -> 9
 	public int getEndPageNumber(int pageNumber, int totalPage) {
-		int EndPageNumber = (((pageNumber) / PAGEABLE_SIZE) +1) * PAGEABLE_SIZE;
+		int EndPageNumber = ((((pageNumber) / PAGEABLE_SIZE) +1) * PAGEABLE_SIZE) -1;
 		if(totalPage < EndPageNumber) {
-			EndPageNumber = totalPage;
+			EndPageNumber = totalPage-1;
 		}
-		return EndPageNumber-1;
+		return Math.max(0, EndPageNumber);
 	}
 }

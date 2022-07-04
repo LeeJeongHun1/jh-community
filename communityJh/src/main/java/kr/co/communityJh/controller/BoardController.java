@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.communityJh.service.BoardService;
 import kr.co.communityJh.vo.Board;
@@ -39,12 +40,16 @@ public class BoardController {
 	 */
 	@GetMapping
 	public String boards(Model model,
-			@PageableDefault(
-					page = 0,
-					size = 1,
-					sort = "createDate",
-					direction = Sort.Direction.DESC) Pageable pageable) {
-		Page<Board> boards = BoardService.findAll(pageable);
+						@PageableDefault(
+						page = 0,
+						size = 1,
+						sort = "createDate",
+						direction = Sort.Direction.DESC) Pageable pageable,
+						@RequestParam(required = false, defaultValue = "") String searchText,
+						@RequestParam(required = false, defaultValue = "0") int option) {
+		
+		Page<Board> boards = BoardService.findAll(searchText, option, pageable);
+		// page 관련 pageNumber 설정
  		int startPageNumber = BoardService.getStartPageNumber(boards.getPageable());
 		int endPageNumber = BoardService.getEndPageNumber(
 				boards.getPageable().getPageNumber(), boards.getTotalPages());

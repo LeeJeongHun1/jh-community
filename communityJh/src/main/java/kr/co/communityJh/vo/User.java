@@ -6,15 +6,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
@@ -22,10 +17,14 @@ import javax.validation.constraints.Email;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author jhlee
@@ -38,8 +37,9 @@ import lombok.NoArgsConstructor;
  * ManyToMany
  */
 @Data
+@ToString
 @Builder
-@DynamicInsert
+@DynamicInsert // insert 시 null 컬럼 제외
 @NoArgsConstructor
 @AllArgsConstructor
 @SequenceGenerator(
@@ -71,11 +71,18 @@ public class User {
 	@OneToMany(mappedBy = "user",
 			fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Role> Roles = new ArrayList<>();
 	
 	// 탈퇴여부
 	@ColumnDefault(value = "'Y'")
 	private String isEnabledYn;
+	
+	
+	public void addRoles(Role role) {
+		Roles.add(role);
+		role.setUser(this);
+	}
 	
 //	@JoinTable(
 //	name = "tb_user_role", //table name

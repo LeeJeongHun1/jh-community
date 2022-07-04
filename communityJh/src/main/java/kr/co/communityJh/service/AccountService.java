@@ -49,7 +49,7 @@ public class AccountService implements UserDetailsService{
 //				.role(AccountType.ROLE_USER)
 //				.user(user)
 //				.build());
-		user.getRoles().add(Role.builder()
+		user.addRoles(Role.builder()
 				.role(AccountType.ROLE_USER)
 				.user(user)
 				.build());
@@ -59,13 +59,11 @@ public class AccountService implements UserDetailsService{
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		System.out.println(email);
 		User user = userRepository.findByEmail(email);
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-//		user.getRoles().forEach(it -> {
-//			System.out.println(it.toString());
-//			authorities.add(new SimpleGrantedAuthority(it.toString()));
-//		});
+		user.getRoles().forEach(it -> {
+			authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
+		});
 //		authorities.add(new GrantedAuthority() {
 //			@Override
 //			public String getAuthority() {

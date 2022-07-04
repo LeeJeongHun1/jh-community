@@ -1,6 +1,8 @@
 package kr.co.communityJh.vo;
 
+import lombok.Getter;
+
+//@Getter
 public enum AccountType {
-//	REALTOR, LESSOR, LESSEE
 	ROLE_ADMIN, ROLE_USER
 }

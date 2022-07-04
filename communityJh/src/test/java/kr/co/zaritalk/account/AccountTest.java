@@ -42,16 +42,16 @@ class AccountTest {
 	
 	@BeforeEach
 	void beforeEach() {
-		Role role = Role.builder()
-				.Id(1)
-				.role(AccountType.ROLE_USER)
-				.build();
-		Role role2 = Role.builder()
-				.Id(2)
-				.role(AccountType.ROLE_ADMIN)
-				.build();
-		accountService.createRoles(role);
-		accountService.createRoles(role2);
+//		Role role = Role.builder()
+//				.Id(1)
+//				.role(AccountType.ROLE_USER)
+//				.build();
+//		Role role2 = Role.builder()
+//				.Id(2)
+//				.role(AccountType.ROLE_ADMIN)
+//				.build();
+//		accountService.createRoles(role);
+//		accountService.createRoles(role2);
 	}
 	
 	/**
