@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.service.BoardService;
-import kr.co.communityJh.vo.Board;
 
 /**
  * @author "jhlee"

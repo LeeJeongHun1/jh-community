@@ -1,5 +1,6 @@
 package kr.co.communityJh.controller;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -9,7 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.communityJh.annotation.AuthUser;
+import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.service.BoardService;
-import kr.co.communityJh.vo.Board;
 
 /**
  * @author "jhlee"
@@ -49,10 +54,12 @@ public class BoardController {
 						@RequestParam(required = false, defaultValue = "0") int option) {
 		
 		Page<Board> boards = BoardService.findAll(searchText, option, pageable);
+		
 		// page 관련 pageNumber 설정
  		int startPageNumber = BoardService.getStartPageNumber(boards.getPageable());
 		int endPageNumber = BoardService.getEndPageNumber(
 				boards.getPageable().getPageNumber(), boards.getTotalPages());
+		
 		model.addAttribute("startPageNumber", startPageNumber);
 		model.addAttribute("endPageNumber", endPageNumber);
 		model.addAttribute("boards", boards);
@@ -72,10 +79,11 @@ public class BoardController {
 		if(!seq.isPresent()) {
 			return "redirect:/boards";
 		}
-		model.addAttribute("board", BoardService.findById(seq.get())
-				.orElseThrow(() -> {
-					return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
-				}));
+//		Board board = BoardService.findById(seq.get()).orElseThrow(() -> {
+//			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
+//		});
+//		board.setViewCount(board.getViewCount()+1);
+		model.addAttribute("board", BoardService.findById(seq.get()));
 		return "board/detail";
 		
 	}
@@ -98,10 +106,12 @@ public class BoardController {
 	 * @return
 	 */
 	@PostMapping("/write")
-	public String write(@Valid Board board, BindingResult bindingResult) {
+	public String write(@Valid Board board, BindingResult bindingResult,
+			@AuthUser Account account) {
 		if(bindingResult.hasErrors()) {
 			return "board/write";
 		}
+		board.setAccount(account);
 		BoardService.save(board);
 		return "redirect:/boards/" + board.getId();
 		

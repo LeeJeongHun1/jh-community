@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.service.AccountService;
 import kr.co.communityJh.service.BoardService;
-import kr.co.communityJh.vo.Board;
-import kr.co.communityJh.vo.User;
 
 /**
  * @author "jhlee"
@@ -50,7 +50,7 @@ public class DummyController {
 	
 	@PostMapping("/users")
 	@ApiOperation(notes = "유저 등록", value = "유저 등록")
-	public String userSave(User user) {
+	public String userSave(Account user) {
 		System.out.println(user);
 		accountService.registerUser(user);
 //		ResponseEntity<Board> as = new ResponseEntity<Board>(new Board(), HttpStatus.OK);

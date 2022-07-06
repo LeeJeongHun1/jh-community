@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.repository.BoardRepository;
-import kr.co.communityJh.vo.Board;
 
 @Service
 public class BoardService {
@@ -32,20 +33,39 @@ public class BoardService {
 		boardRepository.save(board);
 	}
 	
-	public Optional<Board> findById(int id) {
-		return boardRepository.findById(id);
+	
+	/**
+	 * Board.id를 통해 Board Table 단건 조회
+	 * 해당 Board.viewCount 수정 // 더티체킹
+	 * @param id
+	 * @return Board
+	 */
+	@Transactional
+	public Board findById(int id) {
+		Board board = boardRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
+		});
+		board.setViewCount(board.getViewCount()+1);
+		return board;
 	}
 	
-	
-	// 0~4, 5~9, 10~14 -> 10
+	/**
+	 * 현재 PageNumber를 통해 page range의 startPageNumber 반환
+	 * @param pageable
+	 * @return startPageNumber
+	 */
 	public int getStartPageNumber(Pageable pageable) {
 		int startPageNumber = pageable.getPageNumber() - (PAGEABLE_SIZE-1) <= 0 ?
 				0 : (pageable.getPageNumber() / PAGEABLE_SIZE) * PAGEABLE_SIZE;
 		return startPageNumber;
 	}
 	
-	// 0~4, 5~9, 10~14 
-	// total: 12, pageNumber: 9 -> 9
+	/**
+	 * page range의 startPageNumber 반환
+	 * @param pageNumber
+	 * @param totalPage
+	 * @return EndPageNumber
+	 */
 	public int getEndPageNumber(int pageNumber, int totalPage) {
 		int EndPageNumber = ((((pageNumber) / PAGEABLE_SIZE) +1) * PAGEABLE_SIZE) -1;
 		if(totalPage < EndPageNumber) {

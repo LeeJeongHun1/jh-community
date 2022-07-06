@@ -6,15 +6,15 @@ server:
 #spring.profiles.active=@activatedProperties@
 
 # 운영환경 config
----
-spring:
-  profiles:
-    active: prod
-    
-  datasource:
-    username: jhlee
-    password: tapaman
----
+#---
+#spring:
+#  profiles:
+#    active: prod
+#    
+#  datasource:
+#    username: jhlee
+#    password: tapaman
+#---
 
 # 개발환경 config
 spring:

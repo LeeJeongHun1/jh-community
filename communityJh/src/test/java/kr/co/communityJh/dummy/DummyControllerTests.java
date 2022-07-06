@@ -1,4 +1,4 @@
-package kr.co.zaritalk.dummy;
+package kr.co.communityJh.dummy;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.communityJh.CommunityJhApplication;
-import kr.co.communityJh.vo.Board;
+import kr.co.communityJh.entity.Board;
 
 @SpringBootTest(classes = CommunityJhApplication.class)
 @Transactional

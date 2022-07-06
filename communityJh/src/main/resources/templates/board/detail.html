@@ -19,28 +19,59 @@
 
     <div class="container col-md-11">
         <form action="#" th:action="@{/boards/write}" th:object="${board}" method="post">
-            <h1 th:text="*{title}"></h1>
             <input type="hidden" class="form-control" id="id" th:field="*{id}">
+            <div class="col">
+                <div class="row border-bottom">
+                    <div class="col-md-8">
+                        <h3 class="pb-2 mb-2 fst-italic" th:text="*{title}">title</h3>
+                    </div>
+                    <div class="text-end col-md-4">
+                        <div class="pb-1 mb-1">
+                            <button type="button" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
+                            <button type="button" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">삭제</button>
+                            <button type="button" class="btn btn-light" th:onclick="|location.href='@{/boards}'|">목록</button>
+                        </div>
+                        <ul class="pb-1 mb-1 justify-content-end list-group list-group-horizontal">
+                            <li class="list-group-item"><span>작성자 <span th:text="*{account.nickname}"></span></span>
+                            </li>
+                            <li class="list-group-item"><span>조회 <span th:text="*{viewCount}">0</span></span>
+                            </li>
+                            <li class="list-group-item" id="likeEle" style="cursor: pointer">
+                                <span>좋아요<i class="bi bi-heart" id="heart"></i>
+                                </span>
+                                <span th:text="*{likeCount}">0</span>
+                            </li>
+                            <li class="list-group-item"><span>댓글</span></li>
+                        </ul>
+                    </div>
+                </div>
 
-            <!-- <form action="#" th:action="@{/board/write}" th:object="${board}" method="post"> -->
-            <div class="mb-3">
-                <label for="title" class="form-label">제목</label>
-                <span class="form-control" id="title" th:text="*{title}"> </span>
+                <article class="blog-post border-bottom pb-3 mb-3">
+                    <h2 class="blog-post-title mb-1">Sample blog post</h2>
+                    <div th:text="*{body}"> 본문 내용 </div>
+                </article>
             </div>
-            <div class="mb-3">
-                <label for="body" class="form-label">내용</label>
-                <span class="form-control" id="body" th:text="*{body}"></span>
-            </div>
-
-            <div class="text-end">
-                <button type="submit" class="btn btn-outline-primary">수정</button>
-                <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/boards}'|">취소</button>
-            </div>
-            <!-- </form> -->
         </form>
     </div>
 
     <div th:replace="fragments/common :: footer"></div>
 </body>
+
+<script>
+    $(document).ready(function() {
+        $('#likeEle').click(function() {
+            if ($('#heart').hasClass('bi bi-heart')) {
+                $('#heart').attr('class', 'bi bi-heart-fill')
+            } else {
+                $('#heart').attr('class', 'bi bi-heart')
+            }
+        })
+    });
+</script>
+
+<script th:inline="javascript">
+    var user = /* [[${#authentication}]] */ name;
+    console.log(name)
+</script>
 
 </html>

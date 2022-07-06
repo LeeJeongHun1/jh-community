@@ -3,14 +3,13 @@ package kr.co.communityJh.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.entity.Likes;
 
 /**
  * @author jhlee
  *
- * Account JpaRepository
+ * Likes JpaRepository
  */
-public interface AccountRepository extends JpaRepository<Account, Integer>{
+public interface LikesRepository extends JpaRepository<Likes, Integer>{
 	
-	public Account findByEmail(String email);
-
 }

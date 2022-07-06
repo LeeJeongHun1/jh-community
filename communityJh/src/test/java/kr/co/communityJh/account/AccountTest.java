@@ -1,11 +1,9 @@
-package kr.co.zaritalk.account;
+package kr.co.communityJh.account;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -16,18 +14,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.communityJh.CommunityJhApplication;
+import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.service.AccountService;
-import kr.co.communityJh.vo.AccountType;
-import kr.co.communityJh.vo.Role;
-import kr.co.communityJh.vo.User;
-import springfox.documentation.annotations.ApiIgnore;
 
 @SpringBootTest(classes = CommunityJhApplication.class)
 @Transactional
@@ -64,7 +58,7 @@ class AccountTest {
 	void loginTest() throws Exception {
 		
 		
-		User user = User.builder()
+		Account user = Account.builder()
 				.email("aa@naver.com")
 				.password("1234")
 				.build();
@@ -79,7 +73,7 @@ class AccountTest {
 	@Test
 	@DisplayName("회원가입 테스트")
 	void joinTest() throws Exception {
-		User user = User.builder()
+		Account user = Account.builder()
 				.email("aa@naver.com")
 				.password("1234")
 				.nickname("test")

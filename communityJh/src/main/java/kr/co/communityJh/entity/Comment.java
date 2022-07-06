@@ -1,4 +1,4 @@
-package kr.co.communityJh.vo;
+package kr.co.communityJh.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,7 +39,7 @@ public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
-	private User user;
+	private Account user;
 	
 	@ManyToOne
 	@JoinColumn(name = "boardId")

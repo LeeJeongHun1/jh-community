@@ -1,4 +1,4 @@
-package kr.co.communityJh.vo;
+package kr.co.communityJh.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import kr.co.communityJh.enumType.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -45,6 +46,6 @@ public class Role {
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	@JsonBackReference
-	private User user;
+	private Account user;
 	
 }

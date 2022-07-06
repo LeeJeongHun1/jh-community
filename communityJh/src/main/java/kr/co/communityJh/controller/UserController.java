@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.service.AccountService;
-import kr.co.communityJh.vo.User;
 
 /**
  * @author "jhlee"
@@ -43,7 +43,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/register")
-	public String userRegister(User user) {
+	public String userRegister(Account user) {
 		service.registerUser(user);
 		return "redirect:/user/loginForm";
 		

@@ -1,4 +1,4 @@
-package kr.co.zaritalk.jpa;
+package kr.co.communityJh.jpa;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,8 +11,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import kr.co.communityJh.CommunityJhApplication;
+import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.repository.AccountRepository;
-import kr.co.communityJh.vo.User;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = CommunityJhApplication.class)
@@ -30,7 +30,7 @@ class JpaTest {
 		int id = 2;
 		
 		// when
-		User u = accountRepository.findById(1).orElseThrow();
+		Account u = accountRepository.findById(1).orElseThrow();
 		
 		System.out.println(u);
 		// then

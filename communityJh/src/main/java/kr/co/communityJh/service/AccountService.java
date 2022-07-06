@@ -2,11 +2,7 @@ package kr.co.communityJh.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,11 +13,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.communityJh.dto.AccountDTO;
+import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.entity.Role;
+import kr.co.communityJh.enumType.AccountType;
 import kr.co.communityJh.repository.AccountRepository;
 import kr.co.communityJh.repository.RoleRepository;
-import kr.co.communityJh.vo.AccountType;
-import kr.co.communityJh.vo.Role;
-import kr.co.communityJh.vo.User;
 
 /**
  * @author jhlee
@@ -42,7 +39,7 @@ public class AccountService implements UserDetailsService{
 	@Autowired BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Transactional
-	public void registerUser(User user) {
+	public void registerUser(Account user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		// 로직 추가 해야함. 
 //		roleRepository.save(Role.builder()
@@ -59,9 +56,9 @@ public class AccountService implements UserDetailsService{
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = userRepository.findByEmail(email);
+		Account account = userRepository.findByEmail(email);
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		user.getRoles().forEach(it -> {
+		account.getRoles().forEach(it -> {
 			authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
 		});
 //		authorities.add(new GrantedAuthority() {
@@ -71,7 +68,8 @@ public class AccountService implements UserDetailsService{
 //				return user.getRoles().ea;
 //			}
 //		});
-		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
+//		return new User(user.getEmail(), user.getPassword(), authorities);
+		return new AccountDTO(account, authorities);
 	}
 	
 	public void createRoles(Role role) {

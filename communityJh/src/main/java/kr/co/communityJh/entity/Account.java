@@ -1,4 +1,4 @@
-package kr.co.communityJh.vo;
+package kr.co.communityJh.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ import lombok.ToString;
 		 sequenceName = "SEQ_USER", //매핑할 데이터베이스 시퀀스 이름
 		 initialValue = 1, allocationSize = 1)
 @Entity(name = "TB_USER")
-public class User {
+public class Account {
 
 	// user seq
 	@Id

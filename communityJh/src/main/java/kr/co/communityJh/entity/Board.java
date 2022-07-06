@@ -1,11 +1,12 @@
-package kr.co.communityJh.vo;
+package kr.co.communityJh.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ import org.hibernate.annotations.ColumnDefault;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -42,6 +44,7 @@ import lombok.NoArgsConstructor;
  * ManyToMany
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -64,13 +67,16 @@ public class Board extends BaseEntity{
 	@NotBlank(message = "내용을 입력하세요.")
 	private String body;
 	
-	//cascade = CascadeType.ALL 영속성 전의
-	@ManyToOne(cascade = CascadeType.ALL) // default EAGER 
+	//cascade 영속성 전의
+	@ManyToOne // default EAGER 
 	@JoinColumn(name = "userId")
-	private User user;
+	private Account account;
 	
 	@OneToMany(mappedBy = "board")
-	private List<Comment> comments;
+	private List<Comment> comments = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "board")
+	private Set<Likes> likes = new HashSet<>();
 	
 	@ColumnDefault("0")
 	private int viewCount;
