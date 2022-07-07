@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -72,14 +73,15 @@ public class Board extends BaseEntity{
 	@JoinColumn(name = "userId")
 	private Account account;
 	
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 	private List<Comment> comments = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 	private Set<Likes> likes = new HashSet<>();
 	
 	@ColumnDefault("0")
 	private int viewCount;
+	
 	@ColumnDefault("0")
 	private int likeCount;
 }

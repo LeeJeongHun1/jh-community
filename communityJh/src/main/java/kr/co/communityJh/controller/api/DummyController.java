@@ -52,7 +52,7 @@ public class DummyController {
 	@ApiOperation(notes = "유저 등록", value = "유저 등록")
 	public String userSave(Account user) {
 		System.out.println(user);
-		accountService.registerUser(user);
+//		accountService.registerUser(user);
 //		ResponseEntity<Board> as = new ResponseEntity<Board>(new Board(), HttpStatus.OK);
 		return "유저 추가 완료";
 	}

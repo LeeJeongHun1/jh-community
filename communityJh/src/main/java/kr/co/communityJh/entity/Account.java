@@ -68,7 +68,7 @@ public class Account {
 	private String password;
 	
 	// user role
-	@OneToMany(mappedBy = "user",
+	@OneToMany(mappedBy = "account",
 			fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL)
 	@JsonManagedReference
@@ -81,7 +81,7 @@ public class Account {
 	
 	public void addRoles(Role role) {
 		Roles.add(role);
-		role.setUser(this);
+		role.setAccount(this);
 	}
 	
 //	@JoinTable(

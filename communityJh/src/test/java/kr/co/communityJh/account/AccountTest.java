@@ -2,6 +2,7 @@ package kr.co.communityJh.account;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,8 @@ class AccountTest {
 	@Autowired MockMvc mockMvc;
 	
 	@MockBean AccountService accountService;
-	
+	@Autowired ObjectMapper objectMapper;
+
 	
 	@BeforeEach
 	void beforeEach() {
@@ -56,8 +58,6 @@ class AccountTest {
 	@Disabled
 	@DisplayName("로그인 테스트")
 	void loginTest() throws Exception {
-		
-		
 		Account user = Account.builder()
 				.email("aa@naver.com")
 				.password("1234")
@@ -73,20 +73,16 @@ class AccountTest {
 	@Test
 	@DisplayName("회원가입 테스트")
 	void joinTest() throws Exception {
-		Account user = Account.builder()
-				.email("aa@naver.com")
+		Account account = Account.builder()
+				.email("acc@naver.com")
 				.password("1234")
-				.nickname("test")
+				.nickname("acc")
 				.build();
 		mockMvc.perform(post("/register")
-				.content(new ObjectMapper().writeValueAsString(user))
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED))
-				
-//				.user(user.getEmail())
-//				.password(user.getPassword())
-//				.userParameter("email")
-//				.loginProcessingUrl("/user/login"))
-		.andExpect(status().isOk());
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+				.content(objectMapper.writeValueAsString(account)))
+		.andExpect(status().isOk())
+		.andDo(print());
 	}
 
 }

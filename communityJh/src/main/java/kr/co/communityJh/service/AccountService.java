@@ -2,6 +2,7 @@ package kr.co.communityJh.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.communityJh.dto.AccountAuthDTO;
 import kr.co.communityJh.dto.AccountDTO;
 import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.entity.Role;
@@ -33,46 +35,46 @@ import kr.co.communityJh.repository.RoleRepository;
 @Service
 public class AccountService implements UserDetailsService{
 	
-	@Autowired private AccountRepository userRepository;
-	@Autowired private RoleRepository roleRepository;
+	@Autowired private AccountRepository accountRepository;
 	
 	@Autowired BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Transactional
-	public void registerUser(Account user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+	public void registerAccount(AccountDTO accountDTO) {
 		// 로직 추가 해야함. 
-//		roleRepository.save(Role.builder()
-//				.role(AccountType.ROLE_USER)
-//				.user(user)
-//				.build());
-		user.addRoles(Role.builder()
+		Account account = dtoToEntityAccount(accountDTO);
+		account.addRoles(Role
+				.builder()
 				.role(AccountType.ROLE_USER)
-				.user(user)
 				.build());
-		userRepository.save(user);
+		accountRepository.save(account);
 	}
 
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Account account = userRepository.findByEmail(email);
+		Account account = accountRepository.findByEmail(email);
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		account.getRoles().forEach(it -> {
-			authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
-		});
-//		authorities.add(new GrantedAuthority() {
-//			@Override
-//			public String getAuthority() {
-//				// 권한 check 로직 추가 가능.
-//				return user.getRoles().ea;
-//			}
+//		account.getRoles().forEach(it -> {
+//			authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
 //		});
-//		return new User(user.getEmail(), user.getPassword(), authorities);
-		return new AccountDTO(account, authorities);
+		account.getRoles()
+			.stream()
+			.map(Role::getRole)
+			.collect(Collectors.toList())
+			.forEach(it -> {
+				authorities.add(new SimpleGrantedAuthority(it.toString()));
+		});
+		return new AccountAuthDTO(account, authorities);
 	}
 	
-	public void createRoles(Role role) {
-		roleRepository.save(role);
+	private Account dtoToEntityAccount(AccountDTO accountDTO) {
+		return Account.builder()
+//				.id(accountDTO.getId())
+				.email(accountDTO.getEmail())
+				.password(bCryptPasswordEncoder.encode(accountDTO.getPassword()))
+				.nickname(accountDTO.getNickname())
+				.Roles(accountDTO.getRoles())
+				.build();
 	}
 }

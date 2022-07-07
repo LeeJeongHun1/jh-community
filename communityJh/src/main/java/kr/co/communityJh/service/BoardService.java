@@ -1,13 +1,12 @@
 package kr.co.communityJh.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.communityJh.dto.BoardDto;
 import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.repository.BoardRepository;
 
@@ -41,12 +40,12 @@ public class BoardService {
 	 * @return Board
 	 */
 	@Transactional
-	public Board findById(int id) {
+	public BoardDto findById(int id) {
 		Board board = boardRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
 		});
 		board.setViewCount(board.getViewCount()+1);
-		return board;
+		return boardEntityToDto(board);
 	}
 	
 	/**
@@ -73,4 +72,34 @@ public class BoardService {
 		}
 		return Math.max(0, EndPageNumber);
 	}
+	
+	/**
+	 * dto class를 table에 매핑된 entity로 변환
+	 * @param dto
+	 * @return boardEntity
+	 */
+	public Board dtoToBoardEntity(BoardDto dto) {
+		return Board.builder()
+				.body(dto.getBody())
+				.title(dto.getTitle())
+				.viewCount(dto.getViewCount())
+				.build();
+	}
+	
+	/**
+	 * table에 매핑된 entity를 dto class로 변환
+	 * 개발이 진행되는 상황에 따라 수정될 수 있음.
+	 * @param entity
+	 * @return boardDto
+	 */
+	public BoardDto boardEntityToDto(Board entity) {
+		return BoardDto.builder()
+				.body(entity.getBody())
+				.title(entity.getTitle())
+				.account(entity.getAccount())
+				.viewCount(entity.getViewCount())
+				.build();
+	}
+	
+	
 }

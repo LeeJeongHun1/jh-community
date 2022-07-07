@@ -15,7 +15,8 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')"></nav>
 
     <div class="container col-md-11">
-        <h1>글쓰기</h1>
+        <h1 th:if="${board}">글쓰기</h1>
+        <h1 th:unless="${board}">글쓰기</h1>
         <br>
         <form action="#" th:action="@{/boards/write}" th:object="${board}" method="post">
 

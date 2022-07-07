@@ -1,6 +1,5 @@
 package kr.co.communityJh.controller;
 
-import java.security.Principal;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -10,9 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,11 +76,7 @@ public class BoardController {
 		if(!seq.isPresent()) {
 			return "redirect:/boards";
 		}
-//		Board board = BoardService.findById(seq.get()).orElseThrow(() -> {
-//			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
-//		});
-//		board.setViewCount(board.getViewCount()+1);
-		model.addAttribute("board", BoardService.findById(seq.get()));
+		model.addAttribute("boardDto", BoardService.findById(seq.get()));
 		return "board/detail";
 		
 	}

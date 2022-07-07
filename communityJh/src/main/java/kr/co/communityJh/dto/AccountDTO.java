@@ -1,31 +1,35 @@
 package kr.co.communityJh.dto;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-
-import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.entity.Role;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author jhlee
+ * EAGER 전략
+ * OneToOne
+ * ManyToOne
  * 
- * Account Entity에 매핑되는 AcountDTO
- * 
+ * LAZY 전략
+ * OneToMany
+ * ManyToMany
  */
+@Builder
 @Getter
-@ToString
-public class AccountDTO extends User {
-	
-	private Account account;
-	
-	public AccountDTO(Account account, Collection<GrantedAuthority> authorities) {
-		super(account.getEmail(), account.getPassword(), authorities);
-		this.account = account;
-	}
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class AccountDTO {
 
-
-	
+	private int id;
+	private String email;
+	private String nickname;
+	private String password;
+	private List<Role> Roles = new ArrayList<>();
 }

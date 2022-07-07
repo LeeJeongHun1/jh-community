@@ -1,14 +1,11 @@
 package kr.co.communityJh.controller.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.service.BoardService;
 
 /**
@@ -18,13 +15,11 @@ import kr.co.communityJh.service.BoardService;
  * 현재 thymeleaf에서 사용할일이 거의 없어서 추후 재작성 예정.
  */
 @RestController
-//@RequestMapping("/boards")
+@RequestMapping("/boards")
 @Api(tags = "커뮤니티_API문서")
 public class BoardApiController {
 
-	@Autowired
-	BoardService service;
-	
+	@Autowired BoardService boardService;
 	
 //	/**
 //	 * @return 게시글 목록
@@ -52,12 +47,9 @@ public class BoardApiController {
 //		@ApiImplicitParam(name = "seq", value = "id", example = "1")
 //		
 //	})
-//	@PutMapping("/{seq}")
+	
+//	@PutMapping("/")
 //	public int update(int seq) {
 //		return 0;
-//	}
-//	@GetMapping()
-//	public List<User> boards3() {
-//		return service.selectList();
 //	}
 }

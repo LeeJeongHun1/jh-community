@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')"></nav>
 
     <div class="container col-md-11">
-        <form action="#" th:action="@{/boards/write}" th:object="${board}" method="post">
+        <form action="#" th:action="@{/boards/write}" th:object="${boardDto}" method="post">
             <input type="hidden" class="form-control" id="id" th:field="*{id}">
             <div class="col">
                 <div class="row border-bottom">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="text-end col-md-4">
                         <div class="pb-1 mb-1">
-                            <button type="button" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
+                            <button type="button" th:onclick="modify([[${boardDto}]])" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
                             <button type="button" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">삭제</button>
                             <button type="button" class="btn btn-light" th:onclick="|location.href='@{/boards}'|">목록</button>
                         </div>
@@ -48,7 +48,7 @@
 
                 <article class="blog-post border-bottom pb-3 mb-3">
                     <h2 class="blog-post-title mb-1">Sample blog post</h2>
-                    <div th:text="*{body}"> 본문 내용 </div>
+                    <div th:utext="*{body}"> 본문 내용 </div>
                 </article>
             </div>
         </form>
@@ -70,8 +70,17 @@
 </script>
 
 <script th:inline="javascript">
-    var user = /* [[${#authentication}]] */ name;
-    console.log(name)
+    var user = /* [[${#authentication.principal.username}]] */ name
+        /*<![CDATA[*/
+    let board = /*[[ ${boardDto} ]]*/ a;
+    /*]]*/
+
+    function modify(board) {
+        // $.ajax({
+        //     url: "",
+        // })
+        console.log(board)
+    }
 </script>
 
 </html>

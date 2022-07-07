@@ -22,11 +22,11 @@ public class QRole extends EntityPathBase<Role> {
 
     public static final QRole role1 = new QRole("role1");
 
+    public final QAccount account;
+
     public final NumberPath<Integer> Id = createNumber("Id", Integer.class);
 
     public final EnumPath<kr.co.communityJh.enumType.AccountType> role = createEnum("role", kr.co.communityJh.enumType.AccountType.class);
-
-    public final QAccount user;
 
     public QRole(String variable) {
         this(Role.class, forVariable(variable), INITS);
@@ -46,7 +46,7 @@ public class QRole extends EntityPathBase<Role> {
 
     public QRole(Class<? extends Role> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.user = inits.isInitialized("user") ? new QAccount(forProperty("user")) : null;
+        this.account = inits.isInitialized("account") ? new QAccount(forProperty("account")) : null;
     }
 
 }
