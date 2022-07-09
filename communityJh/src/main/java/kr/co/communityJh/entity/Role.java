@@ -23,7 +23,7 @@ import lombok.ToString;
  * @author jhlee
  */
 @Data
-@ToString(exclude = "user")
+@ToString(exclude = "account")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

@@ -12,18 +12,17 @@ import lombok.ToString;
 /**
  * @author jhlee
  * 
- * Account Entity에 매핑되는 AcountDTO
+ * Account Entity에 매핑되는 Login AcountDTO
  * 
  */
 @Getter
-@ToString
 public class AccountAuthDTO extends User {
 	
-	private Account account;
+	private AccountRequestDTO accountRequestDTO;
 	
 	public AccountAuthDTO(Account account, Collection<GrantedAuthority> authorities) {
 		super(account.getEmail(), account.getPassword(), authorities);
-		this.account = account;
+		this.accountRequestDTO = account.toAccountDTO();
 	}
 
 

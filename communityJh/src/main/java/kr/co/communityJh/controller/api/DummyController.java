@@ -44,7 +44,7 @@ public class DummyController {
 	@PostMapping("/board")
 	@ApiOperation(notes = "게시글을 작성 할 수 있습니다.", value = "게시글 작성")
 	public String boardSave(Board board) {
-		boardService.save(board);
+//		boardService.save(board);
 		return "게시글 추가 완료";
 	}
 	

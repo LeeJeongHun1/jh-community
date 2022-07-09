@@ -15,13 +15,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.communityJh.annotation.AuthUser;
-import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.dto.AccountRequestDTO;
+import kr.co.communityJh.dto.BoardDTO;
 import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.service.BoardService;
 
@@ -34,7 +33,7 @@ import kr.co.communityJh.service.BoardService;
 public class BoardController {
 
 	@Autowired
-	BoardService BoardService;
+	BoardService boardService;
 	
 	/**
 	 * @return 게시판 list page
@@ -44,17 +43,17 @@ public class BoardController {
 	public String boards(Model model,
 						@PageableDefault(
 						page = 0,
-						size = 1,
+						size = 5,
 						sort = "createDate",
 						direction = Sort.Direction.DESC) Pageable pageable,
 						@RequestParam(required = false, defaultValue = "") String searchText,
-						@RequestParam(required = false, defaultValue = "0") int option) {
+						@RequestParam(required = false, defaultValue = "t") String option) {
 		
-		Page<Board> boards = BoardService.findAll(searchText, option, pageable);
+		Page<Board> boards = boardService.findAll(searchText, option, pageable);
 		
 		// page 관련 pageNumber 설정
- 		int startPageNumber = BoardService.getStartPageNumber(boards.getPageable());
-		int endPageNumber = BoardService.getEndPageNumber(
+ 		int startPageNumber = boardService.getStartPageNumber(boards.getPageable());
+		int endPageNumber = boardService.getEndPageNumber(
 				boards.getPageable().getPageNumber(), boards.getTotalPages());
 		
 		model.addAttribute("startPageNumber", startPageNumber);
@@ -72,11 +71,15 @@ public class BoardController {
 	 * @throws Exception 
 	 */
 	@GetMapping("/{seq}")
-	public String detail(@PathVariable Optional<Integer> seq, Model model) throws IllegalArgumentException {
+	public String detail(@PathVariable Optional<Integer> seq,
+					@RequestParam(required = false, defaultValue = "0") int page,
+					@RequestParam(required = false, defaultValue = "") String searchText,
+					@RequestParam(required = false, defaultValue = "t") String option,
+					Model model) throws IllegalArgumentException {
 		if(!seq.isPresent()) {
 			return "redirect:/boards";
 		}
-		model.addAttribute("boardDto", BoardService.findById(seq.get()));
+		model.addAttribute("boardDTO", boardService.findById(seq.get()));
 		return "board/detail";
 		
 	}
@@ -87,43 +90,43 @@ public class BoardController {
 	 * @return
 	 */
 	@GetMapping("/write")
-	public String write(Model model) {
-		model.addAttribute("board", new Board());
+	public String writeForm(Model model) {
+		model.addAttribute("boardDTO", new BoardDTO());
 		return "board/write";
 		
 	}
 	
 	/**
 	 * 게시글 등록
-	 * @param board
+	 * @param boardDTO
 	 * @return
 	 */
 	@PostMapping("/write")
-	public String write(@Valid Board board, BindingResult bindingResult,
-			@AuthUser Account account) {
+	public String boardWrite(@Valid BoardDTO boardDTO,
+			BindingResult bindingResult,
+			@AuthUser AccountRequestDTO accountRequestDTO) {
 		if(bindingResult.hasErrors()) {
 			return "board/write";
 		}
-		board.setAccount(account);
-		BoardService.save(board);
-		return "redirect:/boards/" + board.getId();
+		BoardDTO boardResponseDto =  boardService.save(boardDTO, accountRequestDTO);
+		return "redirect:/boards/" + boardResponseDto.getId();
 		
 	}
 	
-	/**
-	 * 게시글 수정
-	 * @param board
-	 * @return
-	 */
-	@PutMapping("/write")
-	public String update(@Valid @RequestBody Board board,
-			BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			return "board/write";
-		}
-		BoardService.save(board);
-		return "redirect:/boards/detail/" + board.getId();
-		
-	}
-	
+//	/**
+//	 * 게시글 수정
+//	 * @param board
+//	 * @return
+//	 */
+//	@PutMapping("/write")
+//	public String boardModify(@Valid @RequestBody Board board,
+//			BindingResult bindingResult) {
+//		if(bindingResult.hasErrors()) {
+//			return "board/write";
+//		}
+//		boardService.save(board);
+//		return "redirect:/boards/detail/" + board.getId();
+//		
+//	}
+
 }

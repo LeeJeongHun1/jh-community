@@ -2,7 +2,6 @@ package kr.co.communityJh.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,12 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.communityJh.dto.AccountAuthDTO;
-import kr.co.communityJh.dto.AccountDTO;
+import kr.co.communityJh.dto.AccountRequestDTO;
 import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.entity.Role;
 import kr.co.communityJh.enumType.AccountType;
 import kr.co.communityJh.repository.AccountRepository;
-import kr.co.communityJh.repository.RoleRepository;
 
 /**
  * @author jhlee
@@ -40,9 +38,11 @@ public class AccountService implements UserDetailsService{
 	@Autowired BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Transactional
-	public void registerAccount(AccountDTO accountDTO) {
-		// 로직 추가 해야함. 
-		Account account = dtoToEntityAccount(accountDTO);
+	public void registerAccount(AccountRequestDTO accountDTO) {
+		Account account = accountDTO.toEntityAccount();
+		// dto password를 bCrypt 암호화 적용 후 entity에 대입
+		account.setPassword(bCryptPasswordEncoder.encode(accountDTO.getPassword()));
+		// 신규 사용자 role 추가
 		account.addRoles(Role
 				.builder()
 				.role(AccountType.ROLE_USER)
@@ -55,26 +55,10 @@ public class AccountService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Account account = accountRepository.findByEmail(email);
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-//		account.getRoles().forEach(it -> {
-//			authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
-//		});
-		account.getRoles()
-			.stream()
-			.map(Role::getRole)
-			.collect(Collectors.toList())
-			.forEach(it -> {
-				authorities.add(new SimpleGrantedAuthority(it.toString()));
+		account.getRoles().forEach(it -> {
+				authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
 		});
 		return new AccountAuthDTO(account, authorities);
 	}
 	
-	private Account dtoToEntityAccount(AccountDTO accountDTO) {
-		return Account.builder()
-//				.id(accountDTO.getId())
-				.email(accountDTO.getEmail())
-				.password(bCryptPasswordEncoder.encode(accountDTO.getPassword()))
-				.nickname(accountDTO.getNickname())
-				.Roles(accountDTO.getRoles())
-				.build();
-	}
 }

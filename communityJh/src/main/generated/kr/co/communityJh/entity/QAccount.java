@@ -30,7 +30,7 @@ public class QAccount extends EntityPathBase<Account> {
 
     public final StringPath password = createString("password");
 
-    public final ListPath<Role, QRole> Roles = this.<Role, QRole>createList("Roles", Role.class, QRole.class, PathInits.DIRECT2);
+    public final SetPath<Role, QRole> roles = this.<Role, QRole>createSet("roles", Role.class, QRole.class, PathInits.DIRECT2);
 
     public QAccount(String variable) {
         super(Account.class, forVariable(variable));

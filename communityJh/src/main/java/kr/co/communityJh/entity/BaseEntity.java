@@ -44,7 +44,7 @@ public abstract class BaseEntity {
 	@Column(updatable = false)
 	private LocalDateTime createDate;
 	
-	@LastModifiedDate
+	@CreatedDate
 	private LocalDateTime lastUpdateDate;
 	
 }

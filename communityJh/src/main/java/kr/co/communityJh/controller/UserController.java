@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.communityJh.dto.AccountDTO;
+import kr.co.communityJh.dto.AccountRequestDTO;
 import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.service.AccountService;
 
@@ -44,7 +44,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/register")
-	public String userRegister(AccountDTO accountDTO) {
+	public String userRegister(AccountRequestDTO accountDTO) {
 		accountService.registerAccount(accountDTO);
 		return "redirect:/user/loginForm";
 		

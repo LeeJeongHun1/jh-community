@@ -1,7 +1,7 @@
 package kr.co.communityJh.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,14 +17,14 @@ import javax.validation.constraints.Email;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import kr.co.communityJh.dto.AccountRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * @author jhlee
@@ -37,8 +37,8 @@ import lombok.ToString;
  * ManyToMany
  */
 @Data
-@ToString
 @Builder
+@EqualsAndHashCode(callSuper = false, exclude = "roles")
 @DynamicInsert // insert 시 null 컬럼 제외
 @NoArgsConstructor
 @AllArgsConstructor
@@ -72,7 +72,7 @@ public class Account {
 			fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<Role> Roles = new ArrayList<>();
+	private Set<Role> roles = new HashSet<>();
 	
 	// 탈퇴여부
 	@ColumnDefault(value = "'Y'")
@@ -80,13 +80,19 @@ public class Account {
 	
 	
 	public void addRoles(Role role) {
-		Roles.add(role);
+//		roles.add(role);
 		role.setAccount(this);
 	}
 	
-//	@JoinTable(
-//	name = "tb_user_role", //table name
-//	joinColumns = @JoinColumn(name = "user_id"), // join column 명 
-//	inverseJoinColumns = @JoinColumn(name = "role_id") // join 대상 table의 join column 명
-//	)
+	public AccountRequestDTO toAccountDTO() {
+		return AccountRequestDTO.builder()
+				.id(this.id)
+				.email(this.email)
+				.nickname(this.nickname)
+				.password(this.password)
+				.roles(this.roles)
+				.isEnabledYn(this.isEnabledYn)
+				.build();
+	}
+	
 }

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +19,6 @@ import kr.co.communityJh.entity.Board;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
-//@AutoConfigureTestDatabase(replace = Replace.NONE)
-//@ActiveProfiles("local")
-//@DataJpaTest
 class QueryDslTest {
 
 	@Autowired private JPAQueryFactory jpaQueryFactory;
@@ -34,19 +30,30 @@ class QueryDslTest {
 		int id = 4;
 //		QBoard qBoard = QBoard.board;
 		// when
-		Board boardentity = jpaQueryFactory.select(board)
-				.from(board)
-				.innerJoin(board.account, account)
-				.fetchJoin()
-				.where(board.id.eq(id))
+		
+		Board boardEntity = jpaQueryFactory.selectFrom(board)
+//		BoardDTO boardDTO = jpaQueryFactory
+//				.select(Projections.fields(
+//						BoardDTO.class,
+//						board.id,
+//						board.title,
+//						board.body))
+//				.from(board)
+				.join(board.account, account).fetchJoin()
+				.where(
+						board.id.eq(id)
+						)
 				.fetchOne();
 		// then
-		assertNotNull(boardentity);
-		assertEquals(boardentity.getId(), id);
+//		System.out.println(boardDTO.getAccount().getEmail());
+//		System.out.println(boardDTO.getAccount().getNickname());
+		System.out.println(boardEntity.getAccount().getEmail());
+		System.out.println(boardEntity.getAccount().getNickname());
+//		assertNotNull(boardentity);
+//		assertEquals(boardentity.getId(), id);
 	}
 	
 	@Test
-	@Commit
 	void queryDsl_게시글업데이트() {
 		// given
 		// 검색 board.id

@@ -18,18 +18,21 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')"></nav>
 
     <div class="container col-md-11">
-        <form action="#" th:action="@{/boards/write}" th:object="${boardDto}" method="post">
-            <input type="hidden" class="form-control" id="id" th:field="*{id}">
+        <form action="#" th:action="@{/boards/write}" th:object="${boardDTO}" method="post">
+            <input type="hidden" class="form-control" id="bnoId" th:value="*{id}">
             <div class="col">
                 <div class="row border-bottom">
                     <div class="col-md-8">
                         <h3 class="pb-2 mb-2 fst-italic" th:text="*{title}">title</h3>
+                        <h3 class="pb-2 mb-2 fst-italic" th:text="*{id}">title</h3>
                     </div>
                     <div class="text-end col-md-4">
                         <div class="pb-1 mb-1">
-                            <button type="button" th:onclick="modify([[${boardDto}]])" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
-                            <button type="button" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">삭제</button>
-                            <button type="button" class="btn btn-light" th:onclick="|location.href='@{/boards}'|">목록</button>
+                            <th:block sec:authorize="isAuthenticated()">
+                                <button type="button" id="modifyBtn" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
+                                <button type="button" id="deleteBtn" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">삭제</button>
+                            </th:block>
+                            <button type="button" class="btn btn-light" th:onclick="|location.href='@{/boards(page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|">목록</button>
                         </div>
                         <ul class="pb-1 mb-1 justify-content-end list-group list-group-horizontal">
                             <li class="list-group-item"><span>작성자 <span th:text="*{account.nickname}"></span></span>
@@ -57,30 +60,27 @@
     <div th:replace="fragments/common :: footer"></div>
 </body>
 
-<script>
-    $(document).ready(function() {
-        $('#likeEle').click(function() {
-            if ($('#heart').hasClass('bi bi-heart')) {
-                $('#heart').attr('class', 'bi bi-heart-fill')
-            } else {
-                $('#heart').attr('class', 'bi bi-heart')
-            }
-        })
-    });
-</script>
 
 <script th:inline="javascript">
-    var user = /* [[${#authentication.principal.username}]] */ name
-        /*<![CDATA[*/
-    let board = /*[[ ${boardDto} ]]*/ a;
-    /*]]*/
+    /*<![CDATA[*/
+    $(document).ready(function() {
+        $('#modifyBtn').click(function() {
+                location.href = ''
+            }),
 
-    function modify(board) {
-        // $.ajax({
-        //     url: "",
-        // })
-        console.log(board)
-    }
+            $('#likeEle').click(function() {
+                if ($('#heart').hasClass('bi bi-heart')) {
+                    $('#heart').attr('class', 'bi bi-heart-fill')
+                } else {
+                    $('#heart').attr('class', 'bi bi-heart')
+                }
+            })
+        var dto = /*[[${boardDTO} ]]*/ 'a';
+    });
+    /*]]>*/
+</script>
+
+<script th:inline="javascript" th:src="@{/js/board.js}">
 </script>
 
 </html>

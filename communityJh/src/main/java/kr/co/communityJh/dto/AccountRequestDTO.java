@@ -1,8 +1,9 @@
 package kr.co.communityJh.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,11 +26,23 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountDTO {
+public class AccountRequestDTO {
 
 	private int id;
 	private String email;
 	private String nickname;
 	private String password;
-	private List<Role> Roles = new ArrayList<>();
+	private Set<Role> roles = new HashSet<>();
+	private String isEnabledYn;
+	
+	
+	public Account toEntityAccount() {
+		return Account.builder()
+				.id(this.id)
+				.email(this.email)
+				.nickname(this.nickname)
+				.roles(this.roles)
+				.isEnabledYn(this.isEnabledYn)
+				.build();
+	}
 }

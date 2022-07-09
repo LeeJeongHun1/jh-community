@@ -28,18 +28,20 @@
             <form class="d-flex nav justify-content-end mx-1" method="get" th:acrtion="@{/boards}">
                 <div class="col-xs-1">
                     <select class="form-select" name="option">
-                        <option value="1">제목+내용</option>
-                        <option value="2">작성자</option>
+                        <option value="tc">제목+내용</option>
+                        <option value="w">작성자</option>
                     </select>
                 </div>
                 <div class="col-auto mx-1">
                     <div>
                         <label for="searchText" class="visually-hidden">Search</label>
-                        <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Search" th:value="${param.searchText}">
-                        <!--                         <div class="input-group-append"> -->
-                        <button type="submit" class="btn btn-default">
-                                <i class="bi bi-search"></i>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Search" th:value="${param.searchText}">
+                            <!--                         <div class="input-group-append"> -->
+                            <button type="submit" class="btn btn-outline-secondary" style="border: 1px solid #ced4da;">
+                                    <i class="bi bi-search"></i>
                             </button>
+                        </div>
                         <!--                         </div> -->
                     </div>
                 </div>
@@ -61,7 +63,7 @@
                 <tr th:each="board : ${boards}">
                     <td th:text="${board.id}">1</td>
                     <td>
-                        <a th:text="${board.title}" th:href="@{/boards/__${board.id}__}"></a>
+                        <a th:text="${board.title}" th:href="@{/boards/__${board.id}__(page=${param.page}, option=${param.option}, searchText=${param.searchText})}"></a>
                     </td>
                     <td th:text="${board.account.nickname}">nickname</td>
                     <td th:if="${#temporals.format(#temporals.createNow(), 'yyyy MM dd')} == ${#temporals.format(board.createDate, 'yyyy MM dd')}" th:text="${#temporals.format(board.createDate, 'HH:mm')}">1</td>

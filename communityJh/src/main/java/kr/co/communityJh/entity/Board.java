@@ -19,6 +19,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import kr.co.communityJh.dto.BoardDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -61,20 +62,20 @@ public class Board extends BaseEntity{
 	private int id;
 	
 	@Column(nullable = false, length = 2000)
-	@NotBlank(message = "제목을 입력하세요.")
+	@NotBlank(message = "제목을 입력하세요!")
 	private String title;
 	
 	@Column(nullable = false)
-	@NotBlank(message = "내용을 입력하세요.")
+	@NotBlank(message = "내용을 입력하세요!")
 	private String body;
 	
 	//cascade 영속성 전의
-	@ManyToOne // default EAGER 
+	@ManyToOne(optional = false) // default EAGER 
 	@JoinColumn(name = "userId")
 	private Account account;
 	
 	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-	private List<Comment> comments = new ArrayList<>();
+	private Set<Comment> comments = new HashSet<>();
 	
 	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 	private Set<Likes> likes = new HashSet<>();
@@ -84,4 +85,20 @@ public class Board extends BaseEntity{
 	
 	@ColumnDefault("0")
 	private int likeCount;
+	
+	
+	/**
+	 * table에 매핑된 entity를 dto class로 변환
+	 * 개발이 진행되는 상황에 따라 수정될 수 있음.
+	 * @return boardDto
+	 */
+	public BoardDTO toBoardDtd() {
+		return BoardDTO.builder()
+				.id(this.id)
+				.body(this.body)
+				.title(this.title)
+				.account(this.account)
+				.viewCount(this.viewCount)
+				.build();
+	}
 }

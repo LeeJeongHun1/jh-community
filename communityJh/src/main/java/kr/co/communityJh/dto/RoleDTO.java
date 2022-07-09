@@ -13,6 +13,6 @@ public class RoleDTO {
 
 	private int Id;
 	private AccountType role;
-	private AccountDTO accountDTO;
+	private AccountRequestDTO accountDTO;
 	
 }
