@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -17,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * @author jhlee
- * Board JpaRepository
+ * Board querydsl Repository
  */
 @RequiredArgsConstructor
 @Repository
@@ -30,7 +31,6 @@ public class BoardQueryRepository {
 					jpaQueryFactory
 						.selectFrom(board)
 						.innerJoin(board.account, account).fetchJoin()
-						.innerJoin(account.roles, QRole.role1).fetchJoin()
 						.where(eqId(id))
 						.fetchOne()
 				);
@@ -56,6 +56,7 @@ public class BoardQueryRepository {
 	 * @return BooleanExpression
 	 */
 	private BooleanExpression eqId(int id) {
+//		BooleanBuilder a = new BooleanBuilder();
 		if(id == 0) {
 			return null;
 		}

@@ -29,7 +29,7 @@ import kr.co.communityJh.service.BoardService;
  * 커뮤니티 게시판 컨트롤러 
  */
 @Controller
-@RequestMapping("/boards")
+@RequestMapping("/board")
 public class BoardController {
 
 	@Autowired
@@ -77,11 +77,20 @@ public class BoardController {
 					@RequestParam(required = false, defaultValue = "t") String option,
 					Model model) throws IllegalArgumentException {
 		if(!seq.isPresent()) {
-			return "redirect:/boards";
+			return "redirect:/board";
 		}
 		model.addAttribute("boardDTO", boardService.findById(seq.get()));
 		return "board/detail";
-		
+	}
+	
+	@GetMapping("/modify")
+	public String modify(@RequestParam int id,
+			@RequestParam(required = false, defaultValue = "0") int page,
+			@RequestParam(required = false, defaultValue = "") String searchText,
+			@RequestParam(required = false, defaultValue = "t") String option,
+			Model model) throws IllegalArgumentException {
+		model.addAttribute("boardDTO", boardService.findById(id));
+		return "board/modify";
 	}
 	
 	/**
@@ -93,7 +102,6 @@ public class BoardController {
 	public String writeForm(Model model) {
 		model.addAttribute("boardDTO", new BoardDTO());
 		return "board/write";
-		
 	}
 	
 	/**
@@ -109,7 +117,7 @@ public class BoardController {
 			return "board/write";
 		}
 		BoardDTO boardResponseDto =  boardService.save(boardDTO, accountRequestDTO);
-		return "redirect:/boards/" + boardResponseDto.getId();
+		return "redirect:/board/" + boardResponseDto.getId();
 		
 	}
 	

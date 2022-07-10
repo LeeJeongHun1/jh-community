@@ -18,21 +18,21 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')"></nav>
 
     <div class="container col-md-11">
-        <form action="#" th:action="@{/boards/write}" th:object="${boardDTO}" method="post">
-            <input type="hidden" class="form-control" id="bnoId" th:value="*{id}">
+        <form action="#" th:action="@{/board/write}" th:object="${boardDTO}" method="post">
+            <input type="hidden" id="bnoId" th:value="*{id}">
             <div class="col">
                 <div class="row border-bottom">
                     <div class="col-md-8">
-                        <h3 class="pb-2 mb-2 fst-italic" th:text="*{title}">title</h3>
-                        <h3 class="pb-2 mb-2 fst-italic" th:text="*{id}">title</h3>
+                        <!-- <h3 class="pb-2 mb-2 fst-italic" th:text="*{id}">title</h3> -->
+                        <h3 class="pb-2 mb-2 fst-italic" th:text="${boardDTO.title}">title</h3>
                     </div>
                     <div class="text-end col-md-4">
                         <div class="pb-1 mb-1">
                             <th:block sec:authorize="isAuthenticated()">
-                                <button type="button" id="modifyBtn" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
+                                <button type="button" th:onclick="|location.href='@{/board/modify(id=${boardDTO.id}, page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
                                 <button type="button" id="deleteBtn" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">삭제</button>
                             </th:block>
-                            <button type="button" class="btn btn-light" th:onclick="|location.href='@{/boards(page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|">목록</button>
+                            <button type="button" class="btn btn-light" th:onclick="|location.href='@{/board(page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|">목록</button>
                         </div>
                         <ul class="pb-1 mb-1 justify-content-end list-group list-group-horizontal">
                             <li class="list-group-item"><span>작성자 <span th:text="*{account.nickname}"></span></span>

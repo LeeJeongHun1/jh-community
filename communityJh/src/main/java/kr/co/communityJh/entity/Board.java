@@ -62,11 +62,9 @@ public class Board extends BaseEntity{
 	private int id;
 	
 	@Column(nullable = false, length = 2000)
-	@NotBlank(message = "제목을 입력하세요!")
 	private String title;
 	
 	@Column(nullable = false)
-	@NotBlank(message = "내용을 입력하세요!")
 	private String body;
 	
 	//cascade 영속성 전의

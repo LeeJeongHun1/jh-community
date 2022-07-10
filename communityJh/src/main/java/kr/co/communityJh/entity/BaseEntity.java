@@ -31,6 +31,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author jhlee
@@ -38,6 +39,7 @@ import lombok.NoArgsConstructor;
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 @Getter
+@Setter
 public abstract class BaseEntity {
 	
 	@CreatedDate

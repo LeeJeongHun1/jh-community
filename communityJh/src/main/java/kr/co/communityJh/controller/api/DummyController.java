@@ -30,32 +30,32 @@ public class DummyController {
 	@Autowired
 	AccountService accountService;
 	
-	/**
-	 * @return 게시글 목록
-	 */
-	@GetMapping("/board")
-	@ApiOperation(notes = "커뮤니티 게시글 목록을 조회 할 수 있습니다.", value = "목록조회")
-	public List<Board> boards(Board board) {
-//		System.out.println(board);
-//		service.save(board);
-		return null;
-	}
-	
-	@PostMapping("/board")
-	@ApiOperation(notes = "게시글을 작성 할 수 있습니다.", value = "게시글 작성")
-	public String boardSave(Board board) {
-//		boardService.save(board);
-		return "게시글 추가 완료";
-	}
-	
-	@PostMapping("/users")
-	@ApiOperation(notes = "유저 등록", value = "유저 등록")
-	public String userSave(Account user) {
-		System.out.println(user);
-//		accountService.registerUser(user);
-//		ResponseEntity<Board> as = new ResponseEntity<Board>(new Board(), HttpStatus.OK);
-		return "유저 추가 완료";
-	}
+//	/**
+//	 * @return 게시글 목록
+//	 */
+//	@GetMapping("/board")
+//	@ApiOperation(notes = "커뮤니티 게시글 목록을 조회 할 수 있습니다.", value = "목록조회")
+//	public List<Board> boards(Board board) {
+////		System.out.println(board);
+////		service.save(board);
+//		return null;
+//	}
+//	
+//	@PostMapping("/board")
+//	@ApiOperation(notes = "게시글을 작성 할 수 있습니다.", value = "게시글 작성")
+//	public String boardSave(Board board) {
+////		boardService.save(board);
+//		return "게시글 추가 완료";
+//	}
+//	
+//	@PostMapping("/users")
+//	@ApiOperation(notes = "유저 등록", value = "유저 등록")
+//	public String userSave(Account user) {
+//		System.out.println(user);
+////		accountService.registerUser(user);
+////		ResponseEntity<Board> as = new ResponseEntity<Board>(new Board(), HttpStatus.OK);
+//		return "유저 추가 완료";
+//	}
 	
 //	@ApiOperation(notes = "커뮤니티 전체 게시글을 조회 할 수 있습니다.", value = "게시글 조회" )
 //	@ApiImplicitParams({

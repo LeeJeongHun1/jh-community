@@ -44,8 +44,8 @@ public class Role {
 	private AccountType role;
 	
 	@ManyToOne
-	@JoinColumn(name = "userId")
 	@JsonBackReference
+	@JoinColumn(name = "userId")
 	private Account account;
 	
 }

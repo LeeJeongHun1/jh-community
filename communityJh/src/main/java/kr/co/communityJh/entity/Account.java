@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
 
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -38,7 +39,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = false, exclude = "roles")
+@EqualsAndHashCode(callSuper = false, exclude = {"roles", "board"})
 @DynamicInsert // insert 시 null 컬럼 제외
 @NoArgsConstructor
 @AllArgsConstructor
@@ -72,6 +73,7 @@ public class Account {
 			fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL)
 	@JsonManagedReference
+	@ToStringExclude
 	private Set<Role> roles = new HashSet<>();
 	
 	// 탈퇴여부

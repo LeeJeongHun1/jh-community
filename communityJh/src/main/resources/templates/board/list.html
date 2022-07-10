@@ -25,7 +25,7 @@
             총 게시글 수: <span th:text="${boards.TotalElements}"></span>
         </div>
         <div class="row">
-            <form class="d-flex nav justify-content-end mx-1" method="get" th:acrtion="@{/boards}">
+            <form class="d-flex nav justify-content-end mx-1" method="get" th:acrtion="@{/board}">
                 <div class="col-xs-1">
                     <select class="form-select" name="option">
                         <option value="tc">제목+내용</option>
@@ -63,7 +63,7 @@
                 <tr th:each="board : ${boards}">
                     <td th:text="${board.id}">1</td>
                     <td>
-                        <a th:text="${board.title}" th:href="@{/boards/__${board.id}__(page=${param.page}, option=${param.option}, searchText=${param.searchText})}"></a>
+                        <a th:text="${board.title}" th:href="@{/board/{id}(id=${board.id}, page=${param.page}, option=${param.option}, searchText=${param.searchText})}"></a>
                     </td>
                     <td th:text="${board.account.nickname}">nickname</td>
                     <td th:if="${#temporals.format(#temporals.createNow(), 'yyyy MM dd')} == ${#temporals.format(board.createDate, 'yyyy MM dd')}" th:text="${#temporals.format(board.createDate, 'HH:mm')}">1</td>
@@ -77,22 +77,22 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" th:classappend="${boards.pageable.pageNumber < 5} ? 'disabled'">
-                        <a class="page-link" th:href="@{/boards(page=${startPageNumber}-1, option=${param.option}, searchText=${param.searchText})}" aria-label="Previous">
+                        <a class="page-link" th:href="@{/board(page=${startPageNumber}-1, option=${param.option}, searchText=${param.searchText})}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     <li class="page-item" th:classappend="${i == boards.pageable.pageNumber} ? 'active'" th:each="i : ${#numbers.sequence(startPageNumber, endPageNumber)}">
-                        <a class="page-link" th:href="@{/boards(page=${i}, option=${param.option}, searchText=${param.searchText})}" th:text="${i}+1">1</a>
+                        <a class="page-link" th:href="@{/board(page=${i}, option=${param.option}, searchText=${param.searchText})}" th:text="${i}+1">1</a>
                     </li>
                     <li class="page-item" th:classappend="${((boards.totalPages-1) - startPageNumber) / 5 == 0} ? 'disabled'">
-                        <a class="page-link" th:href="@{/boards(page=${endPageNumber}+1, option=${param.option}, searchText=${param.searchText})}" aria-label="Next">
+                        <a class="page-link" th:href="@{/board(page=${endPageNumber}+1, option=${param.option}, searchText=${param.searchText})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
                 </ul>
             </nav>
             <div class="text-end">
-                <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/boards/write}'|">글쓰기</button>
+                <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/board/write}'|">글쓰기</button>
             </div>
         </div>
     </div>

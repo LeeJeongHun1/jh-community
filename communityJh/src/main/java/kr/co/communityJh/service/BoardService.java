@@ -1,5 +1,7 @@
 package kr.co.communityJh.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -59,7 +61,20 @@ public class BoardService {
 			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
 		});
 		board.setViewCount(board.getViewCount()+1);
-		return board.toBoardDtd();
+		BoardDTO dto = board.toBoardDtd();
+		return dto;
+	}
+	
+	@Transactional
+	public BoardDTO updateBoardById(BoardDTO boardDTO) {
+		Board board = boardQueryRepository.findById(boardDTO.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
+		});
+		board.setTitle(boardDTO.getTitle());
+		board.setBody(boardDTO.getBody());
+		board.setLastUpdateDate(LocalDateTime.now());
+		BoardDTO dto = board.toBoardDtd();
+		return dto;
 	}
 	
 	/**

@@ -1,8 +1,11 @@
 let index = {
     init: function() {
         $('#deleteBtn').click((e) => {
-            console.log(e)
             this.delete();
+        })
+        $('#modifyBtn').click(() => {
+            console.log("???")
+            this.modify();
         })
     },
 
@@ -33,9 +36,30 @@ let index = {
                     console.log('ddd')
                 })
                 .always(function() {
-                    location.href = '/boards/'
+                    location.href = '/board'
                 })
         }
+    },
+
+    modify: function() {
+        let data = {
+            id: $('#boardId').val(),
+            title: $('#boardTitle').val(),
+            body: $('.note-editable').text()
+        }
+        console.log(JSON.stringify(data))
+        $.ajax({
+                url: "/api/board/" + data.id,
+                type: "put",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+            }).done(function(data) {
+                console.log(data)
+                console.log('ddd')
+            })
+            // .always(function() {
+            //     location.href = '/board/' + data.id
+            // })
     }
 }
 index.init();

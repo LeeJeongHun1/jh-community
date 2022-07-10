@@ -2,6 +2,7 @@ package kr.co.communityJh.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +19,7 @@ import kr.co.communityJh.dto.AccountRequestDTO;
 import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.entity.Role;
 import kr.co.communityJh.enumType.AccountType;
+import kr.co.communityJh.repository.AccountQueryRepository;
 import kr.co.communityJh.repository.AccountRepository;
 
 /**
@@ -34,6 +36,7 @@ import kr.co.communityJh.repository.AccountRepository;
 public class AccountService implements UserDetailsService{
 	
 	@Autowired private AccountRepository accountRepository;
+	@Autowired private AccountQueryRepository accountQueryRepository;
 	
 	@Autowired BCryptPasswordEncoder bCryptPasswordEncoder;
 	
@@ -53,7 +56,10 @@ public class AccountService implements UserDetailsService{
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Account account = accountRepository.findByEmail(email);
+//		accountQueryRepository.findByEmail(email).get();
+		Account account = accountQueryRepository.findByEmail(email).orElseThrow(() -> {
+			return new IllegalArgumentException("<h1>해당 사용자는 존재하지 않습니다!</h1>");
+		});
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
 		account.getRoles().forEach(it -> {
 				authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
