@@ -12,12 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Type;
 
 import kr.co.communityJh.dto.BoardDTO;
 import lombok.AllArgsConstructor;
@@ -61,10 +63,10 @@ public class Board extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_SEQ_GENERATOR")
 	private int id;
 	
-	@Column(nullable = false, length = 2000)
+	@Column(nullable = false)
 	private String title;
 	
-	@Column(nullable = false)
+	@Column(columnDefinition="TEXT")
 	private String body;
 	
 	//cascade 영속성 전의
@@ -72,18 +74,14 @@ public class Board extends BaseEntity{
 	@JoinColumn(name = "userId")
 	private Account account;
 	
-	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-	private Set<Comment> comments = new HashSet<>();
-	
-	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-	private Set<Likes> likes = new HashSet<>();
+//	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+//	private Set<Comment> comments = new HashSet<>();
+//	
+//	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+//	private Set<Likes> likes = new HashSet<>();
 	
 	@ColumnDefault("0")
 	private int viewCount;
-	
-	@ColumnDefault("0")
-	private int likeCount;
-	
 	
 	/**
 	 * table에 매핑된 entity를 dto class로 변환

@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 		 name = "LIKES_SEQ_GENERATOR",
 		 sequenceName = "SEQ_LIKES", //매핑할 데이터베이스 시퀀스 이름
 		 initialValue = 1, allocationSize = 1)
-@Entity(name = "TB_LIKES")
+//@Entity(name = "TB_LIKES")
 public class Likes {
 	
 	@Id

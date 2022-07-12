@@ -73,6 +73,7 @@ public class BoardApiController {
 	public ResponseEntity<Object> boardDelete(@PathVariable int id,
 			@AuthUser AccountRequestDTO accountRequestDTO) {
 		boardService.deleteBoardById(id);
+//		ResponseEntity.ok().header("", "").body(null);
 		return new ResponseEntity<>("success", HttpStatus.OK);
 	}
 	
@@ -87,13 +88,8 @@ public class BoardApiController {
 		@ApiImplicitParam(name = "sdeq", value = "id", example = "1")
 	})
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> boardModify(@Valid @RequestBody BoardDTO boardDTO,
-			BindingResult bindingResult) {
-//		bindingResult.
-		if(bindingResult.hasErrors()) {
-			return new ResponseEntity<>(bindingResult, HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<Object> boardModify(@RequestBody BoardDTO boardDTO) {
 		BoardDTO boardResponseDTO = boardService.updateBoardById(boardDTO);
-		return new ResponseEntity<>(boardResponseDTO, HttpStatus.OK);
+		return ResponseEntity.ok().body(boardResponseDTO);
 	}
 }

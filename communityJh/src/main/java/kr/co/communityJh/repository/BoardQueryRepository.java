@@ -27,13 +27,12 @@ public class BoardQueryRepository {
 	private final JPAQueryFactory jpaQueryFactory;
 	
 	public Optional<Board> findById(int id) {
-		return  Optional.ofNullable(
+		return Optional.ofNullable(
 					jpaQueryFactory
 						.selectFrom(board)
 						.innerJoin(board.account, account).fetchJoin()
 						.where(eqId(id))
-						.fetchOne()
-				);
+						.fetchOne()); // null이 반환될 수 있다.
 	}
 	
 	public Long updateViewCount(Board boardEntity) {

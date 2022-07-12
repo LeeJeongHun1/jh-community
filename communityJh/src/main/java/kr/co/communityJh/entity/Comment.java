@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 		 name = "COMMENT_SEQ_GENERATOR",
 		 sequenceName = "SEQ_COMMENT", //매핑할 데이터베이스 시퀀스 이름
 		 initialValue = 1, allocationSize = 1)
-@Entity(name = "TB_COMMENT")
+//@Entity(name = "TB_COMMENT")
 public class Comment {
 	
 	@Id

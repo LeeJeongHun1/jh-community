@@ -56,7 +56,7 @@
                     <th scope="col">닉네임</th>
                     <th scope="col">등록일</th>
                     <th scope="col">조회수</th>
-                    <th scope="col">좋아요</th>
+                    <!-- <th scope="col">좋아요</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +69,7 @@
                     <td th:if="${#temporals.format(#temporals.createNow(), 'yyyy MM dd')} == ${#temporals.format(board.createDate, 'yyyy MM dd')}" th:text="${#temporals.format(board.createDate, 'HH:mm')}">1</td>
                     <td th:unless="${#temporals.format(#temporals.createNow(), 'yyyy MM dd')} == ${#temporals.format(board.createDate, 'yyyy MM dd')}" th:text="${#temporals.format(board.createDate, 'MM-dd')}">1</td>
                     <td th:text="${board.viewCount}">1</td>
-                    <td th:text="${board.likeCount}">1</td>
+                    <!-- <td th:text="${board.likeCount}">1</td> -->
                 </tr>
             </tbody>
         </table>
@@ -92,8 +92,10 @@
                 </ul>
             </nav>
             <div class="text-end">
-                <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/board/write}'|">글쓰기</button>
+                <button type="button" class="btn btn-outline-primary" sec:authorize="isAuthenticated()" th:onclick="|location.href='@{/board/write}'|">글쓰기</button>
+                <button type="button" class="btn btn-outline-primary" sec:authorize="!isAuthenticated()" th:onclick="|location.href='@{/user/loginForm}'|">글쓰기</button>
             </div>
+
         </div>
     </div>
 
@@ -108,6 +110,8 @@
         console.log({
             name
         })
+    </script>
+    <script th:replace="fragments/common :: board">
     </script>
 </body>
 

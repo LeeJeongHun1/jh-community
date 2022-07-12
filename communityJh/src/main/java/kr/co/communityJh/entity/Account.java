@@ -1,11 +1,13 @@
 package kr.co.communityJh.entity;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,8 @@ import javax.validation.constraints.Email;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -39,20 +43,21 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = false, exclude = {"roles", "board"})
+@EqualsAndHashCode(callSuper = false, exclude = {"roles"})
 @DynamicInsert // insert 시 null 컬럼 제외
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @SequenceGenerator(
-		 name = "USER_SEQ_GENERATOR",
-		 sequenceName = "SEQ_USER", //매핑할 데이터베이스 시퀀스 이름
+		 name = "ACCOUNTSEQ_GENERATOR",
+		 sequenceName = "SEQ_ACCOUNT", //매핑할 데이터베이스 시퀀스 이름
 		 initialValue = 1, allocationSize = 1)
-@Entity(name = "TB_USER")
+@Entity(name = "TB_ACCOUNT")
 public class Account {
 
 	// user seq
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNTSEQ_GENERATOR")
 	private int id;
 	
 	// user email
@@ -80,9 +85,12 @@ public class Account {
 	@ColumnDefault(value = "'Y'")
 	private String isEnabledYn;
 	
+	@CreatedDate
+	@Column(updatable = false)
+	private LocalDateTime createDate;
 	
 	public void addRoles(Role role) {
-//		roles.add(role);
+		roles.add(role);
 		role.setAccount(this);
 	}
 	

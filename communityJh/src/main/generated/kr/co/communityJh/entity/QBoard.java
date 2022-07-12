@@ -28,8 +28,6 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final StringPath body = createString("body");
 
-    public final SetPath<Comment, QComment> comments = this.<Comment, QComment>createSet("comments", Comment.class, QComment.class, PathInits.DIRECT2);
-
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createDate = _super.createDate;
 
@@ -37,10 +35,6 @@ public class QBoard extends EntityPathBase<Board> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastUpdateDate = _super.lastUpdateDate;
-
-    public final NumberPath<Integer> likeCount = createNumber("likeCount", Integer.class);
-
-    public final SetPath<Likes, QLikes> likes = this.<Likes, QLikes>createSet("likes", Likes.class, QLikes.class, PathInits.DIRECT2);
 
     public final StringPath title = createString("title");
 
