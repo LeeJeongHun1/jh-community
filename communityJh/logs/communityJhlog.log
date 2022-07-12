@@ -1,0 +1,1303 @@
+{2022-07-12 16:36:52} [WARN ] [http-nio-8000-exec-4] o.h.e.j.s.SqlExceptionHelper (logExceptions:137) - SQL Error: 0, SQLState: 42883
+{2022-07-12 16:36:52} [ERROR] [http-nio-8000-exec-4] o.h.e.j.s.SqlExceptionHelper (logExceptions:142) - 오류: pg_catalog.like_escape(bigint, character varying) 이름의 함수가 없음
+  Hint: 지정된 이름 및 인자 자료형과 일치하는 함수가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+{2022-07-12 16:36:52} [ERROR] [http-nio-8000-exec-4] o.a.j.l.DirectJDKLog (log:175) - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet] with root cause
+org.postgresql.util.PSQLException: 오류: pg_catalog.like_escape(bigint, character varying) 이름의 함수가 없음
+  Hint: 지정된 이름 및 인자 자료형과 일치하는 함수가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:119) ~[postgresql-42.3.4.jar:42.3.4]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:57) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:2322) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2075) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2037) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:956) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:357) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2868) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2850) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2682) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.list(Loader.java:2677) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:540) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:400) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:219) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1459) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1649) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1617) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:165) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:76) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$PagedExecution.doExecute(JpaQueryExecution.java:179) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:155) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:143) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:159) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:138) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.19.jar:5.3.19]
+	at jdk.proxy6.$Proxy211.findByTitleContainingOrBodyContaining(Unknown Source) ~[?:?]
+	at kr.co.communityJh.service.BoardService.findAll(BoardService.java:32) ~[classes/:?]
+	at kr.co.communityJh.service.BoardService$$FastClassBySpringCGLIB$$5700fc6a.invoke(<generated>) ~[classes/:?]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.19.jar:5.3.19]
+	at kr.co.communityJh.service.BoardService$$EnhancerBySpringCGLIB$$ff00d6eb.findAll(<generated>) ~[classes/:?]
+	at kr.co.communityJh.controller.BoardController.boards(BoardController.java:52) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:219) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:213) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+{2022-07-12 16:37:03} [WARN ] [http-nio-8000-exec-9] o.h.e.j.s.SqlExceptionHelper (logExceptions:137) - SQL Error: 0, SQLState: 42883
+{2022-07-12 16:37:03} [ERROR] [http-nio-8000-exec-9] o.h.e.j.s.SqlExceptionHelper (logExceptions:142) - 오류: pg_catalog.like_escape(bigint, character varying) 이름의 함수가 없음
+  Hint: 지정된 이름 및 인자 자료형과 일치하는 함수가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+{2022-07-12 16:37:03} [ERROR] [http-nio-8000-exec-9] o.a.j.l.DirectJDKLog (log:175) - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet] with root cause
+org.postgresql.util.PSQLException: 오류: pg_catalog.like_escape(bigint, character varying) 이름의 함수가 없음
+  Hint: 지정된 이름 및 인자 자료형과 일치하는 함수가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:119) ~[postgresql-42.3.4.jar:42.3.4]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:57) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:2322) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2075) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2037) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:956) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:357) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2868) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2850) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2682) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.list(Loader.java:2677) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:540) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:400) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:219) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1459) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1649) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1617) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:165) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:76) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$PagedExecution.doExecute(JpaQueryExecution.java:179) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:155) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:143) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:159) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:138) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.19.jar:5.3.19]
+	at jdk.proxy6.$Proxy211.findByTitleContainingOrBodyContaining(Unknown Source) ~[?:?]
+	at kr.co.communityJh.service.BoardService.findAll(BoardService.java:32) ~[classes/:?]
+	at kr.co.communityJh.service.BoardService$$FastClassBySpringCGLIB$$5700fc6a.invoke(<generated>) ~[classes/:?]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.19.jar:5.3.19]
+	at kr.co.communityJh.service.BoardService$$EnhancerBySpringCGLIB$$ff00d6eb.findAll(<generated>) ~[classes/:?]
+	at kr.co.communityJh.controller.BoardController.boards(BoardController.java:52) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:219) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:213) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+{2022-07-12 16:37:07} [WARN ] [http-nio-8000-exec-7] o.h.e.j.s.SqlExceptionHelper (logExceptions:137) - SQL Error: 0, SQLState: 42883
+{2022-07-12 16:37:07} [ERROR] [http-nio-8000-exec-7] o.h.e.j.s.SqlExceptionHelper (logExceptions:142) - 오류: pg_catalog.like_escape(bigint, character varying) 이름의 함수가 없음
+  Hint: 지정된 이름 및 인자 자료형과 일치하는 함수가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+{2022-07-12 16:37:07} [ERROR] [http-nio-8000-exec-7] o.a.j.l.DirectJDKLog (log:175) - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet] with root cause
+org.postgresql.util.PSQLException: 오류: pg_catalog.like_escape(bigint, character varying) 이름의 함수가 없음
+  Hint: 지정된 이름 및 인자 자료형과 일치하는 함수가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:119) ~[postgresql-42.3.4.jar:42.3.4]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:57) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:2322) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2075) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2037) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:956) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:357) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2868) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2850) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2682) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.list(Loader.java:2677) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:540) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:400) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:219) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1459) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1649) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1617) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:165) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:76) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$PagedExecution.doExecute(JpaQueryExecution.java:179) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:155) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:143) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:159) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:138) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.19.jar:5.3.19]
+	at jdk.proxy6.$Proxy211.findByTitleContainingOrBodyContaining(Unknown Source) ~[?:?]
+	at kr.co.communityJh.service.BoardService.findAll(BoardService.java:32) ~[classes/:?]
+	at kr.co.communityJh.service.BoardService$$FastClassBySpringCGLIB$$5700fc6a.invoke(<generated>) ~[classes/:?]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.19.jar:5.3.19]
+	at kr.co.communityJh.service.BoardService$$EnhancerBySpringCGLIB$$ff00d6eb.findAll(<generated>) ~[classes/:?]
+	at kr.co.communityJh.controller.BoardController.boards(BoardController.java:52) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:219) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:213) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+{2022-07-12 16:37:18} [WARN ] [http-nio-8000-exec-3] o.h.e.j.s.SqlExceptionHelper (logExceptions:137) - SQL Error: 0, SQLState: 42883
+{2022-07-12 16:37:18} [ERROR] [http-nio-8000-exec-3] o.h.e.j.s.SqlExceptionHelper (logExceptions:142) - 오류: pg_catalog.like_escape(bigint, character varying) 이름의 함수가 없음
+  Hint: 지정된 이름 및 인자 자료형과 일치하는 함수가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+{2022-07-12 16:37:18} [ERROR] [http-nio-8000-exec-3] o.a.j.l.DirectJDKLog (log:175) - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet] with root cause
+org.postgresql.util.PSQLException: 오류: pg_catalog.like_escape(bigint, character varying) 이름의 함수가 없음
+  Hint: 지정된 이름 및 인자 자료형과 일치하는 함수가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:119) ~[postgresql-42.3.4.jar:42.3.4]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:57) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:2322) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2075) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2037) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:956) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:357) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2868) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2850) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2682) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.list(Loader.java:2677) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:540) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:400) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:219) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1459) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1649) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1617) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:165) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:76) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$PagedExecution.doExecute(JpaQueryExecution.java:179) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:155) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:143) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:159) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:138) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.19.jar:5.3.19]
+	at jdk.proxy6.$Proxy211.findByTitleContainingOrBodyContaining(Unknown Source) ~[?:?]
+	at kr.co.communityJh.service.BoardService.findAll(BoardService.java:32) ~[classes/:?]
+	at kr.co.communityJh.service.BoardService$$FastClassBySpringCGLIB$$5700fc6a.invoke(<generated>) ~[classes/:?]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.19.jar:5.3.19]
+	at kr.co.communityJh.service.BoardService$$EnhancerBySpringCGLIB$$ff00d6eb.findAll(<generated>) ~[classes/:?]
+	at kr.co.communityJh.controller.BoardController.boards(BoardController.java:52) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:219) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:213) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+{2022-07-12 16:38:09} [INFO ] [Thread-11] c.z.h.HikariDataSource (close:350) - HikariPool-3 - Shutdown initiated...
+{2022-07-12 16:38:09} [INFO ] [Thread-11] c.z.h.HikariDataSource (close:352) - HikariPool-3 - Shutdown completed.
+{2022-07-12 16:38:10} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 43260 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:38:10} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:38:11} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:38:11} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:38:11} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:38:11} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:38:11} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [5CFBBA70990491F15F931C0F2C3EEC50]
+{2022-07-12 16:38:11} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:38:11} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-4 - Starting...
+{2022-07-12 16:38:11} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-4 - Start completed.
+{2022-07-12 16:38:11} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:38:11} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:38:12} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:38:12} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:38:12} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:38:12} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:38:12} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 16:38:12} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:38:12} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 2.815 seconds (JVM running for 552.501)
+{2022-07-12 16:38:16} [WARN ] [http-nio-8000-exec-9] o.h.e.j.s.SqlExceptionHelper (logExceptions:137) - SQL Error: 0, SQLState: 42883
+{2022-07-12 16:38:16} [ERROR] [http-nio-8000-exec-9] o.h.e.j.s.SqlExceptionHelper (logExceptions:142) - 오류: 연산자 없음: oid ~~ text
+  Hint: 지정된 이름 및 인자 형식과 일치하는 연산자가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+{2022-07-12 16:38:17} [ERROR] [http-nio-8000-exec-9] o.a.j.l.DirectJDKLog (log:175) - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet] with root cause
+org.postgresql.util.PSQLException: 오류: 연산자 없음: oid ~~ text
+  Hint: 지정된 이름 및 인자 형식과 일치하는 연산자가 없습니다. 명시적 형변환자를 추가해야 할 수도 있습니다.
+  Position: 306
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167) ~[postgresql-42.3.4.jar:42.3.4]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:119) ~[postgresql-42.3.4.jar:42.3.4]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-4.0.3.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:57) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:2322) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2075) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2037) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:956) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:357) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2868) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2850) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2682) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.Loader.list(Loader.java:2677) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:540) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:400) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:219) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1459) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1649) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1617) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.Query.getResultList(Query.java:165) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:76) ~[hibernate-core-5.6.8.Final.jar:5.6.8.Final]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$PagedExecution.doExecute(JpaQueryExecution.java:179) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:155) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:143) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:159) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:138) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80) ~[spring-data-commons-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145) ~[spring-data-jpa-2.6.4.jar:2.6.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.19.jar:5.3.19]
+	at jdk.proxy7.$Proxy223.findByTitleContainingOrBodyContaining(Unknown Source) ~[?:?]
+	at kr.co.communityJh.service.BoardService.findAll(BoardService.java:32) ~[classes/:?]
+	at kr.co.communityJh.service.BoardService$$FastClassBySpringCGLIB$$5700fc6a.invoke(<generated>) ~[classes/:?]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763) ~[spring-aop-5.3.19.jar:5.3.19]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708) ~[spring-aop-5.3.19.jar:5.3.19]
+	at kr.co.communityJh.service.BoardService$$EnhancerBySpringCGLIB$$ff00d6eb.findAll(<generated>) ~[classes/:?]
+	at kr.co.communityJh.controller.BoardController.boards(BoardController.java:52) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.19.jar:5.3.19]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:219) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:213) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:110) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:80) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.6.3.jar:5.6.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+{2022-07-12 16:43:47} [INFO ] [Thread-15] c.z.h.HikariDataSource (close:350) - HikariPool-4 - Shutdown initiated...
+{2022-07-12 16:43:47} [INFO ] [Thread-15] c.z.h.HikariDataSource (close:352) - HikariPool-4 - Shutdown completed.
+{2022-07-12 16:43:47} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 43260 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:43:47} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:43:48} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:43:48} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:43:48} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:43:48} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:43:48} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [89D27A673133EE41082F8479368D1B44]
+{2022-07-12 16:43:48} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:43:48} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-5 - Starting...
+{2022-07-12 16:43:48} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-5 - Start completed.
+{2022-07-12 16:43:48} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:43:48} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:43:49} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:43:49} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:43:49} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:43:49} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:43:49} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:43:49} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 2.659 seconds (JVM running for 889.581)
+{2022-07-12 16:43:53} [INFO ] [RMI TCP Connection(20)-127.0.0.1] c.z.h.HikariDataSource (close:350) - HikariPool-5 - Shutdown initiated...
+{2022-07-12 16:43:53} [INFO ] [RMI TCP Connection(20)-127.0.0.1] c.z.h.HikariDataSource (close:352) - HikariPool-5 - Shutdown completed.
+{2022-07-12 16:43:58} [INFO ] [background-preinit] o.h.v.i.u.Version (<clinit>:21) - HV000001: Hibernate Validator 6.2.3.Final
+{2022-07-12 16:43:58} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:43:58} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:44:01} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:44:01} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:44:01} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:44:01} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:44:02} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:44:02} [INFO ] [restartedMain] o.h.Version (logVersion:44) - HHH000412: Hibernate ORM core version 5.6.8.Final
+{2022-07-12 16:44:02} [INFO ] [restartedMain] o.h.a.c.r.j.JavaReflectionManager (<clinit>:56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+{2022-07-12 16:44:02} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-1 - Starting...
+{2022-07-12 16:44:02} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-1 - Start completed.
+{2022-07-12 16:44:03} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:44:04} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:44:05} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:44:06} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:44:06} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:44:06} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:44:06} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:44:06} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 8.471 seconds (JVM running for 11.299)
+{2022-07-12 16:44:24} [INFO ] [Thread-4] c.z.h.HikariDataSource (close:350) - HikariPool-1 - Shutdown initiated...
+{2022-07-12 16:44:24} [INFO ] [Thread-4] c.z.h.HikariDataSource (close:352) - HikariPool-1 - Shutdown completed.
+{2022-07-12 16:44:24} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:44:24} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:44:25} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:44:25} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:44:25} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:44:25} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:44:25} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:44:25} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-2 - Starting...
+{2022-07-12 16:44:25} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-2 - Start completed.
+{2022-07-12 16:44:25} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:44:25} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:44:26} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:44:26} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:44:26} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:44:26} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:44:26} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:44:26} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 2.055 seconds (JVM running for 31.287)
+{2022-07-12 16:44:26} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 16:46:12} [INFO ] [Thread-7] c.z.h.HikariDataSource (close:350) - HikariPool-2 - Shutdown initiated...
+{2022-07-12 16:46:12} [INFO ] [Thread-7] c.z.h.HikariDataSource (close:352) - HikariPool-2 - Shutdown completed.
+{2022-07-12 16:46:12} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:46:12} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:46:14} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:46:14} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:46:14} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:46:14} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:46:14} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [D5207F8D1C46F23CFF9314E7FA8DC064]
+{2022-07-12 16:46:14} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:46:14} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-3 - Starting...
+{2022-07-12 16:46:14} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-3 - Start completed.
+{2022-07-12 16:46:14} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:46:14} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:46:15} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:46:15} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:46:15} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:46:15} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:46:15} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:46:15} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 2.571 seconds (JVM running for 140.003)
+{2022-07-12 16:46:16} [INFO ] [Thread-11] c.z.h.HikariDataSource (close:350) - HikariPool-3 - Shutdown initiated...
+{2022-07-12 16:46:16} [INFO ] [Thread-11] c.z.h.HikariDataSource (close:352) - HikariPool-3 - Shutdown completed.
+{2022-07-12 16:46:16} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:46:16} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:46:17} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:46:17} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:46:17} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:46:17} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:46:17} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:46:17} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-4 - Starting...
+{2022-07-12 16:46:17} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-4 - Start completed.
+{2022-07-12 16:46:17} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:46:17} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:46:18} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:46:18} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:46:18} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:46:18} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:46:18} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:46:18} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 1.494 seconds (JVM running for 142.96)
+{2022-07-12 16:46:18} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 16:48:58} [INFO ] [Thread-15] c.z.h.HikariDataSource (close:350) - HikariPool-4 - Shutdown initiated...
+{2022-07-12 16:48:58} [INFO ] [Thread-15] c.z.h.HikariDataSource (close:352) - HikariPool-4 - Shutdown completed.
+{2022-07-12 16:48:58} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:48:58} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:48:59} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:48:59} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:48:59} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:48:59} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:48:59} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [D9BB12D4E71260368912E0A6CC0D4927]
+{2022-07-12 16:48:59} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:48:59} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-5 - Starting...
+{2022-07-12 16:48:59} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-5 - Start completed.
+{2022-07-12 16:48:59} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:48:59} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:48:59} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:48:59} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:48:59} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:48:59} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:48:59} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:49:00} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 1.307 seconds (JVM running for 304.616)
+{2022-07-12 16:49:03} [INFO ] [http-nio-8000-exec-2] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 16:49:35} [INFO ] [Thread-19] c.z.h.HikariDataSource (close:350) - HikariPool-5 - Shutdown initiated...
+{2022-07-12 16:49:35} [INFO ] [Thread-19] c.z.h.HikariDataSource (close:352) - HikariPool-5 - Shutdown completed.
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:49:36} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [525DB480C0862CCBF564D09369B4C1F2]
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:49:36} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-6 - Starting...
+{2022-07-12 16:49:36} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-6 - Start completed.
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:49:36} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:49:37} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:49:37} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:49:37} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:49:37} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:49:37} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:49:37} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 1.514 seconds (JVM running for 342.251)
+{2022-07-12 16:49:39} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 16:50:34} [INFO ] [Thread-23] c.z.h.HikariDataSource (close:350) - HikariPool-6 - Shutdown initiated...
+{2022-07-12 16:50:34} [INFO ] [Thread-23] c.z.h.HikariDataSource (close:352) - HikariPool-6 - Shutdown completed.
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:50:35} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [1E95D66CE935194D44B4808ECBBF76EF]
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:50:35} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-7 - Starting...
+{2022-07-12 16:50:35} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-7 - Start completed.
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:50:35} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:50:35} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:50:36} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:50:36} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:50:36} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:50:36} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:50:36} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 1.346 seconds (JVM running for 400.908)
+{2022-07-12 16:50:40} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 16:51:02} [INFO ] [Thread-27] c.z.h.HikariDataSource (close:350) - HikariPool-7 - Shutdown initiated...
+{2022-07-12 16:51:02} [INFO ] [Thread-27] c.z.h.HikariDataSource (close:352) - HikariPool-7 - Shutdown completed.
+{2022-07-12 16:51:02} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 16:51:02} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 16:51:02} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:51:02} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 16:51:02} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 16:51:02} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 16:51:02} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [62AB6F27870A6C963B4A92648736D218]
+{2022-07-12 16:51:03} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 16:51:03} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-8 - Starting...
+{2022-07-12 16:51:03} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-8 - Start completed.
+{2022-07-12 16:51:03} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 16:51:03} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 16:51:03} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 16:51:03} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 16:51:03} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 16:51:03} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 16:51:03} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 16:51:03} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 1.335 seconds (JVM running for 428.346)
+{2022-07-12 16:51:09} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 20:25:09} [INFO ] [Thread-31] c.z.h.HikariDataSource (close:350) - HikariPool-8 - Shutdown initiated...
+{2022-07-12 20:25:09} [INFO ] [Thread-31] c.z.h.HikariDataSource (close:352) - HikariPool-8 - Shutdown completed.
+{2022-07-12 20:25:09} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 20:25:09} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 20:25:09} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:25:09} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 20:25:09} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 20:25:09} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 20:25:09} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [0968A510888904E783535812CFF0D33B]
+{2022-07-12 20:25:09} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 20:25:09} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-9 - Starting...
+{2022-07-12 20:25:09} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-9 - Start completed.
+{2022-07-12 20:25:09} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 20:25:10} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 20:25:10} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 20:25:10} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:25:10} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 20:25:10} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 20:25:10} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 20:25:10} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 1.63 seconds (JVM running for 13275.394)
+{2022-07-12 20:25:11} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 20:32:40} [INFO ] [Thread-35] c.z.h.HikariDataSource (close:350) - HikariPool-9 - Shutdown initiated...
+{2022-07-12 20:32:40} [INFO ] [Thread-35] c.z.h.HikariDataSource (close:352) - HikariPool-9 - Shutdown completed.
+{2022-07-12 20:32:40} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 20:32:40} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 20:32:40} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:32:40} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 20:32:40} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 20:32:40} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 20:32:40} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 20:32:40} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-10 - Starting...
+{2022-07-12 20:32:40} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-10 - Start completed.
+{2022-07-12 20:32:40} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 20:32:41} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 20:32:41} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 20:32:41} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:32:41} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 20:32:41} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 20:32:41} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 20:32:41} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 1.355 seconds (JVM running for 13726.267)
+{2022-07-12 20:32:44} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 20:38:53} [INFO ] [Thread-39] c.z.h.HikariDataSource (close:350) - HikariPool-10 - Shutdown initiated...
+{2022-07-12 20:38:53} [INFO ] [Thread-39] c.z.h.HikariDataSource (close:352) - HikariPool-10 - Shutdown completed.
+{2022-07-12 20:38:53} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 45320 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 20:38:53} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 20:38:54} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:38:54} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 20:38:54} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 20:38:54} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 20:38:55} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 20:38:55} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-11 - Starting...
+{2022-07-12 20:38:55} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-11 - Start completed.
+{2022-07-12 20:38:55} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 20:38:55} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 20:38:58} [INFO ] [background-preinit] o.h.v.i.u.Version (<clinit>:21) - HV000001: Hibernate Validator 6.2.3.Final
+{2022-07-12 20:38:58} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 68328 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 20:38:58} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 20:39:00} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:39:00} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 20:39:00} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 20:39:00} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 20:39:00} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 20:39:00} [INFO ] [restartedMain] o.h.Version (logVersion:44) - HHH000412: Hibernate ORM core version 5.6.8.Final
+{2022-07-12 20:39:00} [INFO ] [restartedMain] o.h.a.c.r.j.JavaReflectionManager (<clinit>:56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+{2022-07-12 20:39:01} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-1 - Starting...
+{2022-07-12 20:39:01} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-1 - Start completed.
+{2022-07-12 20:39:01} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 20:39:02} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 20:39:06} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 20:39:07} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:39:07} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 20:39:07} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 20:39:07} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 20:39:08} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 10.243 seconds (JVM running for 11.613)
+{2022-07-12 20:39:11} [INFO ] [http-nio-8000-exec-2] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 20:40:13} [INFO ] [Thread-4] c.z.h.HikariDataSource (close:350) - HikariPool-1 - Shutdown initiated...
+{2022-07-12 20:40:13} [INFO ] [Thread-4] c.z.h.HikariDataSource (close:352) - HikariPool-1 - Shutdown completed.
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 68328 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 20:40:14} [WARN ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Cannot deserialize session attribute [SPRING_SECURITY_CONTEXT] for session [4F1AAAE62258A6739224416A6238B1CF]
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 20:40:14} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-2 - Starting...
+{2022-07-12 20:40:14} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-2 - Start completed.
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 20:40:14} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 20:40:15} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 20:40:15} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 20:40:15} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 20:40:15} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 20:40:15} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 20:40:15} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 1.378 seconds (JVM running for 78.992)
+{2022-07-12 21:58:31} [INFO ] [Thread-7] c.z.h.HikariDataSource (close:350) - HikariPool-2 - Shutdown initiated...
+{2022-07-12 21:58:31} [INFO ] [Thread-7] c.z.h.HikariDataSource (close:352) - HikariPool-2 - Shutdown completed.
+{2022-07-12 21:58:31} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 68328 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 21:58:31} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 21:58:32} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 21:58:32} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 21:58:32} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 21:58:32} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 21:58:33} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 21:58:33} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-3 - Starting...
+{2022-07-12 21:58:33} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-3 - Start completed.
+{2022-07-12 21:58:33} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 21:58:33} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 21:58:33} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 21:58:34} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 21:58:34} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 21:58:34} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 21:58:34} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 21:58:34} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 2.881 seconds (JVM running for 4777.94)
+{2022-07-12 21:58:42} [INFO ] [Thread-11] c.z.h.HikariDataSource (close:350) - HikariPool-3 - Shutdown initiated...
+{2022-07-12 21:58:42} [INFO ] [Thread-11] c.z.h.HikariDataSource (close:352) - HikariPool-3 - Shutdown completed.
+{2022-07-12 21:58:42} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 68328 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 21:58:42} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 21:58:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 21:58:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 21:58:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 21:58:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 21:58:43} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 21:58:43} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-4 - Starting...
+{2022-07-12 21:58:44} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-4 - Start completed.
+{2022-07-12 21:58:44} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 21:58:44} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 21:58:44} [INFO ] [restartedMain] c.z.h.HikariDataSource (close:350) - HikariPool-4 - Shutdown initiated...
+{2022-07-12 21:58:44} [INFO ] [restartedMain] c.z.h.HikariDataSource (close:352) - HikariPool-4 - Shutdown completed.
+{2022-07-12 21:58:44} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Stopping service [Tomcat]
+{2022-07-12 21:58:45} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 68328 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 21:58:45} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 21:58:46} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 21:58:46} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 21:58:46} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 21:58:46} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 21:58:46} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 21:58:46} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-5 - Starting...
+{2022-07-12 21:58:46} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-5 - Start completed.
+{2022-07-12 21:58:46} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 21:58:46} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 21:58:46} [INFO ] [restartedMain] c.z.h.HikariDataSource (close:350) - HikariPool-5 - Shutdown initiated...
+{2022-07-12 21:58:46} [INFO ] [restartedMain] c.z.h.HikariDataSource (close:352) - HikariPool-5 - Shutdown completed.
+{2022-07-12 21:58:46} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Stopping service [Tomcat]
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 68328 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 21:59:22} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-6 - Starting...
+{2022-07-12 21:59:22} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-6 - Start completed.
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 21:59:22} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 21:59:23} [INFO ] [restartedMain] c.z.h.HikariDataSource (close:350) - HikariPool-6 - Shutdown initiated...
+{2022-07-12 21:59:23} [INFO ] [restartedMain] c.z.h.HikariDataSource (close:352) - HikariPool-6 - Shutdown completed.
+{2022-07-12 21:59:23} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Stopping service [Tomcat]
+{2022-07-12 22:19:58} [INFO ] [background-preinit] o.h.v.i.u.Version (<clinit>:21) - HV000001: Hibernate Validator 6.2.3.Final
+{2022-07-12 22:19:58} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 79952 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 22:19:58} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 22:20:00} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:20:00} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 22:20:00} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 22:20:00} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 22:20:00} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 22:20:00} [INFO ] [restartedMain] o.h.Version (logVersion:44) - HHH000412: Hibernate ORM core version 5.6.8.Final
+{2022-07-12 22:20:01} [INFO ] [restartedMain] o.h.a.c.r.j.JavaReflectionManager (<clinit>:56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+{2022-07-12 22:20:01} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-1 - Starting...
+{2022-07-12 22:20:01} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-1 - Start completed.
+{2022-07-12 22:20:01} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 22:20:02} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 22:20:03} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 22:20:04} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:20:04} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 22:20:04} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 22:20:04} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 22:20:04} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 6.816 seconds (JVM running for 8.126)
+{2022-07-12 22:20:31} [INFO ] [Thread-4] c.z.h.HikariDataSource (close:350) - HikariPool-1 - Shutdown initiated...
+{2022-07-12 22:20:31} [INFO ] [Thread-4] c.z.h.HikariDataSource (close:352) - HikariPool-1 - Shutdown completed.
+{2022-07-12 22:20:31} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 79952 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 22:20:31} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 22:20:32} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:20:32} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 22:20:32} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 22:20:32} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 22:20:32} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 22:20:32} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-2 - Starting...
+{2022-07-12 22:20:32} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-2 - Start completed.
+{2022-07-12 22:20:32} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 22:20:32} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 22:20:35} [INFO ] [background-preinit] o.h.v.i.u.Version (<clinit>:21) - HV000001: Hibernate Validator 6.2.3.Final
+{2022-07-12 22:20:35} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 74356 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 22:20:35} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 22:20:37} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:20:37} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 22:20:37} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 22:20:37} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 22:20:37} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 22:20:37} [INFO ] [restartedMain] o.h.Version (logVersion:44) - HHH000412: Hibernate ORM core version 5.6.8.Final
+{2022-07-12 22:20:37} [INFO ] [restartedMain] o.h.a.c.r.j.JavaReflectionManager (<clinit>:56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+{2022-07-12 22:20:37} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-1 - Starting...
+{2022-07-12 22:20:38} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-1 - Start completed.
+{2022-07-12 22:20:38} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 22:20:39} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 22:20:39} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 22:20:40} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:20:40} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 22:20:40} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 22:20:40} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 22:20:41} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 6.083 seconds (JVM running for 7.375)
+{2022-07-12 22:20:42} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 22:22:22} [INFO ] [background-preinit] o.h.v.i.u.Version (<clinit>:21) - HV000001: Hibernate Validator 6.2.3.Final
+{2022-07-12 22:22:22} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 82716 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 22:22:22} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 22:22:24} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:22:24} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 22:22:24} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 22:22:24} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 22:22:24} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 22:22:25} [INFO ] [restartedMain] o.h.Version (logVersion:44) - HHH000412: Hibernate ORM core version 5.6.8.Final
+{2022-07-12 22:22:25} [INFO ] [restartedMain] o.h.a.c.r.j.JavaReflectionManager (<clinit>:56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+{2022-07-12 22:22:25} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-1 - Starting...
+{2022-07-12 22:22:25} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-1 - Start completed.
+{2022-07-12 22:22:25} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 22:22:26} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 22:22:27} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 22:22:28} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:22:28} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 22:22:28} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 22:22:28} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 22:22:28} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 22:22:28} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 7.033 seconds (JVM running for 8.381)
+{2022-07-12 22:23:41} [INFO ] [background-preinit] o.h.v.i.u.Version (<clinit>:21) - HV000001: Hibernate Validator 6.2.3.Final
+{2022-07-12 22:23:41} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 84620 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 22:23:41} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 22:23:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:23:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 22:23:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 22:23:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 22:23:44} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 22:23:44} [INFO ] [restartedMain] o.h.Version (logVersion:44) - HHH000412: Hibernate ORM core version 5.6.8.Final
+{2022-07-12 22:23:44} [INFO ] [restartedMain] o.h.a.c.r.j.JavaReflectionManager (<clinit>:56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+{2022-07-12 22:23:44} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-1 - Starting...
+{2022-07-12 22:23:44} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-1 - Start completed.
+{2022-07-12 22:23:44} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 22:23:45} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 22:23:46} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 22:23:47} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:23:47} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 22:23:47} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 22:23:47} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 22:23:47} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 5.765 seconds (JVM running for 7.1)
+{2022-07-12 22:24:57} [INFO ] [http-nio-8000-exec-1] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 22:30:23} [INFO ] [background-preinit] o.h.v.i.u.Version (<clinit>:21) - HV000001: Hibernate Validator 6.2.3.Final
+{2022-07-12 22:30:23} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 84732 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 22:30:23} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 22:30:25} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:30:25} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 22:30:25} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 22:30:25} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 22:30:25} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 22:30:25} [INFO ] [restartedMain] o.h.Version (logVersion:44) - HHH000412: Hibernate ORM core version 5.6.8.Final
+{2022-07-12 22:30:25} [INFO ] [restartedMain] o.h.a.c.r.j.JavaReflectionManager (<clinit>:56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+{2022-07-12 22:30:26} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-1 - Starting...
+{2022-07-12 22:30:26} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-1 - Start completed.
+{2022-07-12 22:30:26} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 22:30:27} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 22:30:28} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 22:30:28} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:30:28} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 22:30:28} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 22:30:28} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 22:30:29} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 5.883 seconds (JVM running for 7.328)
+{2022-07-12 22:30:34} [INFO ] [http-nio-8000-exec-2] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+{2022-07-12 22:36:41} [INFO ] [background-preinit] o.h.v.i.u.Version (<clinit>:21) - HV000001: Hibernate Validator 6.2.3.Final
+{2022-07-12 22:36:41} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarting:55) - Starting CommunityJhApplication using Java 17.0.2 on jhlee with PID 12756 (C:\Users\ADMIN\sts-git\communityJh\target\classes started by ADMIN in C:\Users\ADMIN\sts-git\communityJh)
+{2022-07-12 22:36:41} [INFO ] [restartedMain] o.s.b.SpringApplication (logStartupProfileInfo:646) - The following 1 profile is active: "@activatedProperties@"
+{2022-07-12 22:36:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:36:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting service [Tomcat]
+{2022-07-12 22:36:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting Servlet engine: [Apache Tomcat/9.0.62]
+{2022-07-12 22:36:43} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring embedded WebApplicationContext
+{2022-07-12 22:36:43} [INFO ] [restartedMain] o.h.j.i.u.LogHelper (logPersistenceUnitInformation:31) - HHH000204: Processing PersistenceUnitInfo [name: default]
+{2022-07-12 22:36:43} [INFO ] [restartedMain] o.h.Version (logVersion:44) - HHH000412: Hibernate ORM core version 5.6.8.Final
+{2022-07-12 22:36:43} [INFO ] [restartedMain] o.h.a.c.r.j.JavaReflectionManager (<clinit>:56) - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+{2022-07-12 22:36:43} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:110) - HikariPool-1 - Starting...
+{2022-07-12 22:36:44} [INFO ] [restartedMain] c.z.h.HikariDataSource (getConnection:123) - HikariPool-1 - Start completed.
+{2022-07-12 22:36:44} [INFO ] [restartedMain] o.h.d.Dialect (<init>:175) - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+{2022-07-12 22:36:45} [INFO ] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator (initiateService:52) - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+{2022-07-12 22:36:46} [INFO ] [restartedMain] s.d.s.w.PropertySourcedRequestMappingHandlerMapping (initHandlerMethods:69) - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+{2022-07-12 22:36:46} [INFO ] [restartedMain] o.a.j.l.DirectJDKLog (log:173) - Starting ProtocolHandler ["http-nio-8000"]
+{2022-07-12 22:36:46} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:160) - Context refreshed
+{2022-07-12 22:36:46} [INFO ] [restartedMain] s.d.s.w.p.DocumentationPluginsBootstrapper (start:163) - Found 1 custom documentation plugin(s)
+{2022-07-12 22:36:46} [INFO ] [restartedMain] s.d.s.w.s.ApiListingReferenceScanner (scan:41) - Scanning for api listing references
+{2022-07-12 22:36:46} [INFO ] [restartedMain] o.s.b.StartupInfoLogger (logStarted:61) - Started CommunityJhApplication in 5.776 seconds (JVM running for 7.071)
+{2022-07-12 22:36:53} [INFO ] [http-nio-8000-exec-2] o.a.j.l.DirectJDKLog (log:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'

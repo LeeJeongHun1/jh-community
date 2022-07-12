@@ -5,6 +5,7 @@ server:
 # build profile setting
 #spring.profiles.active=@activatedProperties@
 
+
 # 운영환경 config
 ---
 spring:
@@ -12,11 +13,11 @@ spring:
     active: '@activatedProperties@'
 
     
-  datasource:
-    driver-class-name: oracle.jdbc.OracleDriver
-    jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
-    username: zaritalk
-    password: tapaman
+#  datasource:
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
+#    username: zaritalk
+#    password: tapaman
 ---
 
 # 개발환경 config
@@ -29,20 +30,27 @@ spring:
       ddl-auto: update
     generate-ddl: true
     show-sql: true
-    database: oracle
-    database-platform: org.hibernate.dialect.OracleDialect
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    database: oracle
+#    database-platform: org.hibernate.dialect.OracleDialect
     properties:
       hibernate.format_sql: true
       
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-    
+      
+  # db
   datasource:
-    driver-class-name: oracle.jdbc.OracleDriver
-    jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
-    username: zaritalk
-    password: tapaman
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    jdbc-url: jdbc:oracle:thin:@localhost:1521:XE
+#    username: zaritalk
+#    password: tapaman
+    driver-class-name: org.postgresql.Driver
+    jdbc-url: jdbc:postgresql://localhost:5432/community
+    username: postgres
+    password: zx159463
   
 
 # thymeleaf config
@@ -56,3 +64,4 @@ thymeleaf:
 logging:
   level: 
     root: info
+  config: classpath:log4j2.xml 

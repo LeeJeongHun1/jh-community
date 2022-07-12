@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="30">
+	<!-- 해당 설정파일에서 사용하는 프로퍼티 -->
+	<Properties>
+		<Property name="logFileName">communityJhlog</Property>
+		<Property name="consoleLayout">%style{%d{yyyy-MM-dd HH:mm:ss}} [%-5level] [%t] %style{%C{1.}} : %msg%n%throwable</Property>
+		<Property name="fileLayout">{%d{yyyy-MM-dd HH:mm:ss}} [%-5level] [%t] %C{1.} (%M:%L) - %m%n</Property>
+	</Properties>
+	<!-- LogEvent를 전달해주는 Appender -->
+	<Appenders>
+		<Console name="Console_Appender" target="SYSTEM_OUT">
+			<PatternLayout pattern="${consoleLayout}" />
+		</Console>
+		<RollingFile name="File_Appender" fileName="logs/${logFileName}.log" filePattern="logs/${logFileName}_%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="${fileLayout}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="200KB" />
+				<TimeBasedTriggeringPolicy interval="1" />
+			</Policies>
+			<DefaultRolloverStrategy max="3" fileIndex="min" />
+		</RollingFile>
+	</Appenders>
+	<!-- 실제 Logger -->
+	<Loggers>
+		<Logger name="org.springframework" level="OFF" additivity="false">
+			<AppenderRef ref="Console_Appender" />
+			<AppenderRef ref="File_Appender" />
+		</Logger>
+		<Logger name="kr.co" level="INFO" additivity="false">
+			<AppenderRef ref="Console_Appender" />
+			<AppenderRef ref="File_Appender" />
+		</Logger>
+		<Root level="INFO" additivity="false">
+			<AppenderRef ref="Console_Appender" />
+			<AppenderRef ref="File_Appender" />
+		</Root>
+	</Loggers>
+</Configuration>
