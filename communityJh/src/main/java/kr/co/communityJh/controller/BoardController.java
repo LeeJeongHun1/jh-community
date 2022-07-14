@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.communityJh.annotation.AuthUser;
-import kr.co.communityJh.dto.AccountRequestDTO;
-import kr.co.communityJh.dto.BoardDTO;
+import kr.co.communityJh.auth.AuthUser;
+import kr.co.communityJh.dto.account.AccountRequestDto;
+import kr.co.communityJh.dto.board.BoardDto;
 import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.service.BoardService;
 
@@ -100,7 +100,7 @@ public class BoardController {
 	 */
 	@GetMapping("/write")
 	public String writeForm(Model model) {
-		model.addAttribute("boardDTO", new BoardDTO());
+		model.addAttribute("boardDTO", new BoardDto());
 		return "board/write";
 	}
 	
@@ -110,13 +110,13 @@ public class BoardController {
 	 * @return
 	 */
 	@PostMapping("/write")
-	public String boardWrite(@Valid BoardDTO boardDTO,
+	public String boardWrite(@Valid BoardDto boardDTO,
 			BindingResult bindingResult,
-			@AuthUser AccountRequestDTO accountRequestDTO) {
+			@AuthUser AccountRequestDto accountRequestDTO) {
 		if(bindingResult.hasErrors()) {
 			return "board/write";
 		}
-		BoardDTO boardResponseDto =  boardService.save(boardDTO, accountRequestDTO);
+		BoardDto boardResponseDto =  boardService.save(boardDTO, accountRequestDTO);
 		return "redirect:/board/" + boardResponseDto.getId();
 		
 	}

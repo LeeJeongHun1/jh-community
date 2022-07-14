@@ -54,7 +54,7 @@
                 </div>
             </div>
             <!-- <span class="text-white mx-2" sec:authentication="principal.Authorities">사용자</span> -->
-            <a role="button" class="btn btn-light mr-1" th:href="@{/user/loginForm}" sec:authorize="!isAuthenticated()">Login</a>
+            <a role="button" class="btn btn-light mr-1" th:href="@{/user/login}" sec:authorize="!isAuthenticated()">Login</a>
             <form action="#" class="d-flex nav justify-content-center" sec:authorize="isAuthenticated()">
                 <a role="button" class="btn btn-light mr-1" th:href="@{/logout}" sec:authorize="isAuthenticated()">logout</a>
             </form>
@@ -62,10 +62,25 @@
     </div>
 
     <div th:fragment="footer">
-
+        <!-- child of the body tag -->
+        <span id="top-link-block" class="hidden">
+            <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                <i class="glyphicon glyphicon-chevron-up"></i> Back to Top
+            </a>
+        </span>
     </div>
 
 </body>
-<script th:inline="javascript" th:src="@{/js/board.js}" th:fragment="board"></script>
+<script th:inline="javascript" th:src="@{/js/app.js}" th:fragment="board"></script>
+<script>
+    if (($(window).height() + 100) < $(document).height()) {
+        $('#top-link-block').removeClass('hidden').affix({
+            // how far to scroll down before link "slides" into view
+            offset: {
+                top: 100
+            }
+        });
+    }
+</script>
 
 </html>

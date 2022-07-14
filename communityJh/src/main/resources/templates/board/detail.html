@@ -11,14 +11,14 @@
 
     <title>Hello, world!</title>
     <link href="starter-template.css" rel="stylesheet"> -->
-
 </head>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <style>
     .comment_write textarea {
         resize: none;
     }
-    
-    label.test {
+    /* label.test {
         position: absolute;
         bottom: 0;
         right: 10;
@@ -28,7 +28,7 @@
         border: 1px solid transparent;
         transform-origin: 0 0;
         transition: opacity .1s ease-in-out, transform .1s ease-in-out;
-    }
+    } */
 </style>
 
 <body>
@@ -76,20 +76,38 @@
         </form>
 
         <!-- Comment Section -->
-        <div class="comment_box my-5">
+        <div class="comment_box my-5 col-md-10">
             <div class="reply">
                 <span>
                     <i class="bi bi-chat-square-dots"></i>
                 </span> 댓글
                 <strong>2</strong>
-
             </div>
             <!-- Comment List Section -->
+            <div class="comment_list my-1">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <ul class="list-group list-group-horizontal justify-content-end">
+                                <li class="list-group-item">작성자</li>
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as d d a natural lead-in to additional content.</p>
+                    </div>
+                </div>
+            </div>
 
-            <div class="comment_write">
+            <!-- Comment Write Section -->
+            <div class="comment_write my-3">
                 <div class="row">
-                    <div class="form-floating col-md-11">
-                        <textarea class="form-control" id="floatingTextarea" style="height: 100px;"></textarea>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="floatingTextarea" style="height: 80px;"></textarea>
                         <label for="floatingTextarea" style="left: 10px;">Comments</label>
                         <!-- <label class="test" for="floatingTextarea">btn</label> -->
                         <div class="mt-1 text-end">
@@ -127,7 +145,12 @@
     /*]]>*/
 </script>
 
-<script th:inline="javascript" th:src="@{/js/board.js}">
+<script>
+    $("textarea#floatingTextarea").on('keydown keyup', function() {
+        $(this).height(1).height($(this).prop('scrollHeight') + 1);
+    });
+</script>
+<script th:inline="javascript" th:src="@{/js/app.js}">
 </script>
 
 </html>

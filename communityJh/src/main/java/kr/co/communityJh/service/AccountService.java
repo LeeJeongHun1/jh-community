@@ -2,7 +2,6 @@ package kr.co.communityJh.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,8 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.communityJh.dto.AccountAuthDTO;
-import kr.co.communityJh.dto.AccountRequestDTO;
+import kr.co.communityJh.dto.account.AccountAuthDto;
+import kr.co.communityJh.dto.account.AccountRequestDto;
+import kr.co.communityJh.dto.account.JoinRequestDto;
 import kr.co.communityJh.entity.Account;
 import kr.co.communityJh.entity.Role;
 import kr.co.communityJh.enumType.AccountType;
@@ -41,16 +41,35 @@ public class AccountService implements UserDetailsService{
 	@Autowired BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Transactional
-	public void registerAccount(AccountRequestDTO accountDTO) {
-		Account account = accountDTO.toEntityAccount();
-		// dto password를 bCrypt 암호화 적용 후 entity에 대입
-		account.setPassword(bCryptPasswordEncoder.encode(accountDTO.getPassword()));
+	public void join(JoinRequestDto joinRequestDto) {
+		// dto password를 bCrypt 암호화 적용
+		joinRequestDto.encodePassword(bCryptPasswordEncoder.encode(joinRequestDto.getPassword()));
+		Account account = joinRequestDto.toEntityAccount();
 		// 신규 사용자 role 추가
 		account.addRoles(Role
 				.builder()
 				.role(AccountType.ROLE_USER)
 				.build());
 		accountRepository.save(account);
+	}
+	
+	
+	/**
+	 * 해당 email의 존재 여부 확인
+	 * @param email
+	 * @return
+	 */
+	public boolean existByEmail(String email) {
+		return accountQueryRepository.existsByEmail(email);
+	}
+	
+	/**
+	 * 해당 nickname의 존재 여부 확인
+	 * @param nickname
+	 * @return
+	 */
+	public boolean existByNickname(String nickname) {
+		return accountQueryRepository.existsByNickname(nickname);
 	}
 
 	@Override
@@ -64,7 +83,7 @@ public class AccountService implements UserDetailsService{
 		account.getRoles().forEach(it -> {
 				authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
 		});
-		return new AccountAuthDTO(account, authorities);
+		return new AccountAuthDto(account, authorities);
 	}
 	
 }

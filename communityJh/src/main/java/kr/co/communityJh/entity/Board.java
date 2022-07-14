@@ -21,7 +21,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Type;
 
-import kr.co.communityJh.dto.BoardDTO;
+import kr.co.communityJh.dto.board.BoardDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -88,8 +88,8 @@ public class Board extends BaseEntity{
 	 * 개발이 진행되는 상황에 따라 수정될 수 있음.
 	 * @return boardDto
 	 */
-	public BoardDTO toBoardDtd() {
-		return BoardDTO.builder()
+	public BoardDto toBoardDtd() {
+		return BoardDto.builder()
 				.id(this.id)
 				.body(this.body)
 				.title(this.title)

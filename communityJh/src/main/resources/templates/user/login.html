@@ -27,7 +27,7 @@
                     <label for="password" class="sr-only">Password</label>
                 </div>
                 <button class="w-100 my-1 btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                <button type="button" class="w-100 btn btn-lg btn-primary btn-block" th:onclick="|location.href='@{/user/joinForm}'|">Sign up</button>
+                <button type="button" class="w-100 btn btn-lg btn-primary btn-block" th:onclick="|location.href='@{/user/join}'|">Sign up</button>
                 <p class="mt-5 mb-3 text-muted">&copy; jhlee 2022-2022</p>
             </form>
             <!-- <div class="checkbox mb-3">
@@ -60,6 +60,9 @@
 
     </div>
     <div th:replace="fragments/common :: footer"></div>
+    <script th:inline="javascript">
+        var a = /* [[${param}]]*/ a;
+    </script>
 </body>
 
 </html>

@@ -13,7 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import kr.co.communityJh.auth.LoginSuccessHandler;
+import kr.co.communityJh.auth.CustomLoginFailHandler;
+import kr.co.communityJh.auth.CustomLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -22,13 +23,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	private final LoginSuccessHandler loginSuccessHandler;
+	private final CustomLoginSuccessHandler loginSuccessHandler;
+	private final CustomLoginFailHandler customLoginFailHandler;
+	
 	@Bean
 	public BCryptPasswordEncoder encoderPassword() {
 		return new BCryptPasswordEncoder();
 	}
 	
-	
+	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
 	}
@@ -38,23 +41,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable();
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/user/**", "/board/**").permitAll()
+				.antMatchers("/", "/user/**").permitAll()
 //				.antMatchers("/boards/**").hasRole("USER")
 				.anyRequest().authenticated()
 //				.anyRequest().permitAll()
 				.and()
 			.formLogin()
-				.permitAll()
-				.loginPage("/user/loginForm")
-				.loginProcessingUrl("/user/login")
-				.usernameParameter("email")
-				.defaultSuccessUrl("/")
-				.successHandler(loginSuccessHandler)
+				.loginPage("/user/login") // loginform 이동
+				.loginProcessingUrl("/user/login") // login 처리
+				.usernameParameter("email") // loadUserByUsername 메소드 parameter 설정
+				.failureHandler(customLoginFailHandler)
+				.successHandler(loginSuccessHandler) // login 성공 후 handler
 				.and()
-			.logout()
+			.logout();
 //			.logout()
 //				.logoutUrl("/logout");
-			.logoutSuccessUrl("/");
+//			.logoutSuccessUrl("/");
 	}
 	
 }

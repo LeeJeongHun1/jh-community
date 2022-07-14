@@ -5,12 +5,13 @@ import static kr.co.communityJh.entity.QRole.role1;
 
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import kr.co.communityJh.entity.Account;
-import kr.co.communityJh.entity.QAccount;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -23,19 +24,6 @@ public class AccountQueryRepository {
 	
 	private final JPAQueryFactory jpaQueryFactory;
 	
-	public Long save(Account account) {
-		QAccount qAccount = QAccount.account;
-//		qRole.role = 
-		
-//		qAccount.Roles = List.of(QRole.role1
-//				.role(AccountType.ROLE_USER)
-//				.user(account)
-//				.build());
-		return jpaQueryFactory.insert(qAccount)
-				.values(account)
-				.execute();
-	}
-	
 	public Optional<Account> findByEmail(String email) {
 		return Optional.ofNullable(
 				jpaQueryFactory.select(account)
@@ -43,5 +31,36 @@ public class AccountQueryRepository {
 					.innerJoin(account.roles, role1).fetchJoin()
 					.where(account.email.eq(email))
 					.fetchOne());
+	}
+	
+	public boolean existsByEmail(String email) {
+		Integer exist = jpaQueryFactory.selectOne()
+				.from(account)
+				.where(eqEamil(email))
+				.fetchFirst();
+		return exist != null;
+	}
+	
+	public boolean existsByNickname(String nickname) {
+		Integer exist = jpaQueryFactory.selectOne()
+				.from(account)
+				.where(eqNickname(nickname))
+				.fetchFirst();
+		return exist != null;
+	}
+	
+	
+	private BooleanExpression eqEamil(String email) {
+		if (StringUtils.isEmpty(email)) {
+			return null;
+		}
+		return account.email.eq(email);
+	}
+	
+	private BooleanExpression eqNickname(String nickname) {
+		if (StringUtils.isEmpty(nickname)) {
+			return null;
+		}
+		return account.nickname.eq(nickname);
 	}
 }

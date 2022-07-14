@@ -1,5 +1,6 @@
 package kr.co.communityJh.dto;
 
+import kr.co.communityJh.dto.account.AccountRequestDto;
 import kr.co.communityJh.enumType.AccountType;
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +10,10 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class RoleDTO {
+public class RoleDto {
 
 	private int Id;
 	private AccountType role;
-	private AccountRequestDTO accountDTO;
+	private AccountRequestDto accountDTO;
 	
 }

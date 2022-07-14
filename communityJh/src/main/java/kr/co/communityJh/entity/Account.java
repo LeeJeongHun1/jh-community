@@ -24,7 +24,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import kr.co.communityJh.dto.AccountRequestDTO;
+import kr.co.communityJh.dto.account.AccountRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -58,7 +58,7 @@ public class Account {
 	// user seq
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNTSEQ_GENERATOR")
-	private int id;
+	private Long id;
 	
 	// user email
 	@Column(nullable = false)
@@ -94,9 +94,8 @@ public class Account {
 		role.setAccount(this);
 	}
 	
-	public AccountRequestDTO toAccountDTO() {
-		return AccountRequestDTO.builder()
-				.id(this.id)
+	public AccountRequestDto toAccountDTO() {
+		return AccountRequestDto.builder()
 				.email(this.email)
 				.nickname(this.nickname)
 				.password(this.password)

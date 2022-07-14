@@ -4,12 +4,19 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.communityJh.dto.AccountRequestDTO;
+import kr.co.communityJh.auth.AuthUser;
+import kr.co.communityJh.dto.account.AccountRequestDto;
+import kr.co.communityJh.dto.account.JoinRequestDto;
 import kr.co.communityJh.service.AccountService;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @author "jhlee"
@@ -17,6 +24,7 @@ import kr.co.communityJh.service.AccountService;
  */
 @Controller
 @RequestMapping("/user")
+@Log4j2
 public class UserController {
 
 	@Autowired
@@ -26,11 +34,19 @@ public class UserController {
 	/**
 	 * @return login page
 	 */
-	@GetMapping("/loginForm")
-	public String loginForm(HttpServletRequest request) {
+	@GetMapping("/login")
+	public String loginForm(HttpServletRequest request, @AuthUser AccountRequestDto accountRequestDTO,
+			@RequestParam(value = "error", required = false) Boolean isError) {
 		// login page 오기 전 pageUrl session에 저장
 		String uri = request.getHeader("Referer");
-		if(!uri.contains("/loginForm")) {
+//		log.info("accountRequestDTO: " + accountRequestDTO);
+//		// login 정보가 session에 남아있으면 '/' 페이지로 이동
+		if(accountRequestDTO != null) {
+			return "redirect:/";
+		}
+		
+//		이전 page 세션에 저장
+		if(uri != null && !uri.contains("/login")) {
 			request.getSession().setAttribute("prevPage", uri);
 		}
 		return "user/login";
@@ -40,8 +56,8 @@ public class UserController {
 	/**
 	 * @return joinForm page
 	 */
-	@GetMapping("/joinForm")
-	public String joinForm() {
+	@GetMapping("/join")
+	public String joinForm(@ModelAttribute("account") JoinRequestDto joinRequestDto) {
 		return "user/join";
 		
 	}
@@ -52,10 +68,31 @@ public class UserController {
 	 * @param accountDTO login 정보
 	 * @return 
 	 */
-	@PostMapping("/register")
-	public String userRegister(AccountRequestDTO accountDTO) {
-		accountService.registerAccount(accountDTO);
-		return "redirect:/user/loginForm";
+	@PostMapping("/join")
+	public String userRegister(@Validated @ModelAttribute("account") JoinRequestDto joinRequestDto,
+			BindingResult bindingResult) {
+		boolean isError = false;
+		if(bindingResult.hasErrors()) {
+			return "user/join";
+		}
+		// email 중복
+		if(accountService.existByEmail(joinRequestDto.getEmail())) {
+			bindingResult.reject("duplicateEmail", "이미 존재하는 이메일입니다.");
+			isError = true;
+		}
+		
+		// nickname 중복
+		if(accountService.existByNickname(joinRequestDto.getNickname())) {
+			bindingResult.reject("duplicateNickname", "이미 존재하는 닉네임입니다.");
+			isError = true;
+		}
+		
+		if(isError) {
+			return "user/join";
+		}
+		
+		accountService.join(joinRequestDto);
+		return "redirect:/";
 		
 	}
 	

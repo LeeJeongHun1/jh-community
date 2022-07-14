@@ -8,9 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.communityJh.dto.AccountAuthDTO;
-import kr.co.communityJh.dto.AccountRequestDTO;
-import kr.co.communityJh.dto.BoardDTO;
+import kr.co.communityJh.dto.account.AccountRequestDto;
+import kr.co.communityJh.dto.board.BoardDto;
 import kr.co.communityJh.entity.Board;
 import kr.co.communityJh.repository.BoardQueryRepository;
 import kr.co.communityJh.repository.BoardRepository;
@@ -37,7 +36,7 @@ public class BoardService {
 	}
 	
 	@Transactional
-	public BoardDTO save(BoardDTO boardDTO, AccountRequestDTO accountRequestDTO) {
+	public BoardDto save(BoardDto boardDTO, AccountRequestDto accountRequestDTO) {
 		Board board = boardDTO.toBoardEntity();
 		board.setAccount(accountRequestDTO.toEntityAccount());
 		return boardRepository.save(board).toBoardDtd();
@@ -56,24 +55,24 @@ public class BoardService {
 	 * @return Board
 	 */
 	@Transactional
-	public BoardDTO findById(int id) {
+	public BoardDto findById(int id) {
 		Board board = boardQueryRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
 		});
 		board.setViewCount(board.getViewCount()+1);
-		BoardDTO dto = board.toBoardDtd();
+		BoardDto dto = board.toBoardDtd();
 		return dto;
 	}
 	
 	@Transactional
-	public BoardDTO updateBoardById(BoardDTO boardDTO) {
+	public BoardDto updateBoardById(BoardDto boardDTO) {
 		Board board = boardQueryRepository.findById(boardDTO.getId()).orElseThrow(() -> {
 			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
 		});
 		board.setTitle(boardDTO.getTitle());
 		board.setBody(boardDTO.getBody());
 		board.setLastUpdateDate(LocalDateTime.now());
-		BoardDTO dto = board.toBoardDtd();
+		BoardDto dto = board.toBoardDtd();
 		return dto;
 	}
 	

@@ -1,12 +1,8 @@
 package kr.co.communityJh.controller.api;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,9 +14,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import kr.co.communityJh.annotation.AuthUser;
-import kr.co.communityJh.dto.AccountRequestDTO;
-import kr.co.communityJh.dto.BoardDTO;
+import kr.co.communityJh.auth.AuthUser;
+import kr.co.communityJh.dto.account.AccountRequestDto;
+import kr.co.communityJh.dto.board.BoardDto;
 import kr.co.communityJh.service.BoardService;
 
 /**
@@ -71,7 +67,7 @@ public class BoardApiController {
 	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> boardDelete(@PathVariable int id,
-			@AuthUser AccountRequestDTO accountRequestDTO) {
+			@AuthUser AccountRequestDto accountRequestDTO) {
 		boardService.deleteBoardById(id);
 //		ResponseEntity.ok().header("", "").body(null);
 		return new ResponseEntity<>("success", HttpStatus.OK);
@@ -88,8 +84,8 @@ public class BoardApiController {
 		@ApiImplicitParam(name = "sdeq", value = "id", example = "1")
 	})
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> boardModify(@RequestBody BoardDTO boardDTO) {
-		BoardDTO boardResponseDTO = boardService.updateBoardById(boardDTO);
-		return ResponseEntity.ok().body(boardResponseDTO);
+	public ResponseEntity<Object> boardModify(@RequestBody BoardDto boardDTO) {
+		BoardDto boardResponseDTO = boardService.updateBoardById(boardDTO);
+		return ResponseEntity.ok(boardResponseDTO);
 	}
 }

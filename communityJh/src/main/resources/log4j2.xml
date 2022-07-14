@@ -3,7 +3,7 @@
 	<!-- 해당 설정파일에서 사용하는 프로퍼티 -->
 	<Properties>
 		<Property name="logFileName">communityJhlog</Property>
-		<Property name="consoleLayout">%style{%d{yyyy-MM-dd HH:mm:ss}} [%-5level] [%t] %style{%C{1.}} : %msg%n%throwable</Property>
+		<Property name="consoleLayout">%style{%d{yyyy-MM-dd HH:mm:ss}} [%-5level] [%t] %style{%l{1.}} : %msg%n%throwable</Property>
 		<Property name="fileLayout">{%d{yyyy-MM-dd HH:mm:ss}} [%-5level] [%t] %C{1.} (%M:%L) - %m%n</Property>
 	</Properties>
 	<!-- LogEvent를 전달해주는 Appender -->

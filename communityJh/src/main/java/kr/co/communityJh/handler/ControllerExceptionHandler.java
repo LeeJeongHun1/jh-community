@@ -28,21 +28,21 @@ public class ControllerExceptionHandler implements ErrorController {
 	 * @param e
 	 * @return error page
 	 */
-//	@ExceptionHandler(value = NullPointerException.class)
-//	public String nullPointException(NullPointerException e) {
-//		return "<h1>없는 사용자</h1>";
-//	}
-//	
-	@ExceptionHandler(value = NoSuchElementException.class)
-	public String noSuchElemenException(NullPointerException e) {
-//		return "<h1>잘못된 입력 입니다.</h1>";
-		return "/error?msg=" + e.getMessage();
+	@ExceptionHandler(value = NullPointerException.class)
+	public String nullPointException(NullPointerException e) {
+		return "error/404";
 	}
+//	
+//	@ExceptionHandler(value = NoSuchElementException.class)
+//	public String noSuchElemenException(NullPointerException e) {
+////		return "<h1>잘못된 입력 입니다.</h1>";
+//		return "/error?msg=" + e.getMessage();
+//	}
 //	
 	@ExceptionHandler(value = IllegalArgumentException.class)
 	public String illegalArgumentException(IllegalArgumentException e) {
 //		return "/error?msg=" + e.getMessage();
-		return "";
+		return e.getMessage();
 	}
 
 	@GetMapping("/error")
