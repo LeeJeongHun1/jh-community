@@ -15,10 +15,9 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('board')"></nav>
 
     <div class="container col-md-11">
-        <h1 th:if="${boardDTO}">글쓰기</h1>
-        <h1 th:unless="${boardDTO}">글쓰기</h1>
+        <h1 th:if="${boardDto}">글쓰기</h1>
         <br>
-        <form action="#" th:action="@{/board/write}" th:object="${boardDTO}" method="post">
+        <form action="#" th:action="@{/board/write}" th:object="${boardDto}" method="post">
 
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" th:classappend="${#fields.hasErrors('title')} ? 'is-invalid'" id="title" th:field="*{title}" placeholder="title">

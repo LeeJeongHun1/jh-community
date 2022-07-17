@@ -43,7 +43,7 @@ public class BoardService {
 	}
 	
 	@Transactional
-	public Long deleteBoardById(int id) {
+	public Long deleteBoardById(Long id) {
 		return boardQueryRepository.deleteById(id);
 	}
 	
@@ -55,7 +55,7 @@ public class BoardService {
 	 * @return Board
 	 */
 	@Transactional
-	public BoardDto findById(int id) {
+	public BoardDto findById(Long id) {
 		Board board = boardQueryRepository.findById(id).orElseThrow(() -> {
 			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
 		});

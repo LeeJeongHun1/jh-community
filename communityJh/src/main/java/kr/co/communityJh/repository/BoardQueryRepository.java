@@ -2,18 +2,16 @@ package kr.co.communityJh.repository;
 
 import static kr.co.communityJh.entity.QAccount.account;
 import static kr.co.communityJh.entity.QBoard.board;
+import static kr.co.communityJh.entity.QRole.role1;
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import kr.co.communityJh.entity.Board;
-import kr.co.communityJh.entity.QRole;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -26,11 +24,12 @@ public class BoardQueryRepository {
 	
 	private final JPAQueryFactory jpaQueryFactory;
 	
-	public Optional<Board> findById(int id) {
+	public Optional<Board> findById(Long id) {
 		return Optional.ofNullable(
 					jpaQueryFactory
 						.selectFrom(board)
 						.innerJoin(board.account, account).fetchJoin()
+						.innerJoin(account.roles, role1).fetchJoin()
 						.where(eqId(id))
 						.fetchOne()); // null이 반환될 수 있다.
 	}
@@ -42,7 +41,7 @@ public class BoardQueryRepository {
 				.execute();
 	}
 	
-	public Long deleteById(int id) {
+	public Long deleteById(Long id) {
 		return jpaQueryFactory.delete(board)
 			.where(board.id.eq(id))
 			.execute();
@@ -54,7 +53,7 @@ public class BoardQueryRepository {
 	 * @param id
 	 * @return BooleanExpression
 	 */
-	private BooleanExpression eqId(int id) {
+	private BooleanExpression eqId(Long id) {
 //		BooleanBuilder a = new BooleanBuilder();
 		if(id == 0) {
 			return null;

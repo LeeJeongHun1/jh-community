@@ -96,6 +96,7 @@ public class Account {
 	
 	public AccountRequestDto toAccountDTO() {
 		return AccountRequestDto.builder()
+				.id(this.id)
 				.email(this.email)
 				.nickname(this.nickname)
 				.password(this.password)

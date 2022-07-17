@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -43,6 +44,11 @@ public class ControllerExceptionHandler implements ErrorController {
 	public String illegalArgumentException(IllegalArgumentException e) {
 //		return "/error?msg=" + e.getMessage();
 		return e.getMessage();
+	}
+	
+	@ExceptionHandler(value = UsernameNotFoundException.class)
+	public String usernameNotFoundException(UsernameNotFoundException e) {
+		return "/user/login?error=true&";
 	}
 
 	@GetMapping("/error")

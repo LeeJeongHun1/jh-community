@@ -81,7 +81,7 @@ let index = {
         }
         console.log(data.body)
         $.ajax({
-                url: "/api/board/" + data.id,
+                url: "/api/board/" + data.id + "/modify",
                 type: "put",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",

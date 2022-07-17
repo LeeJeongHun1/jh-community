@@ -51,7 +51,7 @@ spring:
     jdbc-url: jdbc:postgresql://localhost:5432/community
     username: postgres
     password: zx159463
-  
+
 
 # thymeleaf config
 thymeleaf:
@@ -62,6 +62,12 @@ thymeleaf:
   encoding: UTF-8
 
 logging:
-  level: 
+  level:
     root: info
   config: classpath:log4j2.xml 
+
+#jwt
+jwt:
+  header:
+  secret:
+

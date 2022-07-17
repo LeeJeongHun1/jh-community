@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.and()
 			.formLogin()
 				.loginPage("/user/login") // loginform 이동
-				.loginProcessingUrl("/user/login") // login 처리
+				.loginProcessingUrl("/user/loginProc") // login 처리
 				.usernameParameter("email") // loadUserByUsername 메소드 parameter 설정
 				.failureHandler(customLoginFailHandler)
 				.successHandler(loginSuccessHandler) // login 성공 후 handler

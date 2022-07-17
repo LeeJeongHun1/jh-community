@@ -9,7 +9,7 @@ import kr.co.communityJh.entity.Account;
  *
  * Account JpaRepository
  */
-public interface AccountRepository extends JpaRepository<Account, Integer>{
+public interface AccountRepository extends JpaRepository<Account, Long>{
 	
 	public Account findByEmail(String email);
 

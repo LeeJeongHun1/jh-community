@@ -48,7 +48,7 @@
                     <div class="text-end col-md-4">
                         <div class="pb-1 mb-1">
                             <th:block sec:authorize="isAuthenticated()">
-                                <button type="button" th:onclick="|location.href='@{/board/modify(id=${boardDTO.id}, page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
+                                <button type="button" th:onclick="|location.href='@{/board/{id}/modify(id=${boardDTO.id}, page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
                                 <button type="button" id="deleteBtn" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">삭제</button>
                             </th:block>
                             <button type="button" class="btn btn-light" th:onclick="|location.href='@{/board(page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|">목록</button>
@@ -74,9 +74,8 @@
                 </article>
             </div>
         </form>
-
         <!-- Comment Section -->
-        <div class="comment_box my-5 col-md-10">
+        <div class="comment_box my-5 col-md-11">
             <div class="reply">
                 <span>
                     <i class="bi bi-chat-square-dots"></i>
@@ -85,19 +84,16 @@
             </div>
             <!-- Comment List Section -->
             <div class="comment_list my-1">
+                <!--                     <div class="card-header"> -->
+                <!--                     </div> -->
                 <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <ul class="list-group list-group-horizontal justify-content-end">
-                                <li class="list-group-item">작성자</li>
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                            </ul>
-                        </div>
-                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <ul class="list-group list-group-horizontal justify-content-end">
+                            <li class="list-group-item">작성자 <span>날짜: 2022-07-16</span></li>
+                            <li class="list-group-item">수정</li>
+                            <li class="list-group-item">삭제</li>
+                        </ul>
+                        <!-- <h5 class="card-title">Special title treatment</h5> -->
                         <p class="card-text">With supporting text below as d d a natural lead-in to additional content.</p>
                     </div>
                 </div>
@@ -109,7 +105,6 @@
                     <div class="form-floating">
                         <textarea class="form-control" id="floatingTextarea" style="height: 80px;"></textarea>
                         <label for="floatingTextarea" style="left: 10px;">Comments</label>
-                        <!-- <label class="test" for="floatingTextarea">btn</label> -->
                         <div class="mt-1 text-end">
                             <button type="button" id="tn" class="btn btn-secondary">등록</button>
                         </div>
@@ -117,9 +112,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
     <div th:replace="fragments/common :: footer"></div>

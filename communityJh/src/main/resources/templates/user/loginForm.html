@@ -10,9 +10,9 @@
 
     <div class="container">
         <div class="text-center">
-            <form class="form-signin" th:action="@{/user/login}" method="post">
+            <form class="form-signin" th:action="@{/user/loginProc}" method="post">
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                <div th:if="${param.error}" th:text="${errorMsg}" class="alert alert-danger" role="alert">
                     Invalid email and password.
                 </div>
                 <div th:if="${param.logout}" class="alert alert-primary" role="alert">

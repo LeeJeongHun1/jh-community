@@ -1,9 +1,12 @@
 package kr.co.communityJh.controller;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.communityJh.auth.AuthUser;
+import kr.co.communityJh.auth.LoginErrorCode;
 import kr.co.communityJh.dto.account.AccountRequestDto;
 import kr.co.communityJh.dto.account.JoinRequestDto;
 import kr.co.communityJh.service.AccountService;
@@ -36,20 +40,29 @@ public class UserController {
 	 */
 	@GetMapping("/login")
 	public String loginForm(HttpServletRequest request, @AuthUser AccountRequestDto accountRequestDTO,
-			@RequestParam(value = "error", required = false) Boolean isError) {
-		// login page 오기 전 pageUrl session에 저장
+			@RequestParam(value = "error", required = false, defaultValue = "false") Boolean isError,
+			@RequestParam(required = false, defaultValue = "0") int code,
+			Model model) {
+		// login page 오기 전 pageUri session에 저장
 		String uri = request.getHeader("Referer");
-//		log.info("accountRequestDTO: " + accountRequestDTO);
-//		// login 정보가 session에 남아있으면 '/' 페이지로 이동
+//		// login 정보가 남아있으면 '/' 페이지로 이동
 		if(accountRequestDTO != null) {
 			return "redirect:/";
 		}
-		
 //		이전 page 세션에 저장
 		if(uri != null && !uri.contains("/login")) {
 			request.getSession().setAttribute("prevPage", uri);
 		}
-		return "user/login";
+		
+		// login 실패시 error msg
+		if(isError) {
+			LoginErrorCode loginErrorCode = Arrays.stream(LoginErrorCode.values())
+					.filter(e -> e.getCode() == code)
+					.findFirst().get();
+			model.addAttribute("errorMsg", loginErrorCode.getMessage());
+		}
+		
+		return "user/loginForm";
 		
 	}
 	

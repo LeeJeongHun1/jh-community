@@ -12,6 +12,7 @@ import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
@@ -22,35 +23,32 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CustomLoginFailHandler implements AuthenticationFailureHandler {
-	private final String DEFAULT_FAILURE_URL = "/user/login?error=true";
+	private final String DEFAULT_FAILURE_URL = "/user/login?error=true&code=";
 
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		
+		int code = 0;
 		
 		// exception에 따른 error msg 추출
-		String errorMessage = "";
-		if(exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException) {
-			errorMessage = "아이디나 비밀번호가 맞지 않습니다. 다시 확인해 주십시오.";
-		}
-		//< account is disabled
-		else if(exception instanceof DisabledException) {
-			errorMessage = "계정이 비활성화 되었습니다. 관리자에게 문의하세요.";
-		}
-		//< expired the credential
-		else if(exception instanceof CredentialsExpiredException) {
-			errorMessage = "비밀번호 유효기간이 만료 되었습니다. 관리자에게 문의하세요.";
-		}
-		else {
-			errorMessage = "알수 없는 이유로 로그인에 실패하였습니다. 관리자에게 문의하세요.";
+		if(exception instanceof BadCredentialsException) { // email or password 불일치
+			code = LoginErrorCode.INVALID_ID_PASSWORD.getCode();
+		} else if (exception instanceof UsernameNotFoundException) { // user가 존재하지 않음
+			code = LoginErrorCode.USER_NOT_FOUND.getCode();
+		} else if(exception instanceof InternalAuthenticationServiceException) { // server error
+			code = LoginErrorCode.INTERNAL_ERROR.getCode();
+		} else if(exception instanceof DisabledException) { // account is disabled
+			code = LoginErrorCode.ACCOUNT_DISABLED_ERROR.getCode();
+		} else if(exception instanceof CredentialsExpiredException) { // expired the credential
+			code = LoginErrorCode.CREDENTIALS_EXPIRED_ERROR.getCode();
+		} else {
+			code = LoginErrorCode.ELSE_ERROR.getCode();
 		}
 		
-		
+		response.sendRedirect(DEFAULT_FAILURE_URL + code);
 		// error msg 세션에 저장 후 login page 포워드.
-		request.setAttribute("errorMsg", errorMessage);
-		RequestDispatcher rd = request.getRequestDispatcher(DEFAULT_FAILURE_URL);
-		rd.forward(request, response);
+//		request.setAttribute("msg", code);
+//		request.getRequestDispatcher(DEFAULT_FAILURE_URL).forward(request, response);
 	}
 
 

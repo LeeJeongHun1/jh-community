@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,30 +67,30 @@ public class BoardController {
 	 * 게시글 seq에 해당하는 게시글 상세 페이지
 	 * db에 조회된 모든 게시글을 보여준다. 추후 페이징, auth 설정 필요
 	 * seq 값이 없을 경우 list 페이지로 리턴
-	 * @param seq
+	 * @param id
 	 * @return 게시판 상세 페이지
 	 * @throws Exception 
 	 */
-	@GetMapping("/{seq}")
-	public String detail(@PathVariable Optional<Integer> seq,
+	@GetMapping("/{id}")
+	public String detail(@PathVariable Optional<Long> id,
 					@RequestParam(required = false, defaultValue = "0") int page,
 					@RequestParam(required = false, defaultValue = "") String searchText,
 					@RequestParam(required = false, defaultValue = "t") String option,
 					Model model) throws IllegalArgumentException {
-		if(!seq.isPresent()) {
+		if(!id.isPresent()) {
 			return "redirect:/board";
 		}
-		model.addAttribute("boardDTO", boardService.findById(seq.get()));
+		model.addAttribute("boardDTO", boardService.findById(id.get()));
 		return "board/detail";
 	}
 	
-	@GetMapping("/modify")
-	public String modify(@RequestParam int id,
+	@GetMapping("/{id}/modify")
+	public String modify(@PathVariable Long id,
 			@RequestParam(required = false, defaultValue = "0") int page,
 			@RequestParam(required = false, defaultValue = "") String searchText,
 			@RequestParam(required = false, defaultValue = "t") String option,
 			Model model) throws IllegalArgumentException {
-		model.addAttribute("boardDTO", boardService.findById(id));
+		model.addAttribute("boardDto", boardService.findById(id));
 		return "board/modify";
 	}
 	
@@ -99,42 +100,25 @@ public class BoardController {
 	 * @return
 	 */
 	@GetMapping("/write")
-	public String writeForm(Model model) {
-		model.addAttribute("boardDTO", new BoardDto());
+	public String writeForm(@ModelAttribute("boardDto") BoardDto boardDto) {
 		return "board/write";
 	}
 	
 	/**
 	 * 게시글 등록
-	 * @param boardDTO
+	 * @param boardDto
 	 * @return
 	 */
 	@PostMapping("/write")
-	public String boardWrite(@Valid BoardDto boardDTO,
+	public String boardWrite(@Valid BoardDto boardDto,
 			BindingResult bindingResult,
 			@AuthUser AccountRequestDto accountRequestDTO) {
 		if(bindingResult.hasErrors()) {
 			return "board/write";
 		}
-		BoardDto boardResponseDto =  boardService.save(boardDTO, accountRequestDTO);
+		BoardDto boardResponseDto =  boardService.save(boardDto, accountRequestDTO);
 		return "redirect:/board/" + boardResponseDto.getId();
 		
 	}
-	
-//	/**
-//	 * 게시글 수정
-//	 * @param board
-//	 * @return
-//	 */
-//	@PutMapping("/write")
-//	public String boardModify(@Valid @RequestBody Board board,
-//			BindingResult bindingResult) {
-//		if(bindingResult.hasErrors()) {
-//			return "board/write";
-//		}
-//		boardService.save(board);
-//		return "redirect:/boards/detail/" + board.getId();
-//		
-//	}
 
 }

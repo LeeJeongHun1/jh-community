@@ -61,7 +61,7 @@ public class Board extends BaseEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_SEQ_GENERATOR")
-	private int id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String title;

@@ -23,7 +23,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BoardDto{
 	
-	private int id;
+	private Long id;
 	
 	@NotBlank(message = "제목을 입력하세요!")
 	private String title;
