@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import kr.co.communityJh.board.service.BoardService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ import kr.co.communityJh.entity.Board;
 class DummyControllerTests {
 
 	@Autowired MockMvc mockMvc;
-	
-	
+
+	@Autowired BoardService boardService;
 	@Autowired ObjectMapper objectMapper;
 
 	/**

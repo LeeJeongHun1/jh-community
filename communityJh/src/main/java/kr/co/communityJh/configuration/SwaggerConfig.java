@@ -28,7 +28,7 @@ public class SwaggerConfig {
 		Docket docket = new Docket(DocumentationType.SWAGGER_2);
 		docket.apiInfo(apiBuilder.build());
 		
-		ApiSelectorBuilder apis = docket.select().apis(RequestHandlerSelectors.basePackage("kr.co.communityJh.controller"));
+		ApiSelectorBuilder apis = docket.select().apis(RequestHandlerSelectors.basePackage("kr.co.communityJh.board.controller.api"));
 //								.ant("/**")
 		apis.paths(PathSelectors.any());
 		

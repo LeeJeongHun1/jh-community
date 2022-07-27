@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/common :: head('게시글 수정')">
@@ -28,18 +28,18 @@
     <div class="container col-md-11">
         <h1>수정</h1>
         <br>
-        <form action="#" id="modifyForm" th:object="${boardDto}">
+        <form action="#" id="modifyForm" th:object="${boardDto}" th:action="@{/board/{id}/modify(id=${id})}" method="post">
             <input type="hidden" id="boardId" th:value="*{id}">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="boardTitle" th:value="*{title}" placeholder="title">
-                <label for="title">title</label>
+                <input type="text" class="form-control" id="boardTitle" th:value="*{title}" name="title" placeholder="title">
+                <label for="boardTitle">title</label>
                 <div id="titleAlertPlaceholder" class="my-3"></div>
                 <!--                 <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"> -->
                 <!--                     error -->
                 <!--                 </div> -->
             </div>
             <div class="mb-3">
-                <textarea class="form-control summernote" id="boardBody" rows="10" th:text="*{body}"></textarea>
+                <textarea class="form-control summernote" id="boardBody" rows="10" name="body" th:text="*{body}"></textarea>
                 <div id="bodyAlertPlaceholder" class="my-3"></div>
             </div>
             <div class="text-end">

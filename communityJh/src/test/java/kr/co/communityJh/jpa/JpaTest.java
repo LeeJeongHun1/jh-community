@@ -1,7 +1,5 @@
 package kr.co.communityJh.jpa;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +8,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.communityJh.CommunityJhApplication;
-import kr.co.communityJh.entity.Account;
-import kr.co.communityJh.entity.Board;
-import kr.co.communityJh.repository.AccountRepository;
-import kr.co.communityJh.repository.BoardRepository;
+import kr.co.communityJh.account.repository.AccountRepository;
+import kr.co.communityJh.board.repository.BoardRepository;
+import lombok.RequiredArgsConstructor;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = CommunityJhApplication.class)
+@RequiredArgsConstructor
 @Transactional
 class JpaTest {
 
@@ -26,27 +24,27 @@ class JpaTest {
 	@Test
 	void findByIdTest() {
 		// given
-		int id = 4;
+		Long id = 4L;
 		
 		// when
-		Account u = accountRepository.findById(1).orElseThrow();
+//		Account u = accountRepository.findEntityById(1L).orElseThrow();
 		
-		System.out.println(u);
-		// then
-		assertNotNull(u);
+		System.out.println(id);
+//		// then
+//		assertNotNull(u);
 	}
 	
 	@Test
 	void 게시글조회() {
 		// given
-		int id = 4;
+		Long id = 4L;
 		
 		// when
-		Board b = boardRepository.findById(id).orElseThrow();
-		
-		System.out.println(b);
-		// then
-		assertNotNull(b);
+//		Board b = boardRepository.findEntityById(id).orElseThrow();
+//		
+//		System.out.println(b);
+//		// then
+//		assertNotNull(b);
 	}
 
 }

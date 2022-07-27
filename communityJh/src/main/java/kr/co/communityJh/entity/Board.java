@@ -1,32 +1,15 @@
 package kr.co.communityJh.entity;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.NotBlank;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Type;
 
-import kr.co.communityJh.dto.board.BoardDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import kr.co.communityJh.board.dto.BoardDto;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author jhlee
@@ -47,7 +30,8 @@ import lombok.NoArgsConstructor;
  * OneToMany
  * ManyToMany
  */
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = false)
 @Builder
 @NoArgsConstructor
@@ -74,8 +58,9 @@ public class Board extends BaseEntity{
 	@JoinColumn(name = "userId")
 	private Account account;
 	
-//	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-//	private Set<Comment> comments = new HashSet<>();
+	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+	@JsonManagedReference
+	private Set<Comment> comments = new HashSet<>();
 //	
 //	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 //	private Set<Likes> likes = new HashSet<>();
@@ -94,6 +79,7 @@ public class Board extends BaseEntity{
 				.body(this.body)
 				.title(this.title)
 				.account(this.account)
+				.createDate(this.getCreateDate())
 				.viewCount(this.viewCount)
 				.build();
 	}

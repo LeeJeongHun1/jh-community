@@ -2,11 +2,11 @@ package kr.co.communityJh.auth;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.communityJh.exception.ErrorCode;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
@@ -32,21 +32,21 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 		
 		// exception에 따른 error msg 추출
 		if(exception instanceof BadCredentialsException) { // email or password 불일치
-			code = LoginErrorCode.INVALID_ID_PASSWORD.getCode();
+			code = ErrorCode.INVALID_ID_PASSWORD.getCode();
 		} else if (exception instanceof UsernameNotFoundException) { // user가 존재하지 않음
-			code = LoginErrorCode.USER_NOT_FOUND.getCode();
+			code = ErrorCode.USER_NOT_FOUND.getCode();
 		} else if(exception instanceof InternalAuthenticationServiceException) { // server error
-			code = LoginErrorCode.INTERNAL_ERROR.getCode();
+			code = ErrorCode.INTERNAL_ERROR.getCode();
 		} else if(exception instanceof DisabledException) { // account is disabled
-			code = LoginErrorCode.ACCOUNT_DISABLED_ERROR.getCode();
+			code = ErrorCode.ACCOUNT_DISABLED_ERROR.getCode();
 		} else if(exception instanceof CredentialsExpiredException) { // expired the credential
-			code = LoginErrorCode.CREDENTIALS_EXPIRED_ERROR.getCode();
+			code = ErrorCode.CREDENTIALS_EXPIRED_ERROR.getCode();
 		} else {
-			code = LoginErrorCode.ELSE_ERROR.getCode();
+			code = ErrorCode.ELSE_ERROR.getCode();
 		}
 		
 		response.sendRedirect(DEFAULT_FAILURE_URL + code);
-		// error msg 세션에 저장 후 login page 포워드.
+		// error msg 세션에 저장 후 login boardPageListWithSearch 포워드.
 //		request.setAttribute("msg", code);
 //		request.getRequestDispatcher(DEFAULT_FAILURE_URL).forward(request, response);
 	}

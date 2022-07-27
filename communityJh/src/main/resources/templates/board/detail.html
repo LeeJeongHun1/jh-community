@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="fragments/common :: head('게시글 조회')">
     <!-- Required meta tags -->
@@ -18,17 +18,7 @@
     .comment_write textarea {
         resize: none;
     }
-    /* label.test {
-        position: absolute;
-        bottom: 0;
-        right: 10;
-        height: 100%;
-        padding: 1rem 0.75rem;
-        pointer-events: none;
-        border: 1px solid transparent;
-        transform-origin: 0 0;
-        transition: opacity .1s ease-in-out, transform .1s ease-in-out;
-    } */
+
 </style>
 
 <body>
@@ -37,23 +27,14 @@
 
     <!-- Board Section -->
     <div class="container col-md-11">
-        <form action="#" th:action="@{/board/write}" th:object="${boardDTO}" method="post">
+        <form action="#" th:action="@{/board/write}" th:object="${boardDto}" method="post">
             <input type="hidden" id="bnoId" th:value="*{id}">
             <div class="col">
-                <div class="row border-bottom">
+                <div class="row border-bottom border-top">
                     <div class="col-md-8">
                         <!-- <h3 class="pb-2 mb-2 fst-italic" th:text="*{id}">title</h3> -->
-                        <h3 class="pb-2 mb-2 fst-italic" th:text="${boardDTO.title}">title</h3>
-                    </div>
-                    <div class="text-end col-md-4">
-                        <div class="pb-1 mb-1">
-                            <th:block sec:authorize="isAuthenticated()">
-                                <button type="button" th:onclick="|location.href='@{/board/{id}/modify(id=${boardDTO.id}, page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">수정</button>
-                                <button type="button" id="deleteBtn" th:if="${#authentication.principal.username} == *{account.email}" class="btn btn-light">삭제</button>
-                            </th:block>
-                            <button type="button" class="btn btn-light" th:onclick="|location.href='@{/board(page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|">목록</button>
-                        </div>
-                        <ul class="pb-1 mb-1 justify-content-end list-group list-group-horizontal">
+                        <h3 class="pb-2 mb-2 fst-italic" th:text="${boardDto.title}">title</h3>
+                        <ul class="pb-1 mb-1 list-group list-group-horizontal">
                             <li class="list-group-item"><span>작성자 <span th:text="*{account.nickname}"></span></span>
                             </li>
                             <li class="list-group-item"><span>조회 <span th:text="*{viewCount}">0</span></span>
@@ -63,17 +44,32 @@
                                 </span>
                                 <span th:text="*{likeCount}">0</span>
                             </li>
-                            <li class="list-group-item"><span>댓글</span></li>
+                            <li class="list-group-item"><span>댓글 0</span></li>
+                            <li class="list-group-item"><span>작성일: <span th:text="${#temporals.format(boardDto.createDate, 'yyyy.MM.dd / HH:mm')}"></span></span>
+                                <!-- <li class="list-group-item"><span>작성일: <span th:text="${boardDto.createDate}"></span></span> -->
+                            </li>
                         </ul>
+                    </div>
+                    <div class="text-end col-md-4 pt-1 mt-1 align-self-end">
+                        <div class="pb-1 mb-1">
+                            <th:block th:if="${#authentication.principal.username} == *{account.email}">
+                                <button type="button" th:onclick="|location.href='@{/board/{id}/modify(id=${boardDto.id}, page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|" class="btn btn-light">수정</button>
+                                <button type="button" id="deleteBtn" class="btn btn-light">삭제</button>
+                            </th:block>
+
+                            <button type="button" class="btn btn-light" th:onclick="|location.href='@{/board(page=(${#strings.isEmpty(param.page)} ? 0:${param.page}), option=${param.option}, searchText=${param.searchText})}'|">목록</button>
+                        </div>
                     </div>
                 </div>
 
-                <article class="blog-post border-bottom pb-3 mb-3">
-                    <h2 class="blog-post-title mb-1">Sample blog post</h2>
+                <article class="blog-post border-bottom p-3 mb-3" style="height: 35rem;">
+                    <!-- <h2 class="blog-post-title mb-1">Sample blog post</h2> -->
                     <div th:utext="*{body}"> 본문 내용 </div>
                 </article>
             </div>
         </form>
+
+
         <!-- Comment Section -->
         <div class="comment_box my-5 col-md-11">
             <div class="reply">
@@ -100,13 +96,18 @@
             </div>
 
             <!-- Comment Write Section -->
-            <div class="comment_write my-3">
+            <div class="comment_write my-3" sec:authorize="!isAuthenticated()">
+                <p>로그인 후 댓글을 작성할 수 있습니다.</p>
+                <button type="button" th:onclick="|location.href='@{/user/login}'|"  class="btn btn-secondary">로그인</button>
+
+            </div>
+            <div class="comment_write my-3" sec:authorize="isAuthenticated()">
                 <div class="row">
                     <div class="form-floating">
                         <textarea class="form-control" id="floatingTextarea" style="height: 80px;"></textarea>
                         <label for="floatingTextarea" style="left: 10px;">Comments</label>
                         <div class="mt-1 text-end">
-                            <button type="button" id="tn" class="btn btn-secondary">등록</button>
+                            <button type="button" id="comment-id-btn" class="btn btn-secondary">등록</button>
                         </div>
                     </div>
                 </div>
@@ -132,7 +133,7 @@
                     $('#heart').attr('class', 'bi bi-heart')
                 }
             })
-        var dto = /*[[${boardDTO} ]]*/ 'a';
+        var dto = /*[[${boardDto} ]]*/ 'a';
     });
     /*]]>*/
 </script>
@@ -142,7 +143,7 @@
         $(this).height(1).height($(this).prop('scrollHeight') + 1);
     });
 </script>
-<script th:inline="javascript" th:src="@{/js/app.js}">
-</script>
+<script th:inline="javascript" th:src="@{/js/app.js}"></script>
+<script th:inline="javascript" th:src="@{/js/comment.js}"></script>
 
 </html>

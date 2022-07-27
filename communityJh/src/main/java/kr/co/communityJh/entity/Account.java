@@ -24,7 +24,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import kr.co.communityJh.dto.account.AccountRequestDto;
+import kr.co.communityJh.account.dto.AccountRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -85,6 +85,9 @@ public class Account {
 	@ColumnDefault(value = "'Y'")
 	private String isEnabledYn;
 	
+	@Column
+	private String refreshToken;
+	
 	@CreatedDate
 	@Column(updatable = false)
 	private LocalDateTime createDate;
@@ -103,6 +106,10 @@ public class Account {
 				.roles(this.roles)
 				.isEnabledYn(this.isEnabledYn)
 				.build();
+	}
+	
+	public void updateRefreshToken(String newToken) {
+		this.refreshToken = newToken;
 	}
 	
 }

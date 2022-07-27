@@ -22,10 +22,10 @@ let index = {
             param: $('#bnoId').val(),
             id: /* ${boardDto.id} */ 'id',
         }
-        console.log(reqData)
+
         if (confirm("해당 게시글을 삭제하겠습니까?")) {
             $.ajax({
-                url: "/board/" + $('#bnoId').val(),
+                url: "/board/" + reqData.param,
                 type: "delete",
                 // data: "da",
                 contentType: "application/json charset=utf-8",
@@ -41,7 +41,7 @@ let index = {
                 console.log('ddd')
             }).fail(function(data) {
                 console.log(data)
-            }).always(function() {
+            }).ALWAYS(function() {
                 location.href = '/board'
             })
         }
@@ -49,12 +49,12 @@ let index = {
 
     modify: function() {
         // alert ele
-        const titlealertPlaceholder = document.getElementById('titleAlertPlaceholder')
-        const bodyalertPlaceholder = document.getElementById('bodyAlertPlaceholder')
+        const titleAlertPlaceholder = document.getElementById('titleAlertPlaceholder')
+        const bodyAlertPlaceholder = document.getElementById('bodyAlertPlaceholder')
 
         // 초기화
-        titlealertPlaceholder.innerHTML = '';
-        bodyalertPlaceholder.innerHTML = '';
+        titleAlertPlaceholder.innerHTML = '';
+        bodyAlertPlaceholder.innerHTML = '';
 
         // alert 생성
         const alert = (message, type, field) => {
@@ -66,38 +66,41 @@ let index = {
                 '</div>'
             ].join('')
             if (field === 'title') {
-                titlealertPlaceholder.append(wrapper)
+                titleAlertPlaceholder.append(wrapper)
             } else if (field === 'body') {
-                bodyalertPlaceholder.append(wrapper)
+                bodyAlertPlaceholder.append(wrapper)
             }
-            return modify;
+            return false
         }
 
         // 데이터 추출
-        let data = {
-            id: $('#boardId').val(),
-            title: $('#boardTitle').val().trim() !== '' ? $('#boardTitle').val() : alert('제목은 빈칸일 수 없습니다', 'warning', 'title'),
-            body: $('.note-editable').text().trim() !== '' ? $('.note-editable').html() : alert('내용은 빈칸일 수 없습니다', 'warning', 'body')
-        }
-        console.log(data.body)
-        $.ajax({
-                url: "/api/board/" + data.id + "/modify",
-                type: "put",
-                data: JSON.stringify(data),
-                contentType: "application/json; charset=utf-8",
-            }).done(function(data, status, error) {
-                console.log(data)
-                console.log(status)
-                console.log(error)
+        var title = $('#boardTitle').val().trim() !== '' ? $('#boardTitle').val() : alert('제목은 빈칸일 수 없습니다', 'warning', 'title')
+        var body = $('.note-editable').text().trim() !== '' ? $('.note-editable').html() : alert('내용은 빈칸일 수 없습니다', 'warning', 'body')
 
-                location.href = '/board/' + data.id
-            }).fail(function(error) {
-                console.log(error)
-                location.href = '/error'
-            })
-            // .always(function() { // 해당 글 보기
-            //     location.href = '/board/' + data.id
-            // })
+        if (title && body)
+            $('#modifyForm').submit();
+
+
+
+        // console.log(data.body)
+        // $.ajax({
+        //         url: "/board/" + data.id + "/modify",
+        //         type: "post",
+        //         data: JSON.stringify(data),
+        //         contentType: "application/json; charset=utf-8",
+        //     }).done(function(data, status, error) {
+        //         console.log(data)
+        //         console.log(status)
+        //         console.log(error)
+        //
+        //         // location.href = '/board/' + data.id
+        //     }).fail(function(error) {
+        //         console.log(error)
+        //         location.href = '/error'
+        //     })
+        //     // .always(function() { // 해당 글 보기
+        //     //     location.href = '/board/' + data.id
+        //     // })
     },
 
     passwordValid: function() {
@@ -119,7 +122,7 @@ let index = {
         } else {
             $('#rePassword').attr('class', 'form-control')
         }
-    }
+    },
 
 }
 index.init();

@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.communityJh.CommunityJhApplication;
 import kr.co.communityJh.entity.Account;
-import kr.co.communityJh.service.AccountService;
+import kr.co.communityJh.account.service.AccountService;
 
 @SpringBootTest(classes = CommunityJhApplication.class)
 @Transactional
