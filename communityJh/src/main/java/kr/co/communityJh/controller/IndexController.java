@@ -15,11 +15,12 @@ import lombok.extern.log4j.Log4j2;
 public class IndexController {
 	
 	/**
-	 * @return index page
+	 * @return index boardPageListWithSearch
 	 */
 	@GetMapping()
 	public String index() {
+		System.out.println("???????");
 		return "index";
 	}
-	
+
 }

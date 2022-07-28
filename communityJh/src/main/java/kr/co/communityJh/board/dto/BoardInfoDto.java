@@ -1,6 +1,6 @@
 package kr.co.communityJh.board.dto;
 
-import kr.co.communityJh.entity.Board;
+import kr.co.communityJh.board.domain.Board;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,6 +20,7 @@ public class BoardInfoDto {
 	private String title;
 	private String body;
 	private String accountNickname;
+	private String accountEmail;
 	private LocalDateTime createDate;
 	private int viewCount;
 	private Long commentCount;
@@ -32,6 +33,7 @@ public class BoardInfoDto {
 				.body(board.getBody())
 				.title(board.getTitle())
 				.accountNickname(board.getAccount().getNickname())
+				.accountEmail(board.getAccount().getEmail())
 				.createDate(board.getCreateDate())
 				.viewCount(board.getViewCount())
 				.build();

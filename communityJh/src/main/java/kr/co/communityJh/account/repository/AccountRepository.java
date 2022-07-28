@@ -2,7 +2,7 @@ package kr.co.communityJh.account.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.account.domain.Account;
 
 /**
  * @author jhlee

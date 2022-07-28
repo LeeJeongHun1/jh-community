@@ -22,7 +22,7 @@ import static org.springframework.http.HttpMethod.GET;
 @EnableWebSecurity // spring security filter 체인 등록
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class    WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomLoginFailHandler customLoginFailHandler;
     private final CustomLoginSuccessHandler customLoginSuccessHandler;
 //    private final CustomAuthorizationFilter authorizationFilter;

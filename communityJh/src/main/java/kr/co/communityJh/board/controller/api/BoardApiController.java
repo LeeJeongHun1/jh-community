@@ -1,6 +1,6 @@
 package kr.co.communityJh.board.controller.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import kr.co.communityJh.auth.AuthUser;
 import kr.co.communityJh.account.dto.AccountRequestDto;
-import kr.co.communityJh.board.dto.BoardDto;
 import kr.co.communityJh.board.service.BoardService;
 
 /**
@@ -21,11 +20,12 @@ import kr.co.communityJh.board.service.BoardService;
  * 현재 thymeleaf에서 사용할일이 거의 없어서 추후 재작성 예정.
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/board")
 @Api(tags = "커뮤니티_API문서")
 public class BoardApiController {
 
-	@Autowired BoardService boardService;
+	private final BoardService boardService;
 	
 //	/**
 //	 * @return 게시글 목록

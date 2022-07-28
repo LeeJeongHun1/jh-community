@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.communityJh.CommunityJhApplication;
-import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.account.domain.Account;
 import kr.co.communityJh.account.service.AccountService;
 
 @SpringBootTest(classes = CommunityJhApplication.class)

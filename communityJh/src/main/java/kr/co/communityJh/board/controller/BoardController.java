@@ -30,7 +30,7 @@ import kr.co.communityJh.board.service.BoardService;
 public class BoardController {
 
 	private final CommentService commentService;
-	@Autowired BoardService boardService;
+	private final BoardService boardService;
 
 	/**
 	 * @param model
@@ -61,7 +61,9 @@ public class BoardController {
 		if(!id.isPresent()) {
 			return "redirect:/board";
 		}
-		model.addAttribute("boardDto", boardService.findEntityById(id.get()));
+		BoardWithCommentDto boardWithCommentDto = boardService.readBoardWithComment(id.get());
+		model.addAttribute("boardDto", boardWithCommentDto);
+		model.addAttribute("commentList", boardWithCommentDto.getCommentList());
 		return "board/detail";
 	}
 

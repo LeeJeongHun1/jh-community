@@ -6,8 +6,7 @@ import java.util.Set;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import kr.co.communityJh.entity.Account;
-import kr.co.communityJh.entity.Role;
+import kr.co.communityJh.account.domain.Account;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,7 +38,7 @@ public class JoinRequestDto {
 			message = "비밀번호는 대소문자, 숫자, 특수문자 포함 4~15자리 입니다.")
 	private String password;
 	
-	private Set<Role> roles = new HashSet<>();
+//	private Set<Role> roles = new HashSet<>();
 	
 	
 	public Account toEntityAccount() {
@@ -47,7 +46,7 @@ public class JoinRequestDto {
 				.email(this.email)
 				.nickname(this.nickname)
 				.password(this.password)
-				.roles(new HashSet<>())
+//				.roles(new HashSet<>())
 				.build();
 	}
 	

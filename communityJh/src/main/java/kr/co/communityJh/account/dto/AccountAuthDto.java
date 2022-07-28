@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import kr.co.communityJh.entity.Account;
+import kr.co.communityJh.account.domain.Account;
 import lombok.Getter;
 
 /**

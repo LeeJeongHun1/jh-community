@@ -1,28 +1,14 @@
-package kr.co.communityJh.entity;
+package kr.co.communityJh.account.domain;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 
-import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import kr.co.communityJh.account.dto.AccountRequestDto;
 import lombok.AllArgsConstructor;
@@ -72,14 +58,17 @@ public class Account {
 	// user passwd
 	@Column(nullable = false)
 	private String password;
-	
+
 	// user role
-	@OneToMany(mappedBy = "account",
-			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL)
-	@JsonManagedReference
-	@ToStringExclude
-	private Set<Role> roles = new HashSet<>();
+//	@OneToMany(mappedBy = "account",
+//			fetch = FetchType.EAGER,
+//			cascade = CascadeType.ALL)
+//	@JsonManagedReference
+//	@ToStringExclude
+//	private Set<Role> roles = new HashSet<>();
+	@Column
+	@Enumerated(EnumType.STRING)
+	private RoleType role;
 	
 	// 탈퇴여부
 	@ColumnDefault(value = "'Y'")
@@ -91,10 +80,10 @@ public class Account {
 	@CreatedDate
 	@Column(updatable = false)
 	private LocalDateTime createDate;
-	
-	public void addRoles(Role role) {
-		roles.add(role);
-		role.setAccount(this);
+
+	public void addUserRoles(RoleType roleType) {
+		this.role = roleType;
+
 	}
 	
 	public AccountRequestDto toAccountDTO() {
@@ -103,7 +92,7 @@ public class Account {
 				.email(this.email)
 				.nickname(this.nickname)
 				.password(this.password)
-				.roles(this.roles)
+//				.roles(this.roles)
 				.isEnabledYn(this.isEnabledYn)
 				.build();
 	}

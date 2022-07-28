@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import kr.co.communityJh.entity.Board;
+import kr.co.communityJh.board.domain.Board;
 
 /**
  * @author jhlee

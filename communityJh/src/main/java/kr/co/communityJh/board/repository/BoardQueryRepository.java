@@ -1,21 +1,17 @@
 package kr.co.communityJh.board.repository;
 
-import static kr.co.communityJh.entity.QAccount.account;
-import static kr.co.communityJh.entity.QBoard.board;
-import static kr.co.communityJh.entity.QComment.comment;
-import static kr.co.communityJh.entity.QRole.role1;
-
-import java.util.List;
-import java.util.Optional;
-
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import kr.co.communityJh.board.domain.Board;
 import kr.co.communityJh.board.dto.BoardInfoDto;
 import kr.co.communityJh.board.dto.BoardPageWithSearchDto;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
@@ -25,11 +21,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+import java.util.List;
+import java.util.Optional;
 
-import kr.co.communityJh.entity.Board;
-import lombok.RequiredArgsConstructor;
+import static kr.co.communityJh.account.domain.QAccount.account;
+import static kr.co.communityJh.board.domain.QBoard.board;
+import static kr.co.communityJh.comment.domain.QComment.comment;
 
 /**
  * @author jhlee
@@ -74,15 +71,15 @@ public class BoardQueryRepository {
         ); // null이 반환될 수 있다.
     }
 
-    public List<Board> commet(Long id) {
-        return jpaQueryFactory
+    public Optional<Board> findById(Long id) {
+        return Optional.ofNullable(jpaQueryFactory
                 .selectDistinct(board)
                 .from(board)
-//				.innerJoin(board.account, account)
-                .innerJoin(board.account.roles, role1)
+                .innerJoin(board.account, account).fetchJoin()
+//                .innerJoin(board.account.roles, role1)
                 .leftJoin(board.comments).fetchJoin()
                 .where(board.id.eq(id))
-                .fetch();
+                .fetchOne());
     }
 
 

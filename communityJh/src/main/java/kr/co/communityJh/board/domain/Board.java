@@ -1,8 +1,11 @@
-package kr.co.communityJh.entity;
+package kr.co.communityJh.board.domain;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import kr.co.communityJh.account.domain.Account;
+import kr.co.communityJh.entity.BaseEntity;
+import kr.co.communityJh.comment.domain.Comment;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -41,7 +44,7 @@ import java.util.Set;
 		 sequenceName = "SEQ_BOARD", //매핑할 데이터베이스 시퀀스 이름
 		 initialValue = 1, allocationSize = 1)
 @Entity(name = "TB_BOARD")
-public class Board extends BaseEntity{
+public class Board extends BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_SEQ_GENERATOR")

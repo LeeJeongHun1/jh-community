@@ -1,33 +1,31 @@
 package kr.co.communityJh.jpa;
 
-import static kr.co.communityJh.entity.QAccount.account;
-import static kr.co.communityJh.entity.QBoard.board;
-import static kr.co.communityJh.entity.QComment.comment;
-import static kr.co.communityJh.entity.QRole.role1;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.List;
-
-import kr.co.communityJh.board.dto.*;
+import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import kr.co.communityJh.account.domain.Account;
+import kr.co.communityJh.board.domain.Board;
+import kr.co.communityJh.board.dto.BoardDto;
+import kr.co.communityJh.board.dto.BoardInfoDto;
+import kr.co.communityJh.board.dto.BoardPageWithSearchDto;
+import kr.co.communityJh.board.dto.PageInfo;
 import kr.co.communityJh.board.repository.BoardQueryRepository;
-import kr.co.communityJh.entity.Board;
-import lombok.RequiredArgsConstructor;
+import kr.co.communityJh.comment.dto.CommentResponseDto;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+import java.util.List;
 
-import kr.co.communityJh.entity.Role;
-import lombok.extern.slf4j.Slf4j;
+import static kr.co.communityJh.account.domain.QAccount.account;
+import static kr.co.communityJh.board.domain.QBoard.board;
+import static kr.co.communityJh.comment.domain.QComment.comment;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -70,32 +68,22 @@ class QueryDslTest {
 	@Test
 	void queryDsl_조인테스트() {
 		Long id = 13L;
-//		List<BoardWithCommentDto> list = jpaQueryFactory
-//				.select(Projections.fields(BoardWithCommentDto.class,
-//						board.id,
-//						board.body,
-//						board.title,
-//						board.createDate,
-//						board.account.nickname.as("accountNickname"),
-//						board.viewCount,
-//						board.comments.as("commentList")
-//				))
-//				.from(board)
-//				.innerJoin(board.account, account)
-//				.leftJoin(board.comments, comment)
-//				.where(board.id.eq(id).and(comment.board.id.eq(id)))
-//				.fetch();
+		// 불필요 컬럼까지 조회됨...
 		Board board1 = jpaQueryFactory
 				.selectDistinct(board)
 				.from(board)
-//				.innerJoin(board.account, account)
-				.innerJoin(board.account.roles, role1)
+				.innerJoin(board.account, account).fetchJoin()
+//				.leftJoin(role1).on(board.account.eq(role1.account))
 				.leftJoin(board.comments).fetchJoin()
 				.where(board.id.eq(id))
 				.fetchOne();
 
+//		board1.getComments().forEach(it -> {
+//			System.out.println(it);
+//			System.out.println(it.getAccount().getNickname());
+//
+//		});
 
-		System.out.println(board1.getComments().stream().map(comment1 -> comment1.getBody()));
 
 	}
 
@@ -153,12 +141,12 @@ class QueryDslTest {
 	void queryDsl_유저조회() {
 		// given
 		// 검색 account.id
-		Long id = 4L;
+		Long id = 2L;
 //		QBoard qBoard = QBoard.board;
 		// when
-		List<Role> accountList = jpaQueryFactory
-				.selectFrom(role1)
-				.join(role1.account, account).fetchJoin()
+		List<Account> accountList = jpaQueryFactory
+				.selectFrom(account)
+//				.join(account.roles, role1).fetchJoin()
 				.where(account.id.eq(id))
 				.fetch();
 		// then
@@ -205,6 +193,29 @@ class QueryDslTest {
 
 		assertNotNull(count);
 		assertEquals(count, 6);
+	}
+
+	@Test
+	void querydsl_댓글조회() {
+		// given
+		Long id = 13L;
+		List<CommentResponseDto> list = jpaQueryFactory
+				.select(Projections.fields(CommentResponseDto.class,
+						comment.id,
+						comment.body,
+						comment.account.email.as("accountEmail"),
+						comment.account.nickname.as("accountNickname"),
+						comment.createDate)
+				)
+				.from(comment)
+				.innerJoin(comment.account, account)
+				.where(comment.board.id.eq(id))
+				.fetch();
+
+
+
+		assertNotNull(list);
+		assertEquals(list.size(), 6);
 	}
 
 }

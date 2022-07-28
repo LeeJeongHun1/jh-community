@@ -2,8 +2,8 @@ package kr.co.communityJh.board.dto;
 
 import javax.validation.constraints.NotBlank;
 
-import kr.co.communityJh.entity.Account;
-import kr.co.communityJh.entity.Board;
+import kr.co.communityJh.account.domain.Account;
+import kr.co.communityJh.board.domain.Board;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

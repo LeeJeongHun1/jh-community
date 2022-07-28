@@ -79,8 +79,9 @@ public class AccountController {
 	
 	/**
 	 * 회원 가입 완료 후 login boardPageListWithSearch 리다이렉트
-	 * @param accountDTO login 정보
-	 * @return 
+	 * @param joinRequestDto
+	 * @param bindingResult
+	 * @return
 	 */
 	@PostMapping("/join")
 	public String userRegister(@Validated @ModelAttribute("account") JoinRequestDto joinRequestDto,

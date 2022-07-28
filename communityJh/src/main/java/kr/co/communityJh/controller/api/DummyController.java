@@ -1,34 +1,26 @@
 package kr.co.communityJh.controller.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import kr.co.communityJh.entity.Account;
-import kr.co.communityJh.entity.Board;
-import kr.co.communityJh.service.AccountService;
-import kr.co.communityJh.service.BoardService;
+import kr.co.communityJh.account.service.AccountService;
+import kr.co.communityJh.board.service.BoardService;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author "jhlee"
  * board, user에 관한 더미 데이터 관련 rest controller
  */
 @RestController
+@RequiredArgsConstructor
 @Api(tags = "더미 컨트롤러 문서")
 public class DummyController {
 
 	@Autowired
 	BoardService boardService;
 	
-	@Autowired
-	AccountService accountService;
+	private final AccountService accountService;
 	
 //	/**
 //	 * @return 게시글 목록

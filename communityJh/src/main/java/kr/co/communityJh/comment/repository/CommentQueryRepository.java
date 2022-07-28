@@ -1,33 +1,20 @@
 package kr.co.communityJh.comment.repository;
 
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.PathBuilder;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import kr.co.communityJh.board.dto.BoardInfoDto;
-import kr.co.communityJh.board.dto.BoardPageWithSearchDto;
-import kr.co.communityJh.entity.Board;
+import kr.co.communityJh.comment.dto.CommentResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
-import static kr.co.communityJh.entity.QAccount.account;
-import static kr.co.communityJh.entity.QBoard.board;
-import static kr.co.communityJh.entity.QComment.comment;
-import static kr.co.communityJh.entity.QRole.role1;
+import static kr.co.communityJh.account.domain.QAccount.account;
+import static kr.co.communityJh.board.domain.QBoard.board;
+import static kr.co.communityJh.comment.domain.QComment.comment;
 
 /**
  * @author jhlee
@@ -45,6 +32,22 @@ public class CommentQueryRepository {
                 .from(comment)
                 .where(board.id.eq(id))
                 .fetchOne();
+    }
+
+    public List<CommentResponseDto> findById(Long id) {
+        return jpaQueryFactory
+                .select(Projections.fields(CommentResponseDto.class,
+                        comment.id,
+                        comment.body,
+                        comment.account.email.as("accountEmail"),
+                        comment.account.nickname.as("accountNickname"),
+                        comment.createDate)
+                )
+                .from(comment)
+                .innerJoin(comment.account, account)
+                .where(comment.board.id.eq(id))
+                .orderBy(comment.createDate.desc())
+                .fetch();
     }
 
 }

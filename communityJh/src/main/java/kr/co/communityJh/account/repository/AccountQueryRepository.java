@@ -1,18 +1,15 @@
 package kr.co.communityJh.account.repository;
 
-import static kr.co.communityJh.entity.QAccount.account;
-import static kr.co.communityJh.entity.QRole.role1;
-
-import java.util.Optional;
-
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import kr.co.communityJh.account.domain.Account;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQueryFactory;
+import java.util.Optional;
 
-import kr.co.communityJh.entity.Account;
-import lombok.RequiredArgsConstructor;
+import static kr.co.communityJh.account.domain.QAccount.account;
 
 /**
  * @author jhlee
@@ -28,7 +25,7 @@ public class AccountQueryRepository {
 		return Optional.ofNullable(
 				jpaQueryFactory.select(account)
 					.from(account)
-					.innerJoin(account.roles, role1).fetchJoin()
+//					.innerJoin(account.roles, role1).fetchJoin()
 					.where(account.email.eq(email))
 					.fetchOne());
 	}

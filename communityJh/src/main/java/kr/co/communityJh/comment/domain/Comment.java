@@ -1,6 +1,9 @@
-package kr.co.communityJh.entity;
+package kr.co.communityJh.comment.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import kr.co.communityJh.account.domain.Account;
+import kr.co.communityJh.board.domain.Board;
+import kr.co.communityJh.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,6 +12,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"board", "account"})
 @SequenceGenerator(
         name = "COMMENT_SEQ_GENERATOR",
         sequenceName = "SEQ_COMMENT", //매핑할 데이터베이스 시퀀스 이름

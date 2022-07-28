@@ -3,6 +3,7 @@ package kr.co.communityJh.account.service;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import kr.co.communityJh.account.domain.RoleType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,9 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.communityJh.account.dto.AccountAuthDto;
 import kr.co.communityJh.account.dto.JoinRequestDto;
-import kr.co.communityJh.entity.Account;
-import kr.co.communityJh.entity.Role;
-import kr.co.communityJh.enumType.AccountType;
+import kr.co.communityJh.account.domain.Account;
 import kr.co.communityJh.account.repository.AccountQueryRepository;
 import kr.co.communityJh.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -46,10 +45,7 @@ public class AccountService implements UserDetailsService{
 		joinRequestDto.encodePassword(bCryptPasswordEncoder.encode(joinRequestDto.getPassword()));
 		Account account = joinRequestDto.toEntityAccount();
 		// 신규 사용자 role 추가
-		account.addRoles(Role
-				.builder()
-				.role(AccountType.ROLE_USER)
-				.build());
+		account.addUserRoles(RoleType.ROLE_USER);
 		accountRepository.save(account);
 	}
 	
@@ -80,9 +76,8 @@ public class AccountService implements UserDetailsService{
 			return new UsernameNotFoundException("<h1>해당 사용자는 존재하지 않습니다!</h1>");
 		});
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		account.getRoles().forEach(it -> {
-				authorities.add(new SimpleGrantedAuthority(it.getRole().toString()));
-		});
+		authorities.add(new SimpleGrantedAuthority(account.getRole().toString()));
+
 		return new AccountAuthDto(account, authorities);
 	}
 	

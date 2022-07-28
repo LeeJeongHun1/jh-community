@@ -1,10 +1,9 @@
 package kr.co.communityJh.comment.dto;
 
-import kr.co.communityJh.entity.Account;
-import kr.co.communityJh.entity.Board;
-import kr.co.communityJh.entity.Comment;
+import kr.co.communityJh.account.domain.Account;
+import kr.co.communityJh.board.domain.Board;
+import kr.co.communityJh.comment.domain.Comment;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

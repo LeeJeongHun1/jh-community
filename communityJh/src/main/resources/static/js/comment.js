@@ -4,6 +4,9 @@ let app = {
         $('#comment-id-btn').click(() => {
             this.comment_add();
         })
+        $('#comment_delete_btn').click((e) => {
+            this.comment_delete(e);
+        })
     },
 
 
@@ -23,36 +26,23 @@ let app = {
 
         fetch("/api/comment/" + data.id, option)
             .then(res => {
-                console.log(res)
-                res.body
                 if(res.status === 200){
                     console.log("success")
                 }
                 if(res.status !== 200){
                     console.log("fail")
                 }
+                return res.json()
             })
-            .then(data => console.log(data))
+            .then(data => {
+                location.href = '/board/' + data.id  //page, option 등등 추가 예정
+            })
             .catch()
-        // $.ajax({
-        //         url: "/api/board/" + data.id + "/comment",
-        //         type: "post",
-        //         data: JSON.stringify(data),
-        //         contentType: "application/json; charset=utf-8",
-        //     }).done(function(data, status, error) {
-        //         console.log(data)
-        //         console.log(status)
-        //         console.log(error)
-        //
-        //         // location.href = '/board/' + data.id
-        //     }).fail(function(error) {
-        //         console.log(error)
-        //         location.href = '/error'
-        //     })
-        //     // .always(function() { // 해당 글 보기
-        //     //     location.href = '/board/' + data.id
-        //     // })
-    }
 
+    },
+
+    comment_delete: function (e) {
+        console.log(e)
+    }
 }
 app.init();
