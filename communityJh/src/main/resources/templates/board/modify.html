@@ -34,9 +34,6 @@
                 <input type="text" class="form-control" id="boardTitle" th:value="*{title}" name="title" placeholder="title">
                 <label for="boardTitle">title</label>
                 <div id="titleAlertPlaceholder" class="my-3"></div>
-                <!--                 <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"> -->
-                <!--                     error -->
-                <!--                 </div> -->
             </div>
             <div class="mb-3">
                 <textarea class="form-control summernote" id="boardBody" rows="10" name="body" th:text="*{body}"></textarea>
@@ -44,7 +41,7 @@
             </div>
             <div class="text-end">
                 <button type="button" id="modifyBtn" class="btn btn-outline-primary">수정</button>
-                <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/board/__${boardDTO.id}__(page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|">취소</button>
+                <button type="button" class="btn btn-outline-primary" th:onclick="|location.href='@{/board/__${boardDto.id}__(page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|">취소</button>
             </div>
         </form>
 

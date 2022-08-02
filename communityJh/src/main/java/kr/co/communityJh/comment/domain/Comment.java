@@ -37,4 +37,8 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "boardId")
     private Board board;
 
+
+    public void edit(String body){
+        this.body = body;
+    }
 }

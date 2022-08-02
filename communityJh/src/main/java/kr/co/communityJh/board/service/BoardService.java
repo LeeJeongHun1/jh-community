@@ -39,13 +39,13 @@ public class BoardService {
 
 	/**
 	 * 게시글 등록
-	 * @param boardDTO 
+	 * @param boardWriteDTO
 	 * @param accountRequestDTO
 	 * @return
 	 */
 	@Transactional
-	public BoardDto save(BoardDto boardDTO, AccountRequestDto accountRequestDTO) {
-		Board board = boardDTO.toBoardEntity();
+	public BoardWriteDto save(BoardWriteDto boardWriteDTO, AccountRequestDto accountRequestDTO) {
+		Board board = boardWriteDTO.toBoardEntity();
 		board.setAccount(accountRequestDTO.toEntityAccount());
 		return boardRepository.save(board).toBoardDtd();
 	}
@@ -67,7 +67,7 @@ public class BoardService {
 	 * @param id 
 	 * @return Board
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public BoardInfoDto findById(Long id) {
 		BoardInfoDto boardInfoDto = boardQueryRepository.findDtoById(id).orElseThrow(() -> {
 			return new CustomException(ErrorCode.NOT_FOUND);
@@ -99,18 +99,18 @@ public class BoardService {
 
 	/**
 	 * 게시글 update
-	 * @param boardDTO 
+	 * @param boardWriteDTO
 	 * @return
 	 */
 	@Transactional
-	public BoardDto updateBoardById(BoardDto boardDTO) {
-		Board board = boardQueryRepository.findEntityById(boardDTO.getId()).orElseThrow(() -> {
-			return new IllegalArgumentException("<h1>해당 게시글은 존재하지 않습니다!</h1>");
+	public BoardWriteDto updateBoardById(BoardWriteDto boardWriteDTO) {
+		Board board = boardQueryRepository.findEntityById(boardWriteDTO.getId()).orElseThrow(() -> {
+			return new CustomException(ErrorCode.BOARD_NOT_FOUND);
 		});
-		board.setTitle(boardDTO.getTitle());
-		board.setBody(boardDTO.getBody());
+		board.setTitle(boardWriteDTO.getTitle());
+		board.setBody(boardWriteDTO.getBody());
 		board.setLastUpdateDate(LocalDateTime.now());
-		BoardDto dto = board.toBoardDtd();
+		BoardWriteDto dto = board.toBoardDtd();
 		return dto;
 	}
 

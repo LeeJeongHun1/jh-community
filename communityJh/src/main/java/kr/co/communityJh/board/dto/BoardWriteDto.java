@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardDto{
+public class BoardWriteDto {
 	
 	private Long id;
 	
@@ -56,8 +56,8 @@ public class BoardDto{
 	 * @param board
 	 * @return
 	 */
-	public BoardDto toBoardDto(Board board) {
-		return BoardDto.builder()
+	public BoardWriteDto toBoardDto(Board board) {
+		return BoardWriteDto.builder()
 				.body(board.getBody())
 				.title(board.getTitle())
 				.account(board.getAccount())

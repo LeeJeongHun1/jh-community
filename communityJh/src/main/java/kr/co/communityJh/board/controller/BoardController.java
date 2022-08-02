@@ -1,14 +1,16 @@
 package kr.co.communityJh.board.controller;
 
+import java.util.Comparator;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import kr.co.communityJh.board.dto.*;
+import kr.co.communityJh.comment.dto.CommentResponseDto;
 import kr.co.communityJh.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,13 +59,17 @@ public class BoardController {
 	 * @return 게시판 상세 페이지
 	 */
 	@GetMapping("/{id}")
-	public String detail(@PathVariable Optional<Long> id, Model model) {
+	public String detail(@PathVariable Optional<Long> id,
+						 Model model) {
 		if(!id.isPresent()) {
 			return "redirect:/board";
 		}
 		BoardWithCommentDto boardWithCommentDto = boardService.readBoardWithComment(id.get());
 		model.addAttribute("boardDto", boardWithCommentDto);
-		model.addAttribute("commentList", boardWithCommentDto.getCommentList());
+		model.addAttribute("commentList",
+				boardWithCommentDto.getCommentList()
+						.stream().sorted(Comparator.comparing(
+								CommentResponseDto::getCreateDate).reversed()).collect(Collectors.toList()));
 		return "board/detail";
 	}
 
@@ -84,11 +90,18 @@ public class BoardController {
 		return "board/modify";
 	}
 
+	/**
+	 * @param id boardId
+	 * @param boardPageWithSearchDto
+	 * @param boardWriteDto
+	 * @return
+	 */
 	@PostMapping("/{id}/modify")
 	public String boardModify(@PathVariable Long id,
-			BoardPageWithSearchDto boardPageWithSearchDto, BoardDto boardDto) {
-		boardService.updateBoardById(boardDto);
-		return "redirect:/board/" + boardDto.getId();
+			BoardPageWithSearchDto boardPageWithSearchDto,
+							  BoardWriteDto boardWriteDto) {
+		boardService.updateBoardById(boardWriteDto);
+		return "redirect:/board/" + boardWriteDto.getId();
 	}
 
 
@@ -97,23 +110,23 @@ public class BoardController {
 	 * @return
 	 */
 	@GetMapping("/write")
-	public String writeForm(@ModelAttribute("boardDto") BoardDto boardDto) {
+	public String writeForm(@ModelAttribute("boardDto") BoardWriteDto boardWriteDto) {
 		return "board/write";
 	}
 	
 	/**
 	 * 게시글 등록
-	 * @param boardDto
+	 * @param boardWriteDto
 	 * @return
 	 */
 	@PostMapping("/write")
-	public String boardWrite(@Valid BoardDto boardDto,
+	public String boardWrite(@Valid BoardWriteDto boardWriteDto,
 			BindingResult bindingResult,
 			@AuthUser AccountRequestDto accountRequestDTO) {
 		if(bindingResult.hasErrors()) {
 			return "board/write";
 		}
-		BoardDto boardResponseDto =  boardService.save(boardDto, accountRequestDTO);
+		BoardWriteDto boardResponseDto =  boardService.save(boardWriteDto, accountRequestDTO);
 		return "redirect:/board/" + boardResponseDto.getId();
 		
 	}

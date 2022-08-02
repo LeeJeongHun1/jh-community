@@ -17,9 +17,13 @@ public enum ErrorCode {
 	USER_NOT_FOUND(4002, "존재하지 않는 이메일입니다."),
 	NOT_FOUND(404, "존재하지 않는 페이지입니다."),
 	BOARD_NOT_FOUND(404, "존재하지 않는 게시글입니다."),
+	COMMENT_NOT_FOUND(404, "존재하지 않는 댓글입니다."),
 	ACCOUNT_DISABLED_ERROR(4003, "계정이 비활성화 되었습니다."),
 	CREDENTIALS_EXPIRED_ERROR(4004, "비밀번호 유효기간이 만료 되었습니다."),
 	INTERNAL_ERROR(5001, "서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요."),
+	/* 401 UNAUTHORIZED */
+	UNAUTHORIZED_USER(401, "인증되지 않은 사용자입니다."),
+
 	ELSE_ERROR(5002, "알 수 없는 이유로 오류가 발생했습니다.");
 
 	private final int code;

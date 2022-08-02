@@ -1,16 +1,14 @@
 package kr.co.communityJh.comment.repository;
 
-import com.querydsl.core.types.Order;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.co.communityJh.comment.dto.CommentResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static kr.co.communityJh.account.domain.QAccount.account;
 import static kr.co.communityJh.board.domain.QBoard.board;
@@ -34,8 +32,8 @@ public class CommentQueryRepository {
                 .fetchOne();
     }
 
-    public List<CommentResponseDto> findById(Long id) {
-        return jpaQueryFactory
+    public Optional<List<CommentResponseDto>> findById(Long id) {
+        return Optional.ofNullable(jpaQueryFactory
                 .select(Projections.fields(CommentResponseDto.class,
                         comment.id,
                         comment.body,
@@ -47,7 +45,7 @@ public class CommentQueryRepository {
                 .innerJoin(comment.account, account)
                 .where(comment.board.id.eq(id))
                 .orderBy(comment.createDate.desc())
-                .fetch();
+                .fetch());
     }
 
 }

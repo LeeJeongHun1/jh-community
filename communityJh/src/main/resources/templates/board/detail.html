@@ -33,7 +33,7 @@
                 <div class="row border-bottom border-top">
                     <div class="col-md-8">
                         <!-- <h3 class="pb-2 mb-2 fst-italic" th:text="*{id}">title</h3> -->
-                        <h3 class="pb-2 mb-2 fst-italic" th:text="${boardDto.title}">title</h3>
+                        <h3 class="pb-2 mb-2 fst-italic" th:text="*{title}">title</h3>
                         <ul class="pb-1 mb-1 list-group list-group-horizontal">
                             <li class="list-group-item"><span>작성자 <span th:text="*{accountNickname}"></span></span>
                             </li>
@@ -45,9 +45,8 @@
 <!--                                <span th:text="*{likeCount}">0</span>-->
                                 <span>0</span>
                             </li>
-                            <li class="list-group-item"><span>댓글 0</span></li>
+                            <li class="list-group-item"><span th:text="|댓글 ${commentList.size()}|">댓글 0</span></li>
                             <li class="list-group-item"><span>작성일: <span th:text="${#temporals.format(boardDto.createDate, 'yyyy.MM.dd / HH:mm')}"></span></span>
-                                <!-- <li class="list-group-item"><span>작성일: <span th:text="${boardDto.createDate}"></span></span> -->
                             </li>
                         </ul>
                     </div>
@@ -72,54 +71,62 @@
 
 
         <!-- Comment Section -->
-        <div class="comment_box my-5 col-md-11" >
-            <div class="reply">
+        <div id="commentList">
+<!--            <div th:insert="fragments/commentList :: commentList (${commentList})">-->
+
+<!--            </div>-->
+            <div class="comment_box my-5 col-md-11">
+                <div class="reply">
                 <span>
                     <i class="bi bi-chat-square-dots"></i>
                 </span> 댓글
-                <strong th:text="${commentList.size()}"></strong>
-            </div>
-            <!-- Comment List Section -->
-            <div class="comment_list my-1">
-                <div class="card" th:each="comment : ${commentList}">
-<!--                    <input type="hidden" th:id="${comment.getId()}" th:value="${comment.getId()}">-->
-                    <div class="card-body" th:data-id="|comment_${comment.id}|">
-                        <ul class="list-group list-group-horizontal justify-content-end">
-                            <li class="list-group-item">작성자: [[${comment.accountNickname}]] <span>날짜: [[${#temporals.format(comment.createDate, 'yyyy.MM.dd HH:mm:ss')}]]</span></li>
-                            <li class="list-group-item" th:if="${#authentication.principal.username} == ${comment.accountEmail}">수정</li>
-<!--                            <li class="list-group-item" th:if="${#authentication.principal.username} == ${comment.accountEmail}"><button class="list-group-item" id="comment_delete_btn">삭제</button></li>-->
-                            <button th:if="${#authentication.principal.username} == ${comment.accountEmail}" class="list-group-item" id="comment_delete_btn">삭제</button>
-                        </ul>
-                        <!-- <h5 class="card-title">Special title treatment</h5> -->
-                        <p class="card-text" th:text="${comment.getBody()}">With supporting text below as d d a natural lead-in to additional content.</p>
-                    </div>
+                    <strong th:text="${commentList.size()}"></strong>
                 </div>
-            </div>
-
-            <!-- Comment Write Section -->
-            <div class="comment_write my-3" sec:authorize="!isAuthenticated()">
-                <p>로그인 후 댓글을 작성할 수 있습니다.</p>
-                <button type="button" th:onclick="|location.href='@{/user/login}'|"  class="btn btn-secondary">로그인</button>
-
-            </div>
-            <div class="comment_write my-3" sec:authorize="isAuthenticated()">
-                <div class="row">
-                    <div class="form-floating">
-                        <textarea class="form-control" id="floatingTextarea" style="height: 80px;"></textarea>
-                        <label for="floatingTextarea" style="left: 10px;">Comments</label>
-                        <div class="mt-1 text-end">
-                            <button type="button" id="comment-id-btn" class="btn btn-secondary">등록</button>
+                <!-- Comment List Section -->
+                <div class="comment_list my-1">
+                    <div class="card" th:each="comment : ${commentList}">
+                        <!--                    <input type="hidden" th:id="${comment.getId()}" th:value="${comment.getId()}">-->
+                        <div class="card-body" th:data-id="|comment_${comment.id}|">
+                            <ul class="list-group list-group-horizontal justify-content-end">
+                                <li class="list-group-item">작성자: [[${comment.accountNickname}]] <span>날짜: [[${#temporals.format(comment.createDate, 'yyyy.MM.dd HH:mm:ss')}]]</span></li>
+                                <button class="list-group-item" th:data-id="${comment.id}" th:onclick="comment_edit(this.getAttribute('data-id'))" th:if="${#authentication.principal.username} == ${comment.accountEmail}">수정</button>
+<!--                                <button class="list-group-item" th:data-id="${comment.id}" th:onclick="comment_modify(this.getAttribute('data-id'))" th:if="${#authentication.principal.username} == ${comment.accountEmail}">수정</button>-->
+                                <button th:data-id="${comment.id}" th:onclick="comment_delete(this.getAttribute('data-id'))" th:if="${#authentication.principal.username} == ${comment.accountEmail}" class="list-group-item" >삭제</button>
+                            </ul>
+                            <!-- <h5 class="card-title">Special title treatment</h5> -->
+                            <p class="card-text" th:text="${comment.getBody()}">With supporting text below as d d a natural lead-in to additional content.</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Comment Write Section -->
+                <div class="comment_write my-3" sec:authorize="!isAuthenticated()">
+                    <p>로그인 후 댓글을 작성할 수 있습니다.</p>
+                    <button type="button" th:onclick="|location.href='@{/user/login}'|"  class="btn btn-secondary">로그인</button>
+
+                </div>
+                <div class="comment_write my-3" sec:authorize="isAuthenticated()">
+                    <div class="row">
+                        <div class="form-floating">
+                            <textarea class="form-control" id="floatingTextarea" style="height: 80px;"></textarea>
+                            <label for="floatingTextarea" style="left: 10px;">Comments</label>
+                            <div class="mt-1 text-end">
+                                <button type="button" th:onclick="comment_add()" class="btn btn-secondary">등록</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
 
     <div th:replace="fragments/common :: footer"></div>
 </body>
 
-
+<script th:inline="javascript" th:src="@{/js/comment.js}"></script>
+<script th:inline="javascript" th:src="@{/js/app.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
     $(document).ready(function() {
@@ -134,9 +141,14 @@
                     $('#heart').attr('class', 'bi bi-heart')
                 }
             })
-        var dto = /*[[${boardDto} ]]*/ 'a';
+
     });
     /*]]>*/
+
+    // function comment_delete(id) {
+    //     delete(id);
+    //     // console.log(id)
+    // }
 </script>
 
 <script>
@@ -144,7 +156,6 @@
         $(this).height(1).height($(this).prop('scrollHeight') + 1);
     });
 </script>
-<script th:inline="javascript" th:src="@{/js/app.js}"></script>
-<script th:inline="javascript" th:src="@{/js/comment.js}"></script>
+
 
 </html>

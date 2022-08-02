@@ -4,12 +4,16 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.co.communityJh.account.domain.Account;
 import kr.co.communityJh.board.domain.Board;
-import kr.co.communityJh.board.dto.BoardDto;
+import kr.co.communityJh.board.dto.BoardWriteDto;
 import kr.co.communityJh.board.dto.BoardInfoDto;
 import kr.co.communityJh.board.dto.BoardPageWithSearchDto;
 import kr.co.communityJh.board.dto.PageInfo;
 import kr.co.communityJh.board.repository.BoardQueryRepository;
+import kr.co.communityJh.comment.domain.Comment;
 import kr.co.communityJh.comment.dto.CommentResponseDto;
+import kr.co.communityJh.comment.repository.CommentRepository;
+import kr.co.communityJh.exception.CustomException;
+import kr.co.communityJh.exception.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,6 +38,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class QueryDslTest {
 
 
+	@Autowired private CommentRepository commentRepository;
 	@Autowired private BoardQueryRepository boardQueryRepository;
 	@Autowired private JPAQueryFactory jpaQueryFactory;
 
@@ -44,9 +49,9 @@ class QueryDslTest {
 		Long id = 3L;
 		// when
 				
-		BoardDto boardDTO = jpaQueryFactory
+		BoardWriteDto boardWriteDTO = jpaQueryFactory
 				.select(Projections.fields(
-						BoardDto.class,
+						BoardWriteDto.class,
 						board.id,
 						board.title,
 						board.body,
@@ -57,8 +62,8 @@ class QueryDslTest {
 				.fetchOne();
 				
 		// then
-		boardDTO.setViewCount(boardDTO.getViewCount()+1);
-		assertNotNull(boardDTO);
+		boardWriteDTO.setViewCount(boardWriteDTO.getViewCount()+1);
+		assertNotNull(boardWriteDTO);
 
 	}
 
@@ -211,11 +216,31 @@ class QueryDslTest {
 				.innerJoin(comment.account, account)
 				.where(comment.board.id.eq(id))
 				.fetch();
-
-
-
 		assertNotNull(list);
-		assertEquals(list.size(), 6);
+		assertEquals(list.size(), 16);
+	}
+
+	@Test
+	void querydsl_댓글삭제() {
+		Long id = 2L;
+		commentRepository.deleteById(id);
+//		Comment comment = commentRepository.findById(id).orElseThrow(() -> {
+//			return new CustomException(ErrorCode.BOARD_NOT_FOUND);
+//		});
+
+	}
+
+	@Test
+	void querydsl_댓글수정() {
+		Long id = 1L;
+		String body = "댓글 수정!!!";
+		Comment comment = commentRepository.findById(id).orElseThrow(() -> {
+			return new CustomException(ErrorCode.UNAUTHORIZED_USER);
+		});
+		log.info("comment Body: {}", comment.getBody());
+		comment.edit(body);
+
+
 	}
 
 }

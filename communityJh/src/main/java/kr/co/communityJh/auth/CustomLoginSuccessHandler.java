@@ -59,16 +59,16 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 ////		responseMap.put(JwtConstants.AT_HEADER, accessToken);
 //		responseMap.put(JwtConstants.RT_HEADER, refreshToken);
 //		new ObjectMapper().writeValue(response.getWriter(), responseMap);
-		
+
 		String uri = "/";
 		// security가 인터셉터 후 사용자 요청 uri 정보 객체
 		RequestCache requestCache = new HttpSessionRequestCache();
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 
-		
+
 		// 로그인 버튼 눌러 접속했을 경우 이전 페이지
 		String prevPage = (String) request.getSession().getAttribute("prevPage");
-		
+
 		if (prevPage != null) {
 			request.getSession().removeAttribute("prevPage");
 		}
@@ -76,11 +76,13 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		// null이 아니라면 강제 인터셉트 당했다는 것
 		if (savedRequest != null) {
 			uri = savedRequest.getRedirectUrl();
+			log.info("saved null uri: {}", uri);
 
 		// ""가 아니라면 직접 로그인 페이지로 접속한 것
 		} else if (prevPage != null && !prevPage.equals("")) {
 			uri = prevPage;
-			
+			log.info("prev null uri: {}", uri);
+
 			// 회원가입 후 login 경우
 			if(prevPage.contains("user/joinForm")) {
 				uri = "/";

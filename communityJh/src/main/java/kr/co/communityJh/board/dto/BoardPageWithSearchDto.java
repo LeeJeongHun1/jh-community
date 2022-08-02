@@ -19,7 +19,7 @@ public class BoardPageWithSearchDto {
 	private String searchText;
 	private String option;
 	private int page = 0;
-	private int size = 2;
+	private int size = 5;
 	private String sortBy = "createDate";
 	private Sort sort;
 	private String direction = "desc";

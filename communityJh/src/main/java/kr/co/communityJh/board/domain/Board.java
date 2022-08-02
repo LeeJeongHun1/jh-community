@@ -4,12 +4,11 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kr.co.communityJh.account.domain.Account;
+import kr.co.communityJh.board.dto.BoardWriteDto;
 import kr.co.communityJh.entity.BaseEntity;
 import kr.co.communityJh.comment.domain.Comment;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-
-import kr.co.communityJh.board.dto.BoardDto;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -76,8 +75,8 @@ public class Board extends BaseEntity {
 	 * 개발이 진행되는 상황에 따라 수정될 수 있음.
 	 * @return boardDto
 	 */
-	public BoardDto toBoardDtd() {
-		return BoardDto.builder()
+	public BoardWriteDto toBoardDtd() {
+		return BoardWriteDto.builder()
 				.id(this.id)
 				.body(this.body)
 				.title(this.title)

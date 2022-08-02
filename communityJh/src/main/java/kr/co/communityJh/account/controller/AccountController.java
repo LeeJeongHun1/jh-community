@@ -39,10 +39,11 @@ public class AccountController {
 	 * @return login boardPageListWithSearch
 	 */
 	@GetMapping("/login")
-	public String loginForm(HttpServletRequest request, @AuthUser AccountRequestDto accountRequestDTO,
-			@RequestParam(value = "error", required = false, defaultValue = "false") Boolean isError,
-			@RequestParam(required = false, defaultValue = "0") int code,
-			Model model) {
+	public String loginForm(HttpServletRequest request,
+							@AuthUser AccountRequestDto accountRequestDTO,
+							@RequestParam(value = "error", required = false, defaultValue = "false") Boolean isError,
+							@RequestParam(required = false, defaultValue = "0") int code,
+							Model model) {
 		// login boardPageListWithSearch 오기 전 pageUri session에 저장
 		String uri = request.getHeader("Referer");
 		log.info("login boardPageListWithSearch?");
