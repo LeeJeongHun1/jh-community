@@ -44,6 +44,6 @@ Spring boot & jpa 커뮤니티 게시판
 - Lombok
 - Postgresql Driver
 
-## EER Diagram
+## ERD
 
  
