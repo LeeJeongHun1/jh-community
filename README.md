@@ -14,7 +14,7 @@ Spring boot & jpa 커뮤니티 게시판
 ![detail](https://user-images.githubusercontent.com/34118304/182394567-6ed8f1c4-03fd-4288-9e04-06b49dfa9e94.PNG)
 
 글 작성                            
-![image](https://user-images.githubusercontent.com/71416677/170858085-c93e9879-e625-4586-82fc-13c69776754e.png)               
+![write](https://user-images.githubusercontent.com/34118304/182396261-08cb54f1-fac3-4353-a0e0-43966c51a00f.PNG)
 
 ## Features
 - 사용자
