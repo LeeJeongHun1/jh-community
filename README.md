@@ -1,5 +1,1 @@
-diff a/README.md b/README.md	(rejected hunks)
-@@ -0 +0 @@
--# zaritalk
-\ No newline at end of file
-+# 커뮤니티 게시판 
+![login](https://user-images.githubusercontent.com/34118304/182385411-74ca58fa-ff91-4328-a781-57939fb2fbc2.PNG)
