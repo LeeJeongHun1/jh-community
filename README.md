@@ -1,14 +1,10 @@
-![login](https://user-images.githubusercontent.com/34118304/182385411-74ca58fa-ff91-4328-a781-57939fb2fbc2.PNG)
-
-![join](https://user-images.githubusercontent.com/34118304/182394570-54ba435e-a3bf-41ad-a013-3be91623918e.PNG)
-
 
 # community
 Spring boot & jpa 커뮤니티 게시판
 
 ## Details
 게시글 목록                            
-![list](https://user-images.githubusercontent.com/34118304/182394571-f240c495-be28-4af3-810c-646f684c95be.PNG)
+![list](https://user-images.githubusercontent.com/34118304/182552671-beb488b7-4362-40d6-b9ee-d833b27c9295.PNG)
 
 게시글 상세                        
 ![detail](https://user-images.githubusercontent.com/34118304/182394567-6ed8f1c4-03fd-4288-9e04-06b49dfa9e94.PNG)
@@ -44,6 +40,57 @@ Spring boot & jpa 커뮤니티 게시판
 - Lombok
 - Postgresql Driver
 
-## ERD
 
- 
+
+<img width="715" alt="image" src="https://user-images.githubusercontent.com/34118304/182553577-09fae51c-17c9-4221-9f61-cc60c3010ab9.png">
+<img width="715" alt="image" src="https://user-images.githubusercontent.com/34118304/182532610-fe690335-5c21-4823-a3a7-b35afff7cb0e.png">
+<img width="715" alt="image" src="https://user-images.githubusercontent.com/34118304/182532612-64564b1d-eca3-4678-8d24-17a04e1f1f8f.png">
+
+
+## ERD
+![erd](https://user-images.githubusercontent.com/34118304/182532615-8d9ee19a-98ce-4966-837a-73623afdec05.PNG)
+
+## Validation
+- 회원가입
+  - 이메일 : 이메일 패턴에 맞게, 중복X
+  - 비밀번호 : 5~15자, 영문 대소문자, 숫자, 특수문자 포함
+  - 닉네임 : 2~15자, 영문 대소문자, 숫자, 한글(가-힣), 중복 X
+  
+
+- 로그인
+  - 로그인 실패 시 하단에 로그인 실패 원인 출력
+    - `이메일 또는 비밀번호가 일치하지 않습니다.`
+    - `존재하지 않는 아이디입니다.`
+    - `서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.`
+    - `알 수 없는 이유로 오류가 발생했습니다.`
+  - 로그인 성공 시 로그인 이전 페이지로 redirect
+  - 회원가입 → 로그인 경로로 로그인 시 index page로 redirect
+
+- 게시글 작성 / 수정
+  - 제목 : 공백X
+  - 내용 : 공백X
+
+- 댓글 작성 / 수정
+  - 내용 : 공백X
+
+## Business Logic
+- 회원가입 - 일반
+  - Validation 확인은 Backend 단에서
+  - error 여부에 따라 Form 테두리 빨간색, 하단에 error message 출력
+  - 이메일, 닉네임 중복 시 하단에 “중복된 OO입니다.” 메시지 출력
+  - 가입 성공 시 로그인 페이지로 redirect
+
+- 게시글
+  - 작성 날짜 오늘일 경우 “HH:mm” format 적용
+  - 작성 날짜 오늘이 아닐 경우 “MM-dd” format 적용
+  - 본인이 작성한 게시글만 수정 / 삭제 버튼 보여줌
+  - (페이징) Controller → Model & View 넘겨줄 땐 무조건 페이지 값(0부터 시작) 기준으로 넘겨줌.
+    - View에서 page+1 처리
+
+- 댓글
+  - 본인이 작성한 댓글만 수정 / 삭제 버튼 보여줌
+
+## 새롭게 알게된 점
+JPA 관련 학습이 조금 더 필요함.
+js 비동기 api fetch (async, await)
+
