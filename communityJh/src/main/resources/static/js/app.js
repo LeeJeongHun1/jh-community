@@ -1,6 +1,7 @@
+const id = $('#bnoId').val();
 let index = {
     init: function() {
-        $('#deleteBtn').click((e) => {
+        $('#deleteBtn').click(() => {
             this.delete();
         })
         $('#modifyBtn').click(() => {
@@ -12,38 +13,24 @@ let index = {
         $('#rePassword').blur(() => {
             this.rePasswordValid();
         })
+
     },
 
-    delete: function() {
-        /*<![CDATA[*/
-        /*]]>*/
 
-        let reqData = {
-            param: $('#bnoId').val(),
-            id: /* ${boardDto.id} */ 'id',
-        }
-
+    delete: async function() {
         if (confirm("해당 게시글을 삭제하겠습니까?")) {
-            $.ajax({
-                url: "/board/" + reqData.param,
-                type: "delete",
-                // data: "da",
-                contentType: "application/json charset=utf-8",
-                // dataType: 'json'
-                // success: function(data) {
-                //     console.log('ddd')
-                // },
-                // fail: function(data) {
-                //     console.log(data)
-                // }
-            }).done(function(data) {
-                console.log(data)
-                console.log('ddd')
-            }).fail(function(data) {
-                console.log(data)
-            }).ALWAYS(function() {
-                location.href = '/board'
-            })
+            let option = {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }
+            const res = await fetch("/api/board/" + id, option)
+            if(res.status === 200) {
+                location.href = '/board/'
+            }else {
+                alert('게시글 삭제를 실패 했습니다')
+            }
         }
     },
 
@@ -79,28 +66,6 @@ let index = {
 
         if (title && body)
             $('#modifyForm').submit();
-
-
-
-        // console.log(data.body)
-        // $.ajax({
-        //         url: "/board/" + data.id + "/modify",
-        //         type: "post",
-        //         data: JSON.stringify(data),
-        //         contentType: "application/json; charset=utf-8",
-        //     }).done(function(data, status, error) {
-        //         console.log(data)
-        //         console.log(status)
-        //         console.log(error)
-        //
-        //         // location.href = '/board/' + data.id
-        //     }).fail(function(error) {
-        //         console.log(error)
-        //         location.href = '/error'
-        //     })
-        //     // .always(function() { // 해당 글 보기
-        //     //     location.href = '/board/' + data.id
-        //     // })
     },
 
     passwordValid: function() {
@@ -126,3 +91,40 @@ let index = {
 
 }
 index.init();
+
+
+async function board_like() {
+    let like = $('#heart').attr('data-like');
+    console.log(like)
+    let option = {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "like": like === 'true' ? true : false,
+            "boardId": id
+        })
+    }
+    console.log(option.body)
+    const res = await fetch("/api/board/" + id + "/like", option)
+    if(res.status === 200) {
+        // location.href = '/board/'
+        const dtoData = await res.json()
+
+        $('#heart').attr('data-like', dtoData.userLike);
+        $('#likeCount').html(dtoData.likeList.length)
+        if (dtoData.userLike) {
+            $('#heart').attr('class', 'bi bi-heart-fill')
+        } else {
+            $('#heart').attr('class', 'bi bi-heart')
+        }
+    }else {
+        alert('좋아요 등록을 실패 했습니다')
+    }
+
+}
+
+async function board_delete() {
+
+}

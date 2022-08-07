@@ -28,12 +28,7 @@ public class PageInfo {
         this.totalElements = boardPageRequestDto.getTotalElements();
         this.totalPages = boardPageRequestDto.getTotalPages();
         this.size = boardPageRequestDto.getSize();
-//        this.pageable = boardPageRequestDto.getPageable();
 
-
-//        this.startPageNumber = this.pageNumber - (PAGEABLE_SIZE-1) <= 0 ?
-//                0 : (this.pageable.getPageNumber() / PAGEABLE_SIZE) * PAGEABLE_SIZE;
-//        this.endPageNumber = ((((this.pageNumber) / PAGEABLE_SIZE) +1) * PAGEABLE_SIZE) -1;
         this.startPageNumber = this.pageNumber - (PAGEABLE_SIZE-1) <= 0 ?
                 0 : (this.pageNumber / PAGEABLE_SIZE) * PAGEABLE_SIZE;
         this.endPageNumber = ((((this.pageNumber) / PAGEABLE_SIZE) +1) * PAGEABLE_SIZE) - 1;
@@ -44,7 +39,6 @@ public class PageInfo {
             this.endPageNumber = 0;
         }else if(totalPages < this.endPageNumber) {
             this.endPageNumber = totalPages-1;
-//            this.endPageNumber = Math.max(0, this.endPageNumber);
         }
     }
 }

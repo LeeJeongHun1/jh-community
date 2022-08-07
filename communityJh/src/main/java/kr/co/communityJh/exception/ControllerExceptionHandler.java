@@ -1,19 +1,16 @@
 package kr.co.communityJh.exception;
 
-import java.util.NoSuchElementException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
-
-import lombok.extern.log4j.Log4j2;
-import org.springframework.boot.web.servlet.error.ErrorController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author "jhlee" global exception handler @Controller 의 전역
@@ -22,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @ControllerAdvice
 @Controller
-@Log4j2
+@Slf4j
 public class ControllerExceptionHandler {
 	/**
 	 * 컨트롤러에서 NullPointException 발생시 해당 메소드 호출
@@ -43,7 +40,6 @@ public class ControllerExceptionHandler {
 //	
 	@ExceptionHandler(value = CustomException.class)
 	public String illegalArgumentException(CustomException e, Model model) {
-		log.info(e.getMessage());
 		model.addAttribute("msg", e.getMessage());
 		return "error/404";
 	}
@@ -53,10 +49,11 @@ public class ControllerExceptionHandler {
 		return "/user/login?error=true&";
 	}
 
-	@GetMapping("/error")
-	public String handleError(HttpServletRequest request, Model model) {
-		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+	@ExceptionHandler(value = ConversionFailedException.class)
+	public String conversionFailedException(Model model) {
+		model.addAttribute("msg", ErrorCode.BOARD_NOT_FOUND.getMessage());
 		return "error/404";
 	}
+
 
 }

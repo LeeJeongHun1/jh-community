@@ -32,8 +32,6 @@ public class AccountRequestDto {
 				.id(this.id)
 				.email(this.email)
 				.nickname(this.nickname)
-//				.role()
-//				.roles(this.roles)
 				.isEnabledYn(this.isEnabledYn)
 				.build();
 	}

@@ -34,7 +34,7 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
+//@EqualsAndHashCode(callSuper = false)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -64,13 +64,15 @@ public class Board extends BaseEntity {
 	@JsonManagedReference
 	private Set<Comment> comments = new HashSet<>();
 //	
-//	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-//	private Set<Likes> likes = new HashSet<>();
+	@OneToMany(mappedBy = "board")
+	@JsonManagedReference
+	private Set<Like> likes = new HashSet<>();
 	
 	@ColumnDefault("0")
 	private int viewCount;
-	
-	/**
+
+
+    /**
 	 * table에 매핑된 entity를 dto class로 변환
 	 * 개발이 진행되는 상황에 따라 수정될 수 있음.
 	 * @return boardDto

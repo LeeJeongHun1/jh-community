@@ -25,7 +25,6 @@ public class AccountQueryRepository {
 		return Optional.ofNullable(
 				jpaQueryFactory.select(account)
 					.from(account)
-//					.innerJoin(account.roles, role1).fetchJoin()
 					.where(account.email.eq(email))
 					.fetchOne());
 	}

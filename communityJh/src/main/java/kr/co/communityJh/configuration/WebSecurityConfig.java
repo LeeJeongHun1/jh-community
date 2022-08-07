@@ -1,5 +1,6 @@
 package kr.co.communityJh.configuration;
 
+import kr.co.communityJh.account.domain.RoleType;
 import kr.co.communityJh.auth.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -40,23 +41,17 @@ public class    WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        CustomAuthenticationFilter customAuthenticationFilter =
-//                new CustomAuthenticationFilter(authenticationManagerBean());
-//        customAuthenticationFilter.setFilterProcessesUrl("/api/login");
-//        customAuthenticationFilter.setAuthenticationSuccessHandler(customLoginSuccessHandler);
-//        customAuthenticationFilter.setAuthenticationFailureHandler(customLoginFailHandler);
 
         http.csrf().disable();
-        // spring security session 사용 안함.
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.authorizeRequests().antMatchers("/", "/user/**", "/api/join/**", "/api/login/**").permitAll();
-        http.authorizeRequests().antMatchers("/boards/**").hasRole("USER");
-        http.authorizeRequests().anyRequest().authenticated();
 
-//        http.addFilter(customAuthenticationFilter);
-//        http.addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
-//        http.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+        http.authorizeRequests()
+                .antMatchers("/api/board/**").hasRole("USER")
+                .antMatchers("/api/comment/**").hasRole("USER")
+                .antMatchers("/board/{\\d+}/**}").hasRole("USER");
+//                .antMatchers("/", "/user/**").permitAll();
+//        http.authorizeRequests().antMatchers("/boards/**").hasRole("USER");
+        http.authorizeRequests().anyRequest().permitAll();
 
         http
             .formLogin()

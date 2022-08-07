@@ -60,12 +60,6 @@ public class Account {
 	private String password;
 
 	// user role
-//	@OneToMany(mappedBy = "account",
-//			fetch = FetchType.EAGER,
-//			cascade = CascadeType.ALL)
-//	@JsonManagedReference
-//	@ToStringExclude
-//	private Set<Role> roles = new HashSet<>();
 	@Column
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
@@ -83,7 +77,6 @@ public class Account {
 
 	public void addUserRoles(RoleType roleType) {
 		this.role = roleType;
-
 	}
 	
 	public AccountRequestDto toAccountDTO() {

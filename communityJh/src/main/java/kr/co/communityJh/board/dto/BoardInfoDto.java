@@ -23,7 +23,8 @@ public class BoardInfoDto {
 	private String accountEmail;
 	private LocalDateTime createDate;
 	private int viewCount;
-	private Long commentCount;
+	private int likeCount;
+	private int commentCount;
 
 
 

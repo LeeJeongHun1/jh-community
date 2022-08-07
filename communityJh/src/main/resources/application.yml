@@ -39,7 +39,6 @@ spring:
 #    database-platform: org.hibernate.dialect.OracleDialect
     properties:
       hibernate.format_sql: true
-      
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -67,4 +66,10 @@ thymeleaf:
 logging:
   level:
     root: info
-  config: classpath:log4j2.xml 
+    org:
+      hibernate:
+        stat: debug
+
+#    jdbc:
+#      sqltiming: info
+  config: classpath:log4j2.xml

@@ -1,16 +1,14 @@
 package kr.co.communityJh.comment.dto;
 
 import kr.co.communityJh.comment.domain.Comment;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Builder
 public class CommentResponseDto {
     private Long id;

@@ -11,6 +11,9 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.co.communityJh.board.domain.Board;
 import kr.co.communityJh.board.dto.BoardInfoDto;
 import kr.co.communityJh.board.dto.BoardPageWithSearchDto;
+import kr.co.communityJh.board.dto.BoardDetailResponseDto;
+import kr.co.communityJh.board.dto.LikeResponseDto;
+import kr.co.communityJh.comment.dto.CommentResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -24,8 +27,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+import static com.querydsl.core.group.GroupBy.*;
 import static kr.co.communityJh.account.domain.QAccount.account;
 import static kr.co.communityJh.board.domain.QBoard.board;
+import static kr.co.communityJh.board.domain.QLike.like;
 import static kr.co.communityJh.comment.domain.QComment.comment;
 
 /**
@@ -71,16 +76,58 @@ public class BoardQueryRepository {
         ); // null이 반환될 수 있다.
     }
 
+    /**
+     * @param id 게시글 id로 해당 게시글 정보, 댓글 리스트 조회
+     * @return
+     */
     public Optional<Board> findById(Long id) {
         return Optional.ofNullable(jpaQueryFactory
                 .selectDistinct(board)
                 .from(board)
                 .innerJoin(board.account, account).fetchJoin()
-//                .innerJoin(board.account.roles, role1)
+//                .leftJoin(board.likes).fetchJoin()
                 .leftJoin(board.comments).fetchJoin()
+                .leftJoin(board.likes).fetchJoin()
                 .where(board.id.eq(id))
                 .fetchOne());
     }
+
+
+    public List<BoardDetailResponseDto> findByIdWithCommentWithLike(Long id) {
+        return jpaQueryFactory
+                .from(board)
+                .join(board.account, account)
+                .leftJoin(board.comments, comment)
+                .leftJoin(board.likes, like)
+                .leftJoin(comment.account, account)
+                .leftJoin(like.account, account)
+                .where(board.id.eq(id))
+                .transform(groupBy(board.id).list(
+                                Projections.fields(BoardDetailResponseDto.class,
+                                        list(Projections.fields(LikeResponseDto.class,
+                                                        like.id,
+										                like.board.id.as("boardId"),
+                                                        like.account.nickname.as("accountNickname")).skipNulls()
+                                        ).as("likeList"),
+                                        list(Projections.fields(CommentResponseDto.class,
+                                                comment.id,
+                                                comment.body,
+                                                comment.account.nickname.as("accountNickname"),
+                                                comment.account.email.as("accountEmail"),
+                                                comment.createDate).skipNulls()
+                                        ).as("commentList"),
+                                        board.id,
+                                        board.title,
+                                        board.body,
+                                        board.account.email.as("accountEmail"),
+                                        board.account.nickname.as("accountNickname"),
+                                        board.viewCount,
+                                        board.createDate
+                                )
+                        )
+                );
+    }
+
 
 
     /**
@@ -102,7 +149,9 @@ public class BoardQueryRepository {
                         board.title,
                         board.createDate,
                         board.account.nickname.as("accountNickname"),
-                        board.viewCount
+                        board.viewCount,
+                        board.comments.size().as("commentCount"),
+                        board.likes.size().as("likeCount")
                 ))
                 .from(board)
                 .innerJoin(board.account, account);
@@ -113,6 +162,7 @@ public class BoardQueryRepository {
                 switch (type) {
                     case "t" : builder.or(containsTitle(searchText)); break;
                     case "b" : builder.or(containsBody(searchText)); break;
+                    case "w" : builder.or(containsNickname(searchText)); break;
                 }
             }
             query.where(builder);
@@ -132,15 +182,6 @@ public class BoardQueryRepository {
         }
         List<BoardInfoDto> boardList = query.fetch();
 
-        boardList.forEach(it -> {
-            Long count = jpaQueryFactory.select(comment.count())
-                    .from(comment)
-                    .where(comment.board.id.eq(it.getId()))
-                    .fetchOne();
-            it.setCommentCount(count != null ? count : 0L);
-        });
-
-
         // count query
         JPAQuery<Long> count = jpaQueryFactory
                 .select(board.count())
@@ -149,24 +190,6 @@ public class BoardQueryRepository {
                 .where(builder);
 
         return PageableExecutionUtils.getPage(boardList, pageable, () -> count.fetchOne());
-    }
-
-
-    /**
-     * @param boardEntity
-     * @return
-     */
-    public Long updateViewCount(Board boardEntity) {
-        return jpaQueryFactory.update(board)
-                .set(board.viewCount, boardEntity.getViewCount() + 1)
-                .where(eqId(boardEntity.getId()))
-                .execute();
-    }
-
-    public Long deleteById(Long id) {
-        return jpaQueryFactory.delete(board)
-                .where(eqId(id))
-                .execute();
     }
 
     /**
@@ -195,6 +218,13 @@ public class BoardQueryRepository {
             return null;
         }
         return board.body.contains(body);
+    }
+
+    private BooleanExpression containsNickname(String nickname) {
+        if (nickname.equals("")) {
+            return null;
+        }
+        return board.account.nickname.contains(nickname);
     }
 
 }

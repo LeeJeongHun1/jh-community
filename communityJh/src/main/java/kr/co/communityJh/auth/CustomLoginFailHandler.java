@@ -31,10 +31,10 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 		int code = 0;
 		
 		// exception에 따른 error msg 추출
-		if(exception instanceof BadCredentialsException) { // email or password 불일치
-			code = ErrorCode.INVALID_ID_PASSWORD.getCode();
-		} else if (exception instanceof UsernameNotFoundException) { // user가 존재하지 않음
+		if (exception instanceof UsernameNotFoundException) { // user가 존재하지 않음
 			code = ErrorCode.USER_NOT_FOUND.getCode();
+		}else if(exception instanceof BadCredentialsException) { // email or password 불일치
+			code = ErrorCode.INVALID_ID_PASSWORD.getCode();
 		} else if(exception instanceof InternalAuthenticationServiceException) { // server error
 			code = ErrorCode.INTERNAL_ERROR.getCode();
 		} else if(exception instanceof DisabledException) { // account is disabled
@@ -46,9 +46,6 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 		}
 		
 		response.sendRedirect(DEFAULT_FAILURE_URL + code);
-		// error msg 세션에 저장 후 login boardPageListWithSearch 포워드.
-//		request.setAttribute("msg", code);
-//		request.getRequestDispatcher(DEFAULT_FAILURE_URL).forward(request, response);
 	}
 
 

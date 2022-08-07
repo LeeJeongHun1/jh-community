@@ -52,24 +52,20 @@ public class BoardController {
 	}
 
 	/**
-	 * 게시글 seq에 해당하는 게시글 상세 페이지
-	 * db에 조회된 모든 게시글을 보여준다. 추후 페이징, auth 설정 필요
-	 * seq 값이 없을 경우 list 페이지로 리턴
+	 * 게시글 id에 해당하는 게시글 상세 페이지
+	 * 좋아요 수, 댓글 수, 게시글 정보
+	 * id 값이 Long이 아니거나 없는 페이지일 경우 error page
+	 *
 	 * @param id
+	 * @param model
 	 * @return 게시판 상세 페이지
 	 */
 	@GetMapping("/{id}")
-	public String detail(@PathVariable Optional<Long> id,
-						 Model model) {
-		if(!id.isPresent()) {
-			return "redirect:/board";
-		}
-		BoardWithCommentDto boardWithCommentDto = boardService.readBoardWithComment(id.get());
-		model.addAttribute("boardDto", boardWithCommentDto);
-		model.addAttribute("commentList",
-				boardWithCommentDto.getCommentList()
-						.stream().sorted(Comparator.comparing(
-								CommentResponseDto::getCreateDate).reversed()).collect(Collectors.toList()));
+	public String detail(@PathVariable Long id,
+						 Model model,
+						 @AuthUser AccountRequestDto accountRequestDto) {
+
+		model.addAttribute("boardDto", boardService.readBoardWithCommentWithLike(id, accountRequestDto));
 		return "board/detail";
 	}
 
@@ -110,7 +106,7 @@ public class BoardController {
 	 * @return
 	 */
 	@GetMapping("/write")
-	public String writeForm(@ModelAttribute("boardDto") BoardWriteDto boardWriteDto) {
+	public String writeForm(@ModelAttribute("BoardWriteDto") BoardWriteDto boardWriteDto) {
 		return "board/write";
 	}
 	

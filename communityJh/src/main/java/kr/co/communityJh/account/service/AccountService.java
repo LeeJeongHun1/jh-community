@@ -72,9 +72,10 @@ public class AccountService implements UserDetailsService{
 	@Transactional
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 //		accountQueryRepository.findByEmail(email).get();
-		Account account = accountQueryRepository.findByEmail(email).orElseThrow(() -> {
-			return new UsernameNotFoundException("<h1>해당 사용자는 존재하지 않습니다!</h1>");
+		Account account = accountQueryRepository.findByEmail(email).orElseThrow(() ->{
+			 return new UsernameNotFoundException("<h1>해당 사용자는 존재하지 않습니다!</h1>");
 		});
+
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority(account.getRole().toString()));
 

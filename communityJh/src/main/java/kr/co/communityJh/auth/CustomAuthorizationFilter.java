@@ -1,35 +1,8 @@
 package kr.co.communityJh.auth;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import kr.co.communityJh.exception.ErrorResponse;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpHeaders;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
+import lombok.extern.slf4j.Slf4j;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
-import static javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
-import static kr.co.communityJh.auth.JwtConstants.JWT_SECRET;
-import static kr.co.communityJh.auth.JwtConstants.TOKEN_HEADER_PREFIX;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
-@Log4j2
+@Slf4j
 //@Component
 public class CustomAuthorizationFilter {
 //	extends OncePerRequestFilter {

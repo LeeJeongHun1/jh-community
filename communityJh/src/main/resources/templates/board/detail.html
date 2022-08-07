@@ -27,7 +27,7 @@
 
     <!-- Board Section -->
     <div class="container col-md-11">
-        <form action="#" th:action="@{/board/write}" th:object="${boardDto}" method="post">
+        <form th:action="@{/board/write}" th:object="${boardDto}" method="post">
             <input type="hidden" id="bnoId" th:value="*{id}">
             <div class="col">
                 <div class="row border-bottom border-top">
@@ -39,20 +39,23 @@
                             </li>
                             <li class="list-group-item"><span>조회 <span th:text="*{viewCount}">0</span></span>
                             </li>
-                            <li class="list-group-item" id="likeEle" style="cursor: pointer">
-                                <span>좋아요<i class="bi bi-heart" id="heart"></i>
+                            <li class="list-group-item" style="cursor: pointer" sec:authorize="!isAuthenticated()" th:onclick="alert('로그인 후 이용 가능합니다.')">
+                                <span>좋아요<i class="bi bi-heart"></i>
                                 </span>
-<!--                                <span th:text="*{likeCount}">0</span>-->
-                                <span>0</span>
+                                <span th:text="*{likeList.size()}">0</span>
                             </li>
-                            <li class="list-group-item"><span th:text="|댓글 ${commentList.size()}|">댓글 0</span></li>
+                            <li class="list-group-item" id="likeEle" style="cursor: pointer" sec:authorize="isAuthenticated()">
+                                <span>좋아요<i id="heart" th:classappend="*{userLike} ? 'bi bi-heart-fill' : 'bi bi-heart'" th:data-like="*{userLike}"></i></span>
+                                <span id="likeCount" th:text="*{likeList.size()}">0</span>
+                            </li>
+                            <li class="list-group-item"><span th:text="|댓글 *{commentList.size()}|">댓글 0</span></li>
                             <li class="list-group-item"><span>작성일: <span th:text="${#temporals.format(boardDto.createDate, 'yyyy.MM.dd / HH:mm')}"></span></span>
                             </li>
                         </ul>
                     </div>
                     <div class="text-end col-md-4 pt-1 mt-1 align-self-end">
                         <div class="pb-1 mb-1">
-                            <th:block th:if="${#authentication.principal.username} == *{accountEmail}">
+                            <th:block sec:authorize="isAuthenticated()" th:if="${#authentication.principal.username} == *{accountEmail}">
                                 <button type="button" th:onclick="|location.href='@{/board/{id}/modify(id=${boardDto.id}, page=${param.page}, option=${param.option}, searchText=${param.searchText})}'|" class="btn btn-light">수정</button>
                                 <button type="button" id="deleteBtn" class="btn btn-light">삭제</button>
                             </th:block>
@@ -80,18 +83,19 @@
                 <span>
                     <i class="bi bi-chat-square-dots"></i>
                 </span> 댓글
-                    <strong th:text="${commentList.size()}"></strong>
+                    <strong th:text="${boardDto.commentList.size()}"></strong>
                 </div>
                 <!-- Comment List Section -->
                 <div class="comment_list my-1">
-                    <div class="card" th:each="comment : ${commentList}">
+                    <div class="card" th:each="comment : ${boardDto.commentList}">
                         <!--                    <input type="hidden" th:id="${comment.getId()}" th:value="${comment.getId()}">-->
                         <div class="card-body" th:data-id="|comment_${comment.id}|">
                             <ul class="list-group list-group-horizontal justify-content-end">
                                 <li class="list-group-item">작성자: [[${comment.accountNickname}]] <span>날짜: [[${#temporals.format(comment.createDate, 'yyyy.MM.dd HH:mm:ss')}]]</span></li>
-                                <button class="list-group-item" th:data-id="${comment.id}" th:onclick="comment_edit(this.getAttribute('data-id'))" th:if="${#authentication.principal.username} == ${comment.accountEmail}">수정</button>
-<!--                                <button class="list-group-item" th:data-id="${comment.id}" th:onclick="comment_modify(this.getAttribute('data-id'))" th:if="${#authentication.principal.username} == ${comment.accountEmail}">수정</button>-->
-                                <button th:data-id="${comment.id}" th:onclick="comment_delete(this.getAttribute('data-id'))" th:if="${#authentication.principal.username} == ${comment.accountEmail}" class="list-group-item" >삭제</button>
+                                <th:block sec:authorize="isAuthenticated()" th:if="${#authentication.principal.username} == ${comment.accountEmail}">
+                                    <button class="list-group-item" th:data-id="${comment.id}" th:onclick="comment_edit(this.getAttribute('data-id'))" th:if="${#authentication.principal.username} == ${comment.accountEmail}">수정</button>
+                                    <button th:data-id="${comment.id}" th:onclick="comment_delete(this.getAttribute('data-id'))" th:if="${#authentication.principal.username} == ${comment.accountEmail}" class="list-group-item" >삭제</button>
+                                </th:block>
                             </ul>
                             <!-- <h5 class="card-title">Special title treatment</h5> -->
                             <p class="card-text" th:text="${comment.getBody()}">With supporting text below as d d a natural lead-in to additional content.</p>
@@ -129,19 +133,10 @@
 <script th:inline="javascript" th:src="@{/js/app.js}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    $(document).ready(function() {
-        $('#modifyBtn').click(function() {
-                location.href = ''
-            }),
-
-            $('#likeEle').click(function() {
-                if ($('#heart').hasClass('bi bi-heart')) {
-                    $('#heart').attr('class', 'bi bi-heart-fill')
-                } else {
-                    $('#heart').attr('class', 'bi bi-heart')
-                }
-            })
-
+    $(document).ready(function () {
+        $('#likeEle').click(function () {
+            board_like()
+        })
     });
     /*]]>*/
 

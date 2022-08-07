@@ -24,14 +24,6 @@ import static kr.co.communityJh.comment.domain.QComment.comment;
 public class CommentQueryRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
-
-    public Long countByBoardId(Long id){
-        return jpaQueryFactory.select(comment.count())
-                .from(comment)
-                .where(board.id.eq(id))
-                .fetchOne();
-    }
-
     public Optional<List<CommentResponseDto>> findById(Long id) {
         return Optional.ofNullable(jpaQueryFactory
                 .select(Projections.fields(CommentResponseDto.class,

@@ -10,15 +10,13 @@ import kr.co.communityJh.comment.service.CommentService;
 import kr.co.communityJh.exception.CustomException;
 import kr.co.communityJh.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 @RestController
 @RequiredArgsConstructor
-@Log4j2
+@Slf4j
 @RequestMapping("/api/comment")
 public class CommentApiController {
 

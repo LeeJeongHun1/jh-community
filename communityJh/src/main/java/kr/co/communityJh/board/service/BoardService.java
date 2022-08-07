@@ -1,13 +1,16 @@
 package kr.co.communityJh.board.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import kr.co.communityJh.account.repository.AccountQueryRepository;
+import kr.co.communityJh.board.domain.Like;
 import kr.co.communityJh.board.dto.*;
-import kr.co.communityJh.comment.repository.CommentQueryRepository;
+import kr.co.communityJh.board.repository.LikeQueryRepository;
+import kr.co.communityJh.board.repository.LikeRepository;
 import kr.co.communityJh.exception.CustomException;
 import kr.co.communityJh.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +22,12 @@ import kr.co.communityJh.board.repository.BoardRepository;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BoardService {
 	private final BoardRepository boardRepository;
 	private final BoardQueryRepository boardQueryRepository;
-	private final AccountQueryRepository accountQueryRepository;
-	private final CommentQueryRepository commentQueryRepository;
+	private final LikeRepository likeRepository;
+	private final LikeQueryRepository likeQueryRepository;
 
 	/**
 	 * paging, 검색 관련 리스트 조회
@@ -56,14 +60,12 @@ public class BoardService {
 	 */
 	@Transactional
 	public Long deleteBoardById(Long id, AccountRequestDto accountRequestDto) {
-		accountQueryRepository.findByEmail(accountRequestDto.getEmail())
-				.orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-		return boardQueryRepository.deleteById(id);
+		boardRepository.deleteById(id);
+		return 1L;
 	}
-	
+
 	/**
 	 * Board.id를 통해 Board Table 단건 조회
-	 * 해당 Board.viewCount 수정 // 더티체킹
 	 * @param id 
 	 * @return Board
 	 */
@@ -75,19 +77,40 @@ public class BoardService {
 		return boardInfoDto;
 	}
 
+//	@Transactional
+//	public BoardDetailResponseDto readBoardWithComment(Long id) {
+//		Board board = boardQueryRepository.findById(id).orElseThrow(() -> {
+//			return new CustomException(ErrorCode.NOT_FOUND);
+//		});
+//		updateViewCount(board);
+//		return BoardDetailResponseDto.builder().board(board).build();
+//	}
+
 	/**
-	 * 게시글 정보와 해당 게시글에 대한 댓글 List 
-	 * @param id 
+	 * 게시글 정보와 해당 게시글에 대한 댓글 List
+	 * @param id
 	 * @return
 	 */
 	@Transactional
-	public BoardWithCommentDto readBoardWithComment(Long id) {
-		Board board = boardQueryRepository.findById(id).orElseThrow(() -> {
-			return new CustomException(ErrorCode.NOT_FOUND);
-		});
-		updateViewCount(board);
-		return new BoardWithCommentDto(board);
+	public BoardDetailResponseDto readBoardWithCommentWithLike(Long id, AccountRequestDto accountRequestDto) {
+		List<BoardDetailResponseDto> list = boardQueryRepository.findByIdWithCommentWithLike(id);
+		// 게시글이 존재하지 않는 Id일 경우
+		if (list.isEmpty()) {
+			throw new CustomException(ErrorCode.BOARD_NOT_FOUND);
+		}
+		BoardDetailResponseDto boardDetailResponseDto = list.get(0);
+		boardDetailResponseDto.sortCommentCollection();
+		boardDetailResponseDto.distinctLikeList();
+
+		if (accountRequestDto != null) {
+			boardDetailResponseDto.findUserLike(accountRequestDto);
+		}else {
+			boardDetailResponseDto.setUserLike(false);
+		}
+
+		return boardDetailResponseDto;
 	}
+
 
 	/**
 	 * 게시글 방문시 조회수 증가 (추후 쿠키 적용하여 중복방지)
@@ -110,8 +133,27 @@ public class BoardService {
 		board.setTitle(boardWriteDTO.getTitle());
 		board.setBody(boardWriteDTO.getBody());
 		board.setLastUpdateDate(LocalDateTime.now());
+
 		BoardWriteDto dto = board.toBoardDtd();
 		return dto;
 	}
 
+	@Transactional
+	public BoardDetailResponseDto changeLike(LikeRequestDto likeRequestDto, AccountRequestDto accountRequestDto) {
+		// 현재 좋아요를 누른 상태 -> Like Table 해당 좋아요 제거
+		if(likeRequestDto.isLike()){
+			Long likeId = likeQueryRepository.findByBoardIdAndAccountId(likeRequestDto);
+			likeRepository.deleteById(likeId);
+		}else { // 좋아요를 안 누른 상태 -> Like Table 좋아요 추가
+			likeRepository.save(likeRequestDto.toEntity());
+		}
+		List<LikeResponseDto> list = likeQueryRepository.findAllByBoardId(likeRequestDto);
+		String userName = accountRequestDto.getNickname();
+		boolean userLike = list.stream().filter(l -> userName.equals(l.getAccountNickname())).count() == 1 ? true : false;
+
+		return BoardDetailResponseDto.builder()
+				.userLike(userLike)
+				.likeList(list)
+				.build();
+	}
 }

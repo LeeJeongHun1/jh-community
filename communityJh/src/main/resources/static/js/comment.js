@@ -1,45 +1,5 @@
-const id = $('#bnoId').val();
+// const id = $('#bnoId').val();
 
-
-    // 댓글 등록
-    // comment_add: function () {
-    //     const comment = {
-    //         id: id,
-    //         body: $('#floatingTextarea').val()
-    //     }
-    //     if(comment.body === '') {
-    //         alert('댓글 내용을 입력하세요')
-    //         return;
-    //     }
-    //     let option = {
-    //         method: "post",
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(comment)
-    //     }
-    //
-    //     fetch("/api/comment/" + comment.id, option)
-    //         .then(res => {
-    //             if(res.status === 200){
-    //                 console.log("success")
-    //             }
-    //             if(res.status !== 200){
-    //                 console.log("fail")
-    //             }
-    //             return res.json()
-    //         })
-    //         .then(() => {
-    //             $('#floatingTextarea').val('');
-    //
-    //             // $('#commentList').html('<div th:insert="fragments/commentList :: commentList (${' + data +'})"></div>');
-    //             // console.log(this.data.id)
-    //             location.href = '/board/' + comment.id
-    //             // page, option 등등 추가 예정
-    //         })
-    //         .catch()
-    //
-    // },
 
 // 댓글 등록
 async function comment_add(){

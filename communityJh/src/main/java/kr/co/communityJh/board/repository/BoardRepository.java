@@ -11,8 +11,6 @@ import kr.co.communityJh.board.domain.Board;
  * @author jhlee
  * Board JpaRepository
  */
-public interface BoardRepository extends JpaRepository<Board, Integer>, QuerydslPredicateExecutor<Board>{
-	
-	Page<Board> findByTitleContainingOrBodyContaining(String title, String body, Pageable pageable);
-//	Page<Board> findByNicknameContaining(String nickName, Pageable pageable);
+public interface BoardRepository extends JpaRepository<Board, Long>, QuerydslPredicateExecutor<Board>{
+
 }
