@@ -22,7 +22,7 @@ Spring boot & jpa 커뮤니티 게시판
   - 게시글 및 댓글 기본 CRUD
   - 키워드, 작성자 검색
   - 페이징
-  - 좋아요 (미완성)
+  - 좋아요
 
 ## Tech Stack
 - Java 11 / Spring Boot v2.6.7
