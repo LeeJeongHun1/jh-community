@@ -4,10 +4,10 @@ Spring boot & jpa 커뮤니티 게시판
 
 ## Details
 게시글 목록                            
-![list](https://user-images.githubusercontent.com/34118304/182552671-beb488b7-4362-40d6-b9ee-d833b27c9295.PNG)
+![list](https://user-images.githubusercontent.com/34118304/183297622-2ce742e2-2c99-4c89-b9f8-9a4a7b26fee7.PNG)
 
 게시글 상세                        
-![detail](https://user-images.githubusercontent.com/34118304/182394567-6ed8f1c4-03fd-4288-9e04-06b49dfa9e94.PNG)
+![detail](https://user-images.githubusercontent.com/34118304/183297667-149a81dc-09a1-4f18-929c-17fdd2267ead.PNG)
 
 글 작성                            
 ![write](https://user-images.githubusercontent.com/34118304/182396261-08cb54f1-fac3-4353-a0e0-43966c51a00f.PNG)
